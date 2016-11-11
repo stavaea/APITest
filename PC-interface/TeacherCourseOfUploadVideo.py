@@ -6,7 +6,7 @@ import time
 import requests
 from PCClientInterface import Configuration,TestProvide
 
-class Test(unittest.TestCase):
+class Test_uploadVideo(unittest.TestCase):
     def setUp(self):
         self.s = requests.session()
         self.url = Configuration.HostUrl +"/interface/course/TeacherCourse"
@@ -16,7 +16,7 @@ class Test(unittest.TestCase):
         self.params['v'] = 2
         self.params['time'] = self.timeStamp
         
-    def _GetTeacherCousrse1(self): 
+    def test_GetTeacherCousrse1(self): 
         #构造参数
         page = 1
         length = 20
@@ -38,7 +38,7 @@ class Test(unittest.TestCase):
         self.assertEqual(returnObj['message'],"success")
 
             
-    def _GetTeacherCousrsePutPage(self): 
+    def test_GetTeacherCousrsePutPage(self): 
         page = 3
         length = 20
         userId = 255
