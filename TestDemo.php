@@ -19,7 +19,7 @@ class TestDemo extends PHPUnit_Framework_TestCase
         $this->assertInternalType('int',$key2[0]);
         //$this->assertInternalType('array',$arr);
         //$postdata['key']=$key; )
-        var_dump(json_encode($postdata));
+        //var_dump(json_encode($postdata));
         
         
     }
