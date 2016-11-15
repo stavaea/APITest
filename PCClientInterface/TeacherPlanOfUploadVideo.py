@@ -31,14 +31,11 @@ class TeacherPlanTest(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
-        print(json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
         response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
         response.encoding= "utf-8"
-        text = response.text
-        returnObj = json.loads(text)
-        print(returnObj) 
-        #self.assertEqual(returnObj['code'],0)
-        #self.assertEqual(returnObj['message'],"success")
+        returnObj = json.loads(response.text)
+        self.assertEqual(returnObj['code'],0)
+        self.assertEqual(returnObj['message'],"success")
         
     def test_getTeacherCourselist(self):
         url = Configuration.HostUrl + "/interface/teacher/classcourselist"

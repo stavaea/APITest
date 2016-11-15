@@ -10,7 +10,6 @@ import json
 import time
 import requests
 from PCClientInterface import Configuration,TestProvide,Confirm
-from operator import itemgetter
 import HTMLTestRunner
 import os,re
 
@@ -19,11 +18,13 @@ class TeacherMyClasses(unittest.TestCase):
     def setUp(self):
         self.s = requests.session()
         self.url = Configuration.HostUrl +"/interface/teacher/classcourselist"
+        self.s = TestProvide.login(self.s)
         self.timeStamp = int(time.time())
         self.params = {}
         self.params['u'] ='p'
         self.params['v'] = "1.7.0"
         self.params['time'] = self.timeStamp
+        self.teacherId= self.s.cookies.get("uid_test")
         
     #教师课程表--全部
     def test_GetTeacherCourse_all(self):
@@ -34,40 +35,28 @@ class TeacherMyClasses(unittest.TestCase):
                                  "page":1,
                                  "sort":1000,
                                  "status":0,
-                                 "teacherId":"281",
+                                 "teacherId": self.teacherId,
                                  "type":0
                             }
     
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        #print(json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
-        returnObj = json.loads(response.text) 
+        returnObj = json.loads(response.text)
+        #print(returnObj) 
         self.assertEqual(returnObj['code'],0)
         self.assertEqual(returnObj['message'],"success")
         ActualFirstCourseOfList = returnObj['result']['data'][0]
         ExpectStructure = ['courseId','courseName','courseImg','className','classId','userTotal','subname','livingNum','recordNum','underNum','total','courseType','selectCount','planNum','schedule']
         self.assertTrue(Confirm.VerifyDataStucture(ExpectStructure,ActualFirstCourseOfList.keys()),"数据结构不匹配")
-        ExpectCourseObj = {
-                'selectCount': '2',
-                'recordNum': 3,
-                'total': 10,
-                'courseImg': 'http://testf.gn100.com/3,73c5065b7eda',
-                'underNum': 1,
-                'className': '1班',
-                'userTotal': '0',
-                'classId': '1226',
-                'subname': '宏盛飞飞',
-                'courseType': '2',
-                'courseId': '1007',
-                'livingNum': 6,
-                'courseName': '录播课1027--王喜山独讲',
-                'planNum': '第0章',
-                'schedule': 0
-            }
+        self.assertEqual(10,ActualFirstCourseOfList['total'])
+        self.assertEqual(6,ActualFirstCourseOfList['livingNum'])
+        self.assertEqual(3,ActualFirstCourseOfList['recordNum'])
+        self.assertEqual(1,ActualFirstCourseOfList['underNum'])
         
-        self.assertDictEqual(ExpectCourseObj,ActualFirstCourseOfList, "课程信息不匹配")
     
 #获取教师课程--分页，下一页
     def test_TeacherCoursePaging(self):
@@ -77,7 +66,7 @@ class TeacherMyClasses(unittest.TestCase):
                                  "page":2,
                                  "sort":2000,
                                  "status":0,
-                                 "teacherId":"273",
+                                 "teacherId":self.teacherId,
                                  "type":0
                             }
     
@@ -119,7 +108,7 @@ class TeacherMyClasses(unittest.TestCase):
                                  "page":1,
                                  "sort":1000,
                                  "status":0,
-                                 "teacherId":"281",
+                                 "teacherId":self.teacherId,
                                  "type":0
                             }
     
@@ -148,7 +137,7 @@ class TeacherMyClasses(unittest.TestCase):
                                  "page":1,
                                  "sort":2000,
                                  "status":0,
-                                 "teacherId":"281",
+                                 "teacherId":self.teacherId,
                                  "type":0
                             }
         
@@ -192,7 +181,7 @@ class TeacherMyClasses(unittest.TestCase):
                                  "page":1,
                                  "sort":1000,
                                  "status":0,
-                                 "teacherId":"281",
+                                 "teacherId":self.teacherId,
                                  "type":1
                             }
     
@@ -210,9 +199,10 @@ class TeacherMyClasses(unittest.TestCase):
             if int(course['courseType']) != 1:
                 result =False
         self.assertTrue(result, "返回的课程包含非直播课")
+
                 
 
-
+'''
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(TeacherMyClasses("test_GetTeacherCourse_all"))
@@ -230,12 +220,13 @@ def suite():
     runner.run(suite)
     time.sleep(20)
     fp.close()
-            
+'''            
         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
-    #unittest.main()
-    suite()
-    
+    suite= unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(TeacherMyClasses,"test"))
+    runnner = unittest.TextTestRunner()
+    runnner.run(suite)
     
     

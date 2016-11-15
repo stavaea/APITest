@@ -10,29 +10,29 @@ import unittest
 import requests
 import time
 import json
-from PCClientInterface import TestProvide
+from PCClientInterface import TestProvide,Configuration
 
-class Test(unittest.TestCase):
+class Test_getAnnounce(unittest.TestCase):
 
 
     def setUp(self):
-        self.url = "http://dev.gn100.com "+ "/interface/announcement/GetAnnouncement"
+        self.url = Configuration.HostUrl + "/interface/announcement/GetAnnouncement"
         self.s = requests.session()
+        self.timeStamp = int(time.time())
         self.params = {}
         self.params['u'] ='p'
         self.params['v'] = "1.7.0"
-        self.params['time'] = int(time.time())
+        self.params['time'] = self.timeStamp
 
 
     def tearDown(self):
         pass
 
 
-    def test_getAnnouncement(self):
-        plan_id = 8361
+    def est_getAnnouncement(self):
+        plan_id = Configuration.Plan_Id
         self.params['params'] = {
-                        "fk_plan": plan_id        
-                    
+                        "fkPlan": plan_id
                     }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
@@ -47,7 +47,7 @@ class Test(unittest.TestCase):
     def test_getAnnouncementWithReturnError(self):
         plan_id = 8311
         self.params['params'] = {
-                        "fk_plan": plan_id         
+                        "fkPlan": plan_id         
                     }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
@@ -55,8 +55,9 @@ class Test(unittest.TestCase):
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
-        self.assertEqual(1,returnObj['code']) 
-        self.assertEqual("failure",returnObj['message'] )   
+        self.assertEqual(0,returnObj['code']) 
+        self.assertEqual("success",returnObj['message'])
+        self.assertEqual(0,len(returnObj['result']))
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

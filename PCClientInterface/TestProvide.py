@@ -18,19 +18,19 @@ def generateKey(TimeStamp,params):
     return key
 
 def login(s):
+    name = Configuration.mobile
+    password = Configuration.password
     params = {}
     currenttime = int(time.time()) 
     params['u']= 'p'
     params['v']= 2
     params['time']= currenttime
     params['params']= {
-                    "name":"18500643574",
-                    "password":"111111"
+                    "name":name,
+                    "password":password
                 }
     params['key']= generateKey(currenttime,params['params'])
     loginUrl = Configuration.HostUrl + "/interface/login"
     response = s.post(loginUrl,data=json.dumps(params,separators=(',',':')))
-    print(json.dumps(params,separators=(',',':')))
     response.encoding = "utf-8"
-    print(response.text)
     return s

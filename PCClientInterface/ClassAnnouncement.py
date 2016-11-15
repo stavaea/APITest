@@ -12,71 +12,66 @@ import time,json
 import pymysql
 import pymysql.cursors
 import os
-import HTMLTestRunner
 
-db_url = {"host":"192.168.0.43","user":"michael","passwd":"michael","db":"db_course","charset":"utf8","cursorclass":pymysql.cursors.DictCursor}
-connect = pymysql.connect(**db_url)
-connect.autocommit(True)
-cursor = connect.cursor()
 
 class Test_Announcement(unittest.TestCase):
     
+    @classmethod
+    def setUpClass(cls):
+        db_url = {"host":"115.28.222.160","user":"michael","passwd":"michael","db":"db_course","charset":"utf8","cursorclass":pymysql.cursors.DictCursor}
+        cls.connect = pymysql.connect(**db_url)
+        cls.connect.autocommit(True)
+        cls.cursor = cls.connect.cursor()
+    
     def setUp(self):
         self.s = requests.session()
-        loginurl = "http://dev.gn100.com/site.main.login"
-        self.s.post(loginurl,data={"uname":"18500643574","password":"111111","areaCode":86,"areaId":86,"Cid":1,"submit":"登录"})
-        print(self.s.cookies.get("uid_dev"))
-        print(self.s.cookies.get("token_dev"))
-        #Configuration.HostUrl
-        self.url = "http://dev.gn100.com" +"/interface/announcement/Announcement"
+        #self.s = TestProvide.login(self.s)
+        self.url = Configuration.HostUrl +"/interface/announcement/Announcement"
         self.timeStamp = int(time.time())
         self.params = {}
         self.params['u'] ='p'
         self.params['v'] = "1.7.0"
         self.params['time'] = self.timeStamp
+        self.plan_id = Configuration.Plan_Id
         
-    def tearDown(self):
-        pass
-
-
-    def est_Announcement_Add(self):
-        plan_id = "8361"
-        content = "今日课堂作业1+2+3+4"
+    def test_Announcement_Add(self):
+        """添加公告 """
+        
+        content = "今日课堂作业1234"
         self.params['params'] = {
                      "status": "1",      
-                     "fkPlan": plan_id, 
+                     "fkPlan": self.plan_id, 
                      "content": content
                 }
-    
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
-        
         #提交请求
-        print(json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
-        response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
-        response.encoding= "utf-8"
+        response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=True))
+        response.encoding = "utf-8"
         returnObj = json.loads(response.text)
-        print(returnObj)
         self.assertEqual(0,returnObj['code'] ,"返回状态码错误")
         self.assertEqual("success", returnObj['message'])
         #数据库验证公告已插入
-        sql = "SELECT fk_plan,content FROM`t_announcement` WHERE fk_plan={}".format(plan_id)
+        sql = "SELECT fk_plan,content FROM `t_announcement` WHERE fk_plan={} and status=1".format(self.plan_id)
+        cursor = self.connect.cursor()
         cursor.execute(sql)
         result = cursor.fetchone()
+        result = result['content'].decode('utf-8')
         if result :
-            self.assertEqual(content,result['result'] )    
+            self.assertEqual(content,result)    
         else:
             raise("课堂公告未插入")
-        
-    def est_Announcement_Update(self):
-        plan_id = 8361
+              
+    def test_Announcement_Update(self):
+        """修改公告"""
         content = "测试课堂作业"
         self.params['params'] = {
                      "status": "1",      
-                     "fkPlan": plan_id, 
+                     "fkPlan": self.plan_id, 
                      "content": content
                 }
     
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
+        self.params['token']= self.s.cookies.get("token_test")
         
         #提交请求
         response = self.s.post(self.url,data=json.dumps(self.params))
@@ -85,20 +80,27 @@ class Test_Announcement(unittest.TestCase):
         self.assertEqual(0,returnObj['code'] ,"返回状态码错误")
         self.assertEqual("success", returnObj['message'])
         #数据库验证公告已更新
-        sql = "SELECT fk_plan,content FROM `t_announcement` WHERE fk_plan={} and status=1".format(plan_id)
+        sql = "SELECT fk_plan,content FROM `t_announcement` WHERE fk_plan={} and status=1".format(self.plan_id)
+        cursor = self.connect.cursor()
         cursor.execute(sql)
         result = cursor.fetchone()
+        result = result['content'].decode('utf-8')
         if result :
-            self.assertEqual(content,result['result'] )    
+            self.assertEqual(content,result)    
         else:
             raise("课堂公告未插入")
-    
-    def test_Announcement_AddAndUpdate_ErrorPlanId(self):
-        plan_id = "8519"
+         
+    def test_Announcement_Update_SameContent(self):
+        """修改公告，不更新文本"""
+        sql = "select fk_plan,content from t_announcement where fk_plan={} and status=1".format(self.plan_id)
+        cursor = self.connect.cursor()
+        cursor.execute(sql)
+        result = cursor.fetchone()
+        content = result['content'].decode("utf-8")
         self.params['params'] = {
                      "status": "1",      
-                     "fkPlan": plan_id, 
-                     "content": "测试444333"
+                     "fkPlan": self.plan_id, 
+                     "content": content
                 }
     
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
@@ -107,19 +109,33 @@ class Test_Announcement(unittest.TestCase):
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
-        self.assertEqual(2017,returnObj['code'])
-        self.assertEqual("get course data failed",returnObj['message'])     
+        self.assertEqual(0,returnObj['code'])
+        self.assertEqual("success",returnObj['message']) 
     
-    def est_Announcement_Update_SameContent(self):
-        plan_id = 8361
-        sql = "select fk_plan,content from t_announcement where fk_plan={} and status=1".format(plan_id)
+    def test_DeleteAnnouncement(self):
+        self.params['params'] = {
+                     "status": "2",      
+                     "fkPlan": self.plan_id
+                }
+    
+        self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
+        
+        #提交请求
+        response = self.s.post(self.url,data=json.dumps(self.params))
+        response.encoding= "utf-8"
+        returnObj = json.loads(response.text)
+        sql = "select fk_plan,content from `t_announcement` where fk_plan={} and status=-1".format(self.plan_id)
+        cursor = self.connect.cursor()
         cursor.execute(sql)
         result = cursor.fetchone()
-        content = result['content']
+        cursor.close()
+        self.assertIsNotNone(result)
+    
+       
+    def test_DeleteAnnouncement_whichIsDeleted(self):
         self.params['params'] = {
-                     "status": "1",      
-                     "fkPlan": plan_id, 
-                     "content": content
+                     "status": "2",      
+                     "fkPlan": self.plan_id
                 }
     
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
@@ -129,42 +145,13 @@ class Test_Announcement(unittest.TestCase):
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         self.assertEqual(1,returnObj['code'])
-        self.assertEqual("failure",returnObj['message']) 
+        self.assertEqual("failure",returnObj['message'])  
     
-    def est_DeleteAnnouncement(self):
-        plan_id = 8361
-        self.params['params'] = {
-                     "status": "2",      
-                     "fkPlan": plan_id
-                }
-    
-        self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
-        
-        #提交请求
-        response = self.s.post(self.url,data=json.dumps(self.params))
-        response.encoding= "utf-8"
-        returnObj = json.loads(response.text)
-        sql = "select fk_plan,content from `t_announcement` where fk_plan={} and status=-1".format(plan_id)
-        cursor.execute(sql)
-        result = cursor.fetchone()
-        self.assertNotNone(result)
-        
-    def est_DeleteAnnouncement_withErrorPlanId(self):
-        plan_id = 3488
-        self.params['params'] = {
-                     "status": "2",      
-                     "fkPlan": plan_id
-                }
-    
-        self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
-        
-        #提交请求
-        response = self.s.post(self.url,data=json.dumps(self.params))
-        response.encoding= "utf-8"
-        returnObj = json.loads(response.text)
-        self.assertEqual(2017,returnObj['code'])
-        self.assertEqual("get course data failed",returnObj['message'])  
-        
+    @classmethod
+    def tearDownClass(cls):
+        cls.cursor.close()
+        cls.connect.close()
+        print("pass")   
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
