@@ -1,4 +1,5 @@
 # -*- coding:UTF-8 -*-
+#!/usr/bin/env python3
 salt = "gn1002015"
 HostUrl = "http://pingtai.gn100.com"
 

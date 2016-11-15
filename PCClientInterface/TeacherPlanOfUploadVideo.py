@@ -1,5 +1,5 @@
 #-*- coding:UTF-8 -*-
-
+#/usr/bin/env python3
 '''
 Created on 2016年9月21日
 

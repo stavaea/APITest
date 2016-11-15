@@ -1,16 +1,19 @@
 #-*- coding:utf-8 -*-
+#!/usr/bin/env python3
 '''
 Created on 2016年11月10日
 
 @author: lsh
 '''
-
+import os
+import sys
+currentPath = os.getcwd()
+sys.path.append(currentPath)
 from PCClientInterface import AddAnswerLog,ClassAnnouncement,GetAnnounce,CourseLivingPlan,TeacherStudents,TeacherMyClasses,GetQuestion, \
 StartOrRestartClass,CoursePlanOfTeacher
-
 import unittest
 import HTMLTestRunner
-import os,time
+import time
 
 def suite():
     suite = unittest.TestSuite()
