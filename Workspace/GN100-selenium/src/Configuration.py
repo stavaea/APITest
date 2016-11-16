@@ -1,11 +1,12 @@
+#-*- coding:utf-8 -*-
 '''
-Created on 2016Äê11ÔÂ16ÈÕ
+Created on 2016å¹´11æœˆ16æ—¥
 
 @author: lsh
 '''
 BaseUrl = "http://lshc.gn100.com"
 DriverName = "chrome"
 
-#µÇÂ¼
+#ï¿½ï¿½Â¼
 uname = "18500643574"
 password = "111111"
