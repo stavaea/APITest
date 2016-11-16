@@ -1,2 +1,5 @@
 Workspace/.metadata/*
 Workspace/GN100-selenium/src/Demo/*
+Workspace/GN100-selenium/.settings/
+Workspace/GN100-selenium/src/__pycache__/
+
