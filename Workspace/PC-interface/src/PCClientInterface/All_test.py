@@ -29,7 +29,8 @@ def suite():
     #suite.addTest(AddAnswerLog.AddAnswerLog)
     #执行测试套件
     now = time.strftime("%Y-%m-%d-%H_%M_%S",time.localtime(time.time()))
-    filePath =os.path.dirname(__file__) + "\\"+ now + "-TestResult.html"
+    filePath =os.getcwd() + "/"+ now + "-TestResult.html"
+    print(filePath)
     fp = open(filePath,'wb')
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title="PC客户端接口测试",description="PC客户端接口测试报告")
     runner.run(suite)
@@ -37,5 +38,5 @@ def suite():
 
 if __name__ == '__main__':
     suite()
-    
-    
+
+
