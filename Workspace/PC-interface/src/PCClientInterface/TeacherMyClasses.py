@@ -193,7 +193,7 @@ class TeacherMyClasses(unittest.TestCase):
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         courseList= returnObj['result']['data']
-        print(courseList)
+        #print(courseList)
         #判断返回的课程都是直播课
         result = True
         for course in courseList:
