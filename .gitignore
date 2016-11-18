@@ -3,4 +3,5 @@ Workspace/GN100-selenium/src/Demo/*
 Workspace/GN100-selenium/.settings/
 Workspace/GN100-selenium/src/*__pycache__*
 Workspace/PC-interface/src/PCClientInterface/*__pycache__*
+workspace/PC-interface/.settings
 
