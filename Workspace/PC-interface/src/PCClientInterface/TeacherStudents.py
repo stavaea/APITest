@@ -14,7 +14,6 @@ import requests
 
 class Test_TeacherOfStudents(unittest.TestCase):
 
-
     def setUp(self):
         self.s = requests.session()
         self.s = TestProvide.login(self.s)
@@ -30,6 +29,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
         pass
     
     def test_getStudentList(self):
+        """获取学生列表"""
         self.params['params'] = {
                 "page":1,
                 "length":20,
@@ -38,6 +38,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 "teacherId":self.teacherId,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
+        print("Url:{}\r\n Parameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
@@ -45,9 +46,9 @@ class Test_TeacherOfStudents(unittest.TestCase):
         keys = ['startTime','address','sex','userName','mobile','userId']
         Result=Confirm.VerifyDataStucture(keys,firstObj.keys())
         self.assertTrue(Result, "学生属性值返回错误")
-        
-     
+         
     def test_getStudentWithPaging(self):
+        """学生列表翻页"""
         self.params['params'] = {
                 "page":2,
                 "length":20,
@@ -56,27 +57,31 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 "teacherId":self.teacherId,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
+        print("Url:{}\r\n Parameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         OneUser=  {
                 'mobile': '13645420000',
                 'userName': '周振宇',
-                'userId': '22519',
-                'startTime': '2016年11月10日13:56',
-                'address': '移动山东',
-                'sex': ''
+                'userId': '22519'
             }
         
         if returnObj['code']==0:
-            self.assertEqual(2,returnObj['result']['page'])
-            print(returnObj['result']['data'])
-            Result = Confirm.objIsInList(OneUser,returnObj['result']['data'])
+            self.assertEqual('2',returnObj['result']['page'])
+            Result = False
+            Students = returnObj['result']['data']
+            for studentObj in Students:
+                if OneUser['mobile']==studentObj['mobile'] and OneUser['userName']==studentObj['userName']  and OneUser['userId']==studentObj['userId']:
+                    Result = True
+                    break
             self.assertTrue(Result,"学生列表未翻页")
         else:
-            raise("接口返回失败")     
-         
+            raise("接口返回失败")
+             
+    
     def test_getStudentWithErrorClassId(self):
+        """获取学生列表传入错误班级ID"""
         self.params['params'] = {
                 "page":1,
                 "length":20,
@@ -85,14 +90,15 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 "teacherId":self.teacherId,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
+        print("Url:{}\r\n Parameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         self.assertEqual(3002,returnObj['code'])
         self.assertEqual("get data failed",returnObj['message'])
-    
-    @unittest.skip("3")    
+     
     def test_getStudentWithErrorCourseId(self):
+        """获取学生列表传入错误课程ID"""
         self.params['params'] = {
                 "page":1,
                 "length":20,
@@ -101,6 +107,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 "teacherId":self.teacherId,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
+        print("Url:{}\r\nParameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
@@ -108,5 +115,4 @@ class Test_TeacherOfStudents(unittest.TestCase):
         self.assertEqual("get data failed",returnObj['message'])    
 
 if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

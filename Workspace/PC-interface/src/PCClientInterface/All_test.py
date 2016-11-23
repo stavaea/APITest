@@ -6,9 +6,6 @@ Created on 2016年11月10日
 @author: lsh
 '''
 import os
-import sys
-currentPath = os.getcwd()
-sys.path.append(currentPath)
 from PCClientInterface import AddAnswerLog,ClassAnnouncement,GetAnnounce,CourseLivingPlan,TeacherStudents,TeacherMyClasses,GetQuestion, \
 StartOrRestartClass,CoursePlanOfTeacher
 import unittest
@@ -25,18 +22,17 @@ def suite():
     suite.addTest(unittest.makeSuite(TeacherMyClasses.TeacherMyClasses))
     suite.addTest(unittest.makeSuite(CoursePlanOfTeacher.Test_CoursePlanOfTeacher))
     suite.addTest(unittest.makeSuite(StartOrRestartClass.Test_startClass))
-    #suite.addTest(GetQuestion.Test_GetQuestion)
-    #suite.addTest(AddAnswerLog.AddAnswerLog)
+    #suite.addTest(unittest.makeSuite(GetQuestion.Test_GetQuestion))
+    #suite.addTest(unittest.makeSuite(AddAnswerLog.AddAnswerLog))
     #执行测试套件
-    now = time.strftime("%Y-%m-%d-%H_%M_%S",time.localtime(time.time()))
+    #now = time.strftime("%Y-%m-%d-%H_%M_%S",time.localtime(time.time()))
     #filePath =os.getcwd() + "/"+ now + "-TestResult.html"
     filePath = os.getcwd() + "/TestResult.html"
-    print(filePath)
     fp = open(filePath,'wb')
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title="PC客户端接口测试",description="PC客户端接口测试报告")
     runner.run(suite)
     fp.close()
-
+    
 if __name__ == '__main__':
     suite()
 

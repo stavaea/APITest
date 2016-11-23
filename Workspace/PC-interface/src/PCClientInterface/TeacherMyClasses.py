@@ -43,11 +43,10 @@ class TeacherMyClasses(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
-        #print(json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
-        returnObj = json.loads(response.text)
-        #print(returnObj) 
+        returnObj = json.loads(response.text) 
         self.assertEqual(returnObj['code'],0)
         self.assertEqual(returnObj['message'],"success")
         ActualFirstCourseOfList = returnObj['result']['data'][0]
@@ -67,13 +66,14 @@ class TeacherMyClasses(unittest.TestCase):
                                  "page":2,
                                  "sort":2000,
                                  "status":0,
-                                 "teacherId":self.teacherId,
+                                 "teacherId":273,
                                  "type":0
                             }
     
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
@@ -81,7 +81,6 @@ class TeacherMyClasses(unittest.TestCase):
         CourseOne = {
                 "courseId": "349",
                 "courseName": "测试1216",
-                "courseImg": "http://testf.gn100.com/7,19f0b22a8366",
                 "courseType": "1",
                 "className": "1班",
                 "classId": "473",
@@ -89,15 +88,14 @@ class TeacherMyClasses(unittest.TestCase):
                 "selectCount": "6",
                 "planNum": "第6章",
                 "schedule": 1,
-                "subname": "高能测试",
-                "livingNum": 121,
-                "recordNum": 17,
-                "underNum": 16,
-                "total": 154
+                "subname": "高能测试"
             }
         self.assertEqual(2,returnObj['result']['page'] ,"没有翻页")
-        self.assertIn(CourseOne, CourseList, "预期的课程数据不在第二页")
-    
+        Result = False
+        for CourseObj in CourseList:
+            if CourseOne['courseId'] == CourseObj['courseId'] and CourseOne['courseName'] == CourseObj['courseName'] and CourseOne['classId'] == CourseObj['classId'] and CourseOne['courseType'] == CourseObj['courseType']:
+                Result = True
+        self.assertTrue(Result)        
     
 #通过关键字搜索课程
     def test_SearchCourseByKeyword(self):
@@ -116,6 +114,7 @@ class TeacherMyClasses(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
@@ -145,13 +144,13 @@ class TeacherMyClasses(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         CourseList = returnObj['result']['data']
-        #print("按学生排序1={}".format(CourseList))
-        self.assertGreaterEqual(CourseList[0]['userTotal'],CourseList[1]['userTotal'])
-        self.assertGreaterEqual(CourseList[-2]['userTotal'],CourseList[-1]['userTotal'],"未按学生人数倒序排序")
+        self.assertGreaterEqual(int(CourseList[0]['userTotal']),int(CourseList[1]['userTotal']))
+        self.assertGreaterEqual(int(CourseList[-2]['userTotal']),int(CourseList[-1]['userTotal']),"未按学生人数倒序排序")
         
         #默认排序数据
         #self.params['params'] = {
@@ -189,6 +188,7 @@ class TeacherMyClasses(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
@@ -225,9 +225,6 @@ def suite():
         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
-    suite= unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TeacherMyClasses,"test"))
-    runnner = unittest.TextTestRunner()
-    runnner.run(suite)
+    unittest.main()
     
     

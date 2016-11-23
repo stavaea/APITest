@@ -39,6 +39,7 @@ class Test_CoursePlanOfTeacher(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
@@ -70,6 +71,7 @@ class Test_CoursePlanOfTeacher(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
@@ -85,6 +87,7 @@ class Test_CoursePlanOfTeacher(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)   
@@ -99,6 +102,7 @@ class Test_CoursePlanOfTeacher(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)

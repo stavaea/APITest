@@ -35,7 +35,7 @@ class Test_courseLivingPlan(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         
         #提交请求
-        #print(json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
+        print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=False))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
@@ -45,10 +45,12 @@ class Test_courseLivingPlan(unittest.TestCase):
             if returnObj['result'][key]['flag'] == 1:
                 CompareObj = returnObj['result'][key]['data'][0]
                 self.assertTrue(Confirm.VerifyDataStucture(ExpectKeys, CompareObj))
+                break
+            
         OneDayPlanInfo  =  {
                     'sectionDescipt': '001',
-                    'start_time': '17: 55',
-                    'status': '开始上课',
+                    'start_time': '17:55',
+                    'status': '继续上课',
                     'class_id': '1224',
                     'thumb': "http: //testf.gn100.com/3,73b4d6997d24",
                     'type': '1',
@@ -56,13 +58,20 @@ class Test_courseLivingPlan(unittest.TestCase):
                     'section_name': '1',
                     'teacher_name': '王喜山',
                     'course_id': '1005',
-                    'userTotal': '0',
+                    'userTotal': '40',
                     'num': '3',
                     'title': 'PC-Client接口测试1026',
                     'plan_id': '3558',
                     'course_type': '1'
                 }
-        self.assertTrue(Confirm.objIsInList(OneDayPlanInfo, returnObj['result']['26']['data']),"返回排课信息有误")                      
+        Result = False
+        PlanList = returnObj['result']['26']['data']
+        for planObj  in PlanList:
+            if planObj['start_time'] == OneDayPlanInfo['start_time'] and planObj['status'] == OneDayPlanInfo['status'] and planObj['plan_id'] == OneDayPlanInfo['plan_id'] \
+            and planObj['section_name'] == OneDayPlanInfo['section_name']:
+                Result = True
+        
+        self.assertTrue(Result,"返回排课信息不匹配")                      
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
