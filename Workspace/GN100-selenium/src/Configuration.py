@@ -7,6 +7,6 @@ Created on 2016年11月16日
 BaseUrl = "http://lshc.gn100.com"
 DriverName = "chrome"
 
-#��¼
+#账号和密码
 uname = "18500643574"
 password = "111111"
