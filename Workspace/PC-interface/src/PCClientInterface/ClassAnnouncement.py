@@ -47,7 +47,7 @@ class Test_Announcement(unittest.TestCase):
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         #提交请求
         print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
-        response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':'),ensure_ascii=True))
+        response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':')))
         response.encoding = "utf-8"
         returnObj = json.loads(response.text)
         self.assertEqual(0,returnObj['code'] ,"返回状态码错误")
@@ -57,8 +57,8 @@ class Test_Announcement(unittest.TestCase):
         cursor = self.connect.cursor()
         cursor.execute(sql)
         result = cursor.fetchone()
-        result = result['content'].decode('utf-8')
         if result :
+            result = result['content'].decode('utf-8')
             self.assertEqual(content,result)    
         else:
             raise("课堂公告未插入")
@@ -77,7 +77,7 @@ class Test_Announcement(unittest.TestCase):
         
         #提交请求
         print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
-        response = self.s.post(self.url,data=json.dumps(self.params))
+        response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':')))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         self.assertEqual(0,returnObj['code'] ,"返回状态码错误")
@@ -87,8 +87,8 @@ class Test_Announcement(unittest.TestCase):
         cursor = self.connect.cursor()
         cursor.execute(sql)
         result = cursor.fetchone()
-        result = result['content'].decode('utf-8')
         if result :
+            result = result['content'].decode('utf-8')
             self.assertEqual(content,result)    
         else:
             raise("课堂公告未插入")
