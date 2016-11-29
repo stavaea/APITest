@@ -53,8 +53,8 @@ class TeacherMyClasses(unittest.TestCase):
         ExpectStructure = ['courseId','courseName','courseImg','className','classId','userTotal','subname','livingNum','recordNum','underNum','total','courseType','selectCount','planNum','schedule']
         self.assertTrue(Confirm.VerifyDataStucture(ExpectStructure,ActualFirstCourseOfList.keys()),"数据结构不匹配")
         self.assertEqual(10,ActualFirstCourseOfList['total'])
-        self.assertEqual(6,ActualFirstCourseOfList['livingNum'])
-        self.assertEqual(3,ActualFirstCourseOfList['recordNum'])
+        self.assertEqual(8,ActualFirstCourseOfList['livingNum'])
+        self.assertEqual(1,ActualFirstCourseOfList['recordNum'])
         self.assertEqual(1,ActualFirstCourseOfList['underNum'])
         
     
