@@ -46,7 +46,7 @@ class Driver(object):
             firefoxProfile= webdriver.FirefoxProfile(firefoxProfilePath)
             self.driver = webdriver.Firefox(firefox_profile=firefoxProfile)
         else :
-            pass 
+            pass
 
 if __name__ == '__main__':
     driver = Driver()

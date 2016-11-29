@@ -18,7 +18,9 @@ class Test_createCourse(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = Initialize.Driver()
+        driver = Initialize.Driver()
+        cls.driver = driver.driver
+        print(cls.driver)
         #登录机构首页
         loginUrl = Configuration.BaseUrl + '/'
         uname = Configuration.uname
@@ -48,7 +50,8 @@ class Test_createCourse(unittest.TestCase):
              
         OrgAdministration.click()
         WebDriverWait(self.driver,20).until(PageProvide.PageLoadingReady(self.driver), "页面未加载失败")
-        
+    
+    @unittest.skip("11")    
     def Test_NavigateCreateCoursePage(self):
         courseManage = self.driver.find_element_by_xpath('/html/body/section/div/div/div[1]/ul/li[3]/a')
         courseManage.click()
@@ -66,7 +69,7 @@ class Test_createCourse(unittest.TestCase):
         #确认页面调整到新建课程页面
         WebDriverWait(self.driver,20).until(PageProvide.PageLoadingReady(self.driver), "页面未加载失败")
         Result = False
-        if self.driver.title。find("创建课程")>-1:
+        if self.driver.title.find("创建课程") > -1:
             Result= True
             
         self.assertTrue(Result, "没有打开创建课程页面")
@@ -74,6 +77,7 @@ class Test_createCourse(unittest.TestCase):
         expectUrl = Configuration.BaseUrl + "/org.course.type"        
         self.assertEqual(CreateCourseUrl,expectUrl)
     
+    @unittest.skip("11")
     def test_SetBasicInformation(self):
         self.driver.find_element_by_link_text("直播课").click()
         WebDriverWait(self.driver,20).until(PageProvide.PageLoadingReady(self.driver), "页面未加载失败")
@@ -160,6 +164,7 @@ class Test_createCourse(unittest.TestCase):
         SelectedTeacherName = self.driver.find_element_by_css_selector("#teacher-contents>li>div").text
         self.assertEqual("李胜红",SelectedTeacherName)   
     
+    @unittest.skip("11")
     def test_setScopeAndDescription(self):  
             #点击下一步 设置课程图片，教学范围描述
             self.driver.find_element_by_id("add-course-info-btn").click()
@@ -168,7 +173,7 @@ class Test_createCourse(unittest.TestCase):
             #上传图片
             self.driver.find_element_by_id("img_p_label").click()
             time.sleep(5)
-            imgPath = str(os.getcwd() + "\\..\\..\\Image\\CoursePicture.jpg").replace("\\","/")
+            imgPath = str(os.getcwd() + "\\..\\..\\Image\\CourseImage.jpg").replace("\\","/")
             #self.driver.find_element_by_id("uploadImg").click()
             fileWebElement = self.driver.find_element_by_xpath("//*[@id='upload-img-content']/p/div/input[@type='file']")
             fileWebElement.send_keys(imgPath)
@@ -182,7 +187,8 @@ class Test_createCourse(unittest.TestCase):
             WebDriverWait(self.driver,20).until(PageProvide.PageLoadingReady(self.driver), "页面未加载失败")
             result = self.driver.title.find("创建章节")
             self.assertGreater(result, -1, "未跳转至创建章节页面")
-            
+    
+    @unittest.skip("11")        
     def test_addSectionAndPlan(self):
         #添加单个课时
         #self.driver.find_element_by_xpath("//*[@id="addMorePlanInfo"]/div/section[1]/div/div/section/div[1]/span[1]").click()
@@ -260,16 +266,25 @@ class Test_createCourse(unittest.TestCase):
         ExpectActions = ["直播：无试看","视频：试看20分钟"]
         self.assertListEqual(ExpectActions, VideoPremiss,"试看权限不匹配")
         #验证时间按天增长
-        
-        
+        StartTimeMoudles = self.driver.find_elements_by_xpath("//*[@id='plan-edit-info']/div/dl/dd[2]/span[1]")
+        StartTimeList = []
+        for node in StartTimeMoudles:
+            StartTimeList.append(node.text)
         #验证班主任
+        teacherOfClass =(self.driver.find_element_by_id("plan-teacherName")).text
+        UserTotal = (self.driver.find_element_by_id("plan-userTotal")).text
         
         #验证讲师
+        ViceTeacherNodes =self.driver.find_elements_by_xpath("//*[@id='plan-edit-info']/div/dl/dd[1]/span[2]")
+        ViceTeacherNames = []
+        for node in ViceTeacherNodes:
+            ViceTeacherNames.append(node.text)
         
+        #调整智课程管理页面，搜索此课程
         
     @classmethod
     def tearDownClass(cls):
-        cls.driver。quite()
+        cls.driver.quit()
     
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
