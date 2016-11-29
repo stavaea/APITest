@@ -1,5 +1,5 @@
-#-*- coding:utf-8 -*-
 #!/usr/bin/env python3
+#-*- coding:utf-8 -*-
 
 '''
 Created on 2016年10月28日
@@ -57,9 +57,9 @@ class Test_Announcement(unittest.TestCase):
         cursor = self.cursor
         cursor.execute(sql)
         result = cursor.fetchone()
-        if result :
-            result = result['content'].decode('utf-8')
-            self.assertEqual(content,result)    
+        if result:
+            Anno_content = result['content']
+            self.assertEqual(content,Anno_content)    
         else:
             raise("课堂公告未插入")
               
@@ -86,8 +86,8 @@ class Test_Announcement(unittest.TestCase):
         cursor.execute(sql)
         result = cursor.fetchone()
         if result :
-            result = result['content'].decode('utf-8')
-            self.assertEqual(content,result)    
+            Anno_content = result['content']
+            self.assertEqual(content,Anno_content)    
         else:
             raise("课堂公告未插入")
          
@@ -97,7 +97,7 @@ class Test_Announcement(unittest.TestCase):
         cursor = self.cursor
         cursor.execute(sql)
         result = cursor.fetchone()
-        content = result['content'].decode("utf-8")
+        content = result['content']
         self.params['params'] = {
                      "status": "1",      
                      "fkPlan": self.plan_id, 
@@ -133,8 +133,7 @@ class Test_Announcement(unittest.TestCase):
         result = cursor.fetchone()
         cursor.close()
         self.assertIsNotNone(result)
-    
-       
+     
     def test_DeleteAnnouncement_whichIsDeleted(self):
         self.params['params'] = {
                      "status": "2",      
