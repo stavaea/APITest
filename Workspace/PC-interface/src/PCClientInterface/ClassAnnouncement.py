@@ -54,7 +54,7 @@ class Test_Announcement(unittest.TestCase):
         self.assertEqual("success", returnObj['message'])
         #数据库验证公告已插入
         sql = "SELECT fk_plan,content FROM `t_announcement` WHERE fk_plan={} and status=1".format(self.plan_id)
-        cursor = self.connect.cursor()
+        cursor = self.cursor
         cursor.execute(sql)
         result = cursor.fetchone()
         if result :
@@ -72,9 +72,7 @@ class Test_Announcement(unittest.TestCase):
                      "content": content
                 }
     
-        self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
-        self.params['token']= self.s.cookies.get("token_test")
-        
+        self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params']) 
         #提交请求
         print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':')))
@@ -84,7 +82,7 @@ class Test_Announcement(unittest.TestCase):
         self.assertEqual("success", returnObj['message'])
         #数据库验证公告已更新
         sql = "SELECT fk_plan,content FROM `t_announcement` WHERE fk_plan={} and status=1".format(self.plan_id)
-        cursor = self.connect.cursor()
+        cursor = self.cursor
         cursor.execute(sql)
         result = cursor.fetchone()
         if result :
@@ -96,7 +94,7 @@ class Test_Announcement(unittest.TestCase):
     def test_Announcement_Update_SameContent(self):
         """修改公告，不更新文本"""
         sql = "select fk_plan,content from t_announcement where fk_plan={} and status=1".format(self.plan_id)
-        cursor = self.connect.cursor()
+        cursor = self.cursor
         cursor.execute(sql)
         result = cursor.fetchone()
         content = result['content'].decode("utf-8")
@@ -110,7 +108,7 @@ class Test_Announcement(unittest.TestCase):
         
         #提交请求
         print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
-        response = self.s.post(self.url,data=json.dumps(self.params))
+        response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':')))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         self.assertEqual(0,returnObj['code'])
@@ -126,11 +124,11 @@ class Test_Announcement(unittest.TestCase):
         
         #提交请求
         print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
-        response = self.s.post(self.url,data=json.dumps(self.params))
+        response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':')))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         sql = "select fk_plan,content from `t_announcement` where fk_plan={} and status=-1".format(self.plan_id)
-        cursor = self.connect.cursor()
+        cursor = self.cursor
         cursor.execute(sql)
         result = cursor.fetchone()
         cursor.close()
@@ -147,7 +145,7 @@ class Test_Announcement(unittest.TestCase):
         
         #提交请求
         print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
-        response = self.s.post(self.url,data=json.dumps(self.params))
+        response = self.s.post(self.url,data=json.dumps(self.params,separators=(',',':')))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         self.assertEqual(1,returnObj['code'])
