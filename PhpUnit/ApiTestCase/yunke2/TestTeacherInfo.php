@@ -14,12 +14,30 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
     
     protected function  setUp()
     {
-        $this->url = "http://dev.gn100.com/interface/teacher/detail";
+       // $this->url = "http://dev.gn100.com/interface/teacher/detail";
+        $this->url = "http://test.gn100.com/interface/teacher/detail";
         $this->http = new HttpClass();
         $this->GetToken =new TestUserToken();
     }
     
+    public function testTeacherInfoIsOk($uid=0,$teacherId='23402')
+    {   
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['params']['page']='1';
+        $postdata['params']['length']='20';
+        $postdata['params']['teacherId']=$teacherId;
+        $token=$this->GetToken->testUserTokenGenIsSuccess($uid);
+        $postdata['token']=$token;
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key;
+        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        
+    }
+    
     //参数正确，返回数据节点是否正确
+    /*
     public function testDataIsOK($oid='469',$uid='3596')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -51,7 +69,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
 //         var_dump(json_encode($result['result']['plan']));
 //         var_dump(json_encode($result['result']['course']['list'][0]));
     }
-    
+    */
     
     //必传参数为空，返回值
     public function testParamsIsNull($oid='469')
