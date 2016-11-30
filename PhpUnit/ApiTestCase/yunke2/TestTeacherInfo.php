@@ -32,8 +32,11 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $postdata['token']=$token;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
+        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        
+        $this->assertEquals(0, $result['code']);
+        $this->assertEquals('304', $result['result']['info']['teacherId']);
+        //$this->assertEquals('', $result['result']['info']['thumbMed']);
     }
     
     //参数正确，返回数据节点是否正确
