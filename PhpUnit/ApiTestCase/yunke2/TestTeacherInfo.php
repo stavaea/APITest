@@ -32,11 +32,18 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $postdata['token']=$token;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals(0, $result['code']);
-        $this->assertEquals('304', $result['result']['info']['teacherId']);
+        $this->assertEquals('23402', $result['result']['info']['teacherId']);
         //$this->assertEquals('', $result['result']['info']['thumbMed']);
+        $this->assertEquals('老师详情接口测试', $result['result']['info']['name']);
+        $this->assertEquals('3', $result['result']['info']['years']);
+        $this->assertEquals('武汉大学', $result['result']['info']['college']);
+        //$this->assertEquals('武汉大学', $result['result']['info']['subject']);
+        $this->assertEquals('老师简介desc-勿动', $result['result']['info']['desc']);
+        $this->assertEquals('学前', $result['result']['info']['taughtGrade']);
+        
     }
     
     //参数正确，返回数据节点是否正确
