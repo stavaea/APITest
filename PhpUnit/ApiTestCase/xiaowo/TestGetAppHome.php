@@ -217,7 +217,6 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
          $postdata['key']=$key;
          $result =json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
          //$this->assertInternalType('array', json_encode($result['result']['special']));
-         print_r($result['result']['special']);
          $this->assertEquals('http://testf.gn100.com/5,494853240e81', $result['result']['special'][0]['specialImg']);
          $this->assertEquals('https://www.yunke.com/', $result['result']['special'][0]['specialUrl']);
      }
