@@ -1,1 +1,11 @@
 Workspace/.metadata/*
+Workspace/GN100-selenium/src/Demo/*
+Workspace/GN100-selenium/.settings/
+Workspace/GN100-selenium/src/__pycache__
+Workspace/GN100-selenium/src/Confirm/__pycache__
+Workspace/GN100-selenium/src/Prerequirement/__pycache__
+Workspace/PC-interface/src/PCClientInterface/__pycache__
+Workspace/PC-interface/.settings
+Workspace/PC-interface/src/Confirm/__pycache__
+Workspace/PC-interface/src/Prerequirement/__pycache__
+.gitignore
