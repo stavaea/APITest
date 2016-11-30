@@ -1,13 +1,13 @@
 <?php
 require_once 'Sconfig.php';
 require_once 'Http.class.php';
+require_once 'dbConfig.php';
 
 class interface_func
 {
     private static $u="i";
     private static $v="2";
     private $http;
-   
    
     public function __construct()
     {
@@ -57,6 +57,15 @@ class interface_func
          return $addtoken;
      }
      
+     //连接数据库，并执行sql
+     public static  function ConnectDB($mysql_db,$sql)
+     {
+         $conn=mysql_connect($mysql_server_name,$mysql_user) or die ("Failed to connect mysql");
+         mysql_query("set names 'utf8'");
+         mysql_select_db($mysql_db);
+         $result =mysql_query($sql,$conn);
+         mysql_close();
+     }
 }
 
 
