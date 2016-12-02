@@ -12,7 +12,8 @@ class TestMain extends PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-        $this->url = "http://test.gn100.com/interface/main/homev2";
+       // $this->url = "http://test.gn100.com/interface/main/homev2";
+        $this->url = "http://dev.gn100.com/interface/main/homev2";
         $this->http = new HttpClass();
     }
     

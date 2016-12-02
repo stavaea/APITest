@@ -60,11 +60,14 @@ class interface_func
      //连接数据库，并执行sql
      public static  function ConnectDB($mysql_db,$sql)
      {
-         $conn=mysql_connect($mysql_server_name,$mysql_user) or die ("Failed to connect mysql");
-         mysql_query("set names 'utf8'");
-         mysql_select_db($mysql_db);
-         $result =mysql_query($sql,$conn);
-         mysql_close();
+         global $mysql_server_name;
+         global $mysql_user;
+         $conn=mysqli_connect($mysql_server_name,$mysql_user,'',$mysql_db) or die ("Failed to connect mysql");
+         //mysqli_query("set names 'utf8'");
+         $result =mysqli_query($conn,$sql);
+         mysqli_close($conn);
+         return $result;
+         
      }
 }
 
