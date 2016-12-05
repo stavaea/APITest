@@ -62,10 +62,12 @@ class interface_func
      {
          global $mysql_server_name;
          global $mysql_user;
-         $conn=mysqli_connect($mysql_server_name,$mysql_user,'',$mysql_db) or die ("Failed to connect mysql");
-         //mysqli_query("set names 'utf8'");
-         $result =mysqli_query($conn,$sql);
-         mysqli_close($conn);
+         $conn=mysqli_connect($mysql_server_name,$mysql_user,'',$mysql_db,'3306') or die ("Failed to connect mysql");
+         $conn->query("set names utf8");
+         $resultQuery=mysqli_query($conn,$sql);
+         //$result=(mysqli_fetch_all($resultQuery));
+         $result=(mysqli_fetch_array($resultQuery));
+          mysqli_close($conn);
          return $result;
          
      }
