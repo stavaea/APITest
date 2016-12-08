@@ -146,9 +146,7 @@ class TestMain extends PHPUnit_Framework_TestCase
                 $this->assertNotEmpty($result['result']['interests']['0']['list'][$key]['userTotal']);               
         }         
     }
-    
-    
-    
+       
     //参数正确，推荐课程最多四门课程
     public function testRecommendsMoreFour()
     {

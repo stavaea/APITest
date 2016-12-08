@@ -20,7 +20,7 @@ class TestUserToken extends PHPUnit_Framework_TestCase
      * test API user/token/gen
      */
     /*
-     * µÇÂ½ÓÃ»§Éú³ÉtokenÕýÈ·ÓÃÀý
+     * ï¿½ï¿½Â½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½tokenï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½
      */
     public function testUserTokenGenIsSuccess($uid="22414")
     {
@@ -33,13 +33,14 @@ class TestUserToken extends PHPUnit_Framework_TestCase
         $postData['ip']="121.69.7.6";
         $data =json_encode($postData,true);
          $result =  json_decode($this->http->HttpPost($url, $data),true);
+         var_dump($data);
          $token =$result['data']['token'];
          $this->assertEquals('0',$result['result']['code']);
          $this->assertNotEmpty($result['data']['token']);
          return $token;
     }
     /*
-     * ÓÎ¿ÍÉú³ÉtokenÕýÈ·
+     * ï¿½Î¿ï¿½ï¿½ï¿½ï¿½tokenï¿½ï¿½È·
      */
     public function testUserTokenGenVisitor()
     {
@@ -58,7 +59,7 @@ class TestUserToken extends PHPUnit_Framework_TestCase
     }
     
     /*
-     * ±ØÌî²ÎÊýÈ·ÊµÓÃÀý
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·Êµï¿½ï¿½ï¿½ï¿½
      */
     public function testUserTokenGenNoIp()
     {
@@ -74,7 +75,7 @@ class TestUserToken extends PHPUnit_Framework_TestCase
     }
     
     /*
-     * ²ÎÊýÃû´íÎóÓÃÀý
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     
     public function testUserTokenGenParamsError()
@@ -92,7 +93,7 @@ class TestUserToken extends PHPUnit_Framework_TestCase
     
     
     /*
-     * tokenÎ¨Ò»ÐÔÓÃÀý
+     * tokenÎ¨Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     /**
      * 
@@ -109,7 +110,7 @@ class TestUserToken extends PHPUnit_Framework_TestCase
      */
     
     /*
-     * ¸ù¾Ýtoken»ñÈ¡ÓÃ»§ÐÅÏ¢ÕýÈ·
+     * ï¿½ï¿½ï¿½tokenï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½È·
      */
     
     /**
@@ -124,7 +125,7 @@ class TestUserToken extends PHPUnit_Framework_TestCase
     }
     
     /*
-     * ÓÃ»§²»´æÔÚÓÃÀý
+     * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     public function testUserTokenGetParamsError()
     {
@@ -138,7 +139,7 @@ class TestUserToken extends PHPUnit_Framework_TestCase
      */
     
     /*
-     * É¾³ýtoken³É¹¦ÓÃÀý
+     * É¾ï¿½ï¿½tokenï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     /**
      * @depends testUserTokenGenIsSuccess
@@ -154,7 +155,7 @@ class TestUserToken extends PHPUnit_Framework_TestCase
     }
     
     /*
-     * É¾³ýÓÎ¿Ítoken
+     * É¾ï¿½ï¿½ï¿½Î¿ï¿½token
      */
     /**
      * @depends testUserTokenGenVisitor
