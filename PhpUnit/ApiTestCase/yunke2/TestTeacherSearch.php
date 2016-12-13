@@ -1,7 +1,7 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
 
 class TestTeacherSearch extends PHPUnit_Framework_TestCase
 {
@@ -74,12 +74,10 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['params']['page']=1;
             $postdata['params']['length']='20';
             $postdata['params']['keywords']='马静';
-            $postdata['params']['condition']='0,0,0';
-            
+            $postdata['params']['condition']='0,0,0';      
             $postdata['params']['sort']='0';
             $key=interface_func::GetAppKey($postdata);
             $postdata['key']=$key;
-            
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
             //var_dump($result['result']['data']['teacher'][0]['teacherId']);
@@ -95,16 +93,15 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['oid']=$oid;
             $postdata['params']['page']=1;
             $postdata['params']['length']='20';
-            $postdata['params']['keywords']='wax';
+            $postdata['params']['keywords']='apitest';
             $postdata['params']['condition']='0,0,0';
-      
             $postdata['params']['sort']='0';
             $key=interface_func::GetAppKey($postdata);
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
             var_dump($result['result']['data']['teacher'][0]['teacherId']);
-            $this->assertEquals('23361', $result['result']['data']['teacher'][0]['teacherId']);
+            $this->assertEquals('23317', $result['result']['data']['teacher'][0]['teacherId']);
         }
         
         
