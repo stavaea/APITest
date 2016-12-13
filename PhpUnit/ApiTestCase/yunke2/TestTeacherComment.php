@@ -96,8 +96,6 @@ class TestTeacherComment extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1000', $result['code']);//请求参数为空
-        
-    
     }
     
     //参数不存在，返回值
