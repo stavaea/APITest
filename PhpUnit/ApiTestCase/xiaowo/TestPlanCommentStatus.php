@@ -1,7 +1,7 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
 
 /**
  * test case.
@@ -120,9 +120,9 @@ static $v="2";
         $this->assertEquals("0",$result['result']['0']['type']);
     }
     
-/*
-    //多班，报名章节未评论过，type=1；
-    public function testTwoClassesCommented($courseId='908',$userId='22410',$classId='1130')
+
+    // todo 多班，报名章节未评论过，type=1；
+    public function testTwoClassesNoCommented($courseId='908',$userId='22410',$classId='1130')
     {
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
@@ -136,7 +136,7 @@ static $v="2";
         var_dump(json_encode($postdata));
         $this->assertEquals("1",$result['result']['0']['type']);
     }
-    */
+
    //线下课多班，未报名班级，type=0；接口未对多班未报名班级做处理，APP只会传已报名班级的班级id
     public function testTwoClassesNoRegClass($courseId='908',$userId='22410',$classId='1129')
     {

@@ -33,7 +33,6 @@ class TestUserToken extends PHPUnit_Framework_TestCase
         $postData['ip']="121.69.7.6";
         $data =json_encode($postData,true);
          $result =  json_decode($this->http->HttpPost($url, $data),true);
-         var_dump($data);
          $token =$result['data']['token'];
          $this->assertEquals('0',$result['result']['code']);
          $this->assertNotEmpty($result['data']['token']);

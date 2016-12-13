@@ -46,7 +46,6 @@ class interface_func
        $key=self::GetAppKey($postdata);
        $postdata['key']=$key;
        $result=$this->http->HttpPost($url, json_encode($postdata));
-       var_dump($result);
        return $result;
     }
     

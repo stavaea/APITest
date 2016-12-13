@@ -12,7 +12,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
     static $v="2";
     public  $GetToken;
     
-    protected function  setUp()
+    public function  __construct()
     {
         //$this->url = "http://dev.gn100.com/interface/teacher/detail";
         $this->url = "http://test.gn100.com/interface/teacher/detail";
@@ -20,7 +20,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $this->GetToken =new TestUserToken();
     }
     
-    /*grade_id:4000,teacher_status:1,visiable:1,course_count:1,5000
+    //grade_id:4000,teacher_status:1,visiable:1,course_count:1,5000
     //传参正确，返回老师基本信息info数据正确
     public function testTeacherInfoIsOk($uid="0",$teacherId='23402')
     {   
@@ -43,14 +43,13 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals('武汉大学', $result['result']['info']['college']);
         $this->assertEquals('', $result['result']['info']['subject']);
         $this->assertEquals('老师简介desc-勿动', $result['result']['info']['desc']);
-        $this->assertEquals('学前', $result['result']['info']['taughtGrade']);
+        $this->assertEquals('', $result['result']['info']['taughtGrade']);
         $this->assertEquals('5', $result['result']['info']['score']);
         $this->assertEquals('2', $result['result']['info']['comment']);
         $this->assertEquals('0', $result['result']['info']['isFav']);
         $this->assertEquals('', $result['result']['info']['address']);
-        
     }
-    */
+
    // 传参正确，返回老师统计数据正确
     public function testTeacherStat($uid="0",$teacherId='23402')
     {
@@ -90,6 +89,23 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals('1', $result['result']['info']['isFav']);
     }
     
+    //传参正确，uid不为空，且收藏老师，返回info老师被收藏
+    public function testTeacherUnFav($uid="22490",$teacherId='23402')
+    {
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['params']['page']='1';
+        $postdata['params']['length']='20';
+        $postdata['params']['teacherId']=$teacherId;
+        $postdata['params']['userId']=$uid;
+        $token=$this->GetToken->testUserTokenGenIsSuccess($uid);
+        $postdata['token']=$token;
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key;
+        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertEquals('0', $result['result']['info']['isFav']);
+    }
 
     //传参正确，老师plan类型（数组）且返回字段是否正确
     public function testTeacherPlan($uid="22410",$teacherId='23317')

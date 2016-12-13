@@ -73,6 +73,19 @@ class TestMain extends PHPUnit_Framework_TestCase
         $this->assertEmpty(array_diff($arraytype,array_column($result['result']['types'],'name')));          
     }
     
+    //传参正确，recommend模块返回sc字段
+    public function testSc()
+    {
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['params']['condition']='';
+        $postdata['params']['uid']='183';
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key;
+        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertEquals('8',$result['result']['recommends']['1']['sc']);
+    }
     //传参正确，直播课堂模块，返回日期和list模块类型和字段正确，array
     public function testLive()
     {
