@@ -26,8 +26,6 @@ class TestUserLevel extends PHPUnit_Framework_TestCase
         $postdata['params']['uid']='3596';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-    
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code']);
 //         $this->assertArrayHasKey('day', $result['result']);
