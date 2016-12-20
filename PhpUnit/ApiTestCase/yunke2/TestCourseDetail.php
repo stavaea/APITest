@@ -1,7 +1,8 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
+require_once '../BussinessUseCase/TestUserToken.php';
 
 class TestCourseDetail extends PHPUnit_Framework_TestCase
 {
@@ -9,10 +10,12 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
     private $http;
     static $u="i";
     static $v="2";
+    static $db="db_course";
+    private $GetToken;
     
     protected function setUp()
     {
-        $this->url = "http://dev.gn100.com/interface/course/detail";
+        $this->url = "http://test.gn100.com/interface/course/detail";
         $this->http = new HttpClass();
     }
     
