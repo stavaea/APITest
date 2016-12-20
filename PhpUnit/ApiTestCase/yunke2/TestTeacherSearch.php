@@ -116,7 +116,6 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['params']['length']='20';
             $postdata['params']['keywords']='sdkjfskdfjaksdfja';
             $postdata['params']['condition']='0,0,0';
-            
             $postdata['params']['sort']='0';
             $key=interface_func::GetAppKey($postdata);
             $postdata['key']=$key;
@@ -143,8 +142,6 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-            
-            
             $this->assertGreaterThanOrEqual($result['result']['data']['teacher'][0]['score'], $result['result']['data']['teacher'][1]['score']);
         }
         

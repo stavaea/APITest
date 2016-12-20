@@ -64,10 +64,13 @@ class interface_func
          $conn=mysqli_connect($mysql_server_name,$mysql_user,'',$mysql_db,'3306') or die ("Failed to connect mysql");
          $conn->query("set names utf8");
          $resultQuery=mysqli_query($conn,$sql);
-         $result=(mysqli_fetch_all($resultQuery));
-          mysqli_close($conn);
-         return $result;
-         
+         if (is_bool($resultQuery)){
+             return $resultQuery;
+         }else{
+            $result=(mysqli_fetch_all($resultQuery));
+            mysqli_close($conn);
+            return $result;
+         }
      }
 }
 
