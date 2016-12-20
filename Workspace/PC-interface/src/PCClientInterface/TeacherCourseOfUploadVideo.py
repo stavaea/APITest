@@ -7,7 +7,7 @@ import time
 import requests
 from PCClientInterface import Configuration,TestProvide
 
-class Test_uploadVideo(unittest.TestCase):
+class Test_getCourseList(unittest.TestCase):
     def setUp(self):
         self.s = requests.session()
         self.url = Configuration.HostUrl +"/interface/course/TeacherCourse"

@@ -7,7 +7,8 @@ Created on 2016年11月10日
 '''
 import os
 from PCClientInterface import AddAnswerLog,ClassAnnouncement,GetAnnounce,CourseLivingPlan,TeacherStudents,TeacherMyClasses,GetQuestion, \
-StartOrRestartClass,CoursePlanOfTeacher
+StartOrRestartClass,CoursePlanOfTeacher, TeacherCourseOfUploadVideo,\
+    TeacherPlanOfUploadVideo
 import unittest
 import HTMLTestRunner
 import time
@@ -22,8 +23,10 @@ def suite():
     suite.addTest(unittest.makeSuite(TeacherMyClasses.TeacherMyClasses))
     suite.addTest(unittest.makeSuite(CoursePlanOfTeacher.Test_CoursePlanOfTeacher))
     suite.addTest(unittest.makeSuite(StartOrRestartClass.Test_startClass))
-    #suite.addTest(unittest.makeSuite(GetQuestion.Test_GetQuestion))
-    #suite.addTest(unittest.makeSuite(AddAnswerLog.AddAnswerLog))
+    suite.addTest(unittest.makeSuite(GetQuestion.Test_GetQuestion))
+    suite.addTest(unittest.makeSuite(AddAnswerLog.AddAnswerLog))
+    #suite.addTest(unittest.makeSuite(TeacherCourseOfUploadVideo.Test_getCourseList))
+    #suite.addTest(unittest.makeSuite(TeacherPlanOfUploadVideo.test_getPlanList))
     #执行测试套件
     #now = time.strftime("%Y-%m-%d-%H_%M_%S",time.localtime(time.time()))
     #filePath =os.getcwd() + "/"+ now + "-TestResult.html"

@@ -11,7 +11,7 @@ import time
 import requests
 from PCClientInterface import Configuration,TestProvide,Confirm
 
-class TeacherPlanTest(unittest.TestCase):
+class test_getPlanList(unittest.TestCase):
     def setUp(self):
         self.s = requests.session()
         #self.s = TestProvide.login(self.s)
@@ -22,7 +22,7 @@ class TeacherPlanTest(unittest.TestCase):
         self.params['v'] = 2
         self.params['time'] = self.timeStamp
 
-    def _GetTeacherPlan(self):
+    def test_GetTeacherPlan(self):
         courseId = 3425
         self.params['params']= {
                     "courseId":courseId         

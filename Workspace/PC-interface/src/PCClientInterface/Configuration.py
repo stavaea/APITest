@@ -17,5 +17,5 @@ year = 2016 #年份
 Plan_Id= 3559 
 
 #学生列表
-course_id = 1005 #课程Id
-class_id  =  1224 #班级Id
+course_id = 780 #课程Id
+class_id  = 914 #班级Id
