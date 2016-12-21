@@ -25,8 +25,9 @@ def suite():
     suite.addTest(unittest.makeSuite(StartOrRestartClass.Test_startClass))
     suite.addTest(unittest.makeSuite(GetQuestion.Test_GetQuestion))
     suite.addTest(unittest.makeSuite(AddAnswerLog.AddAnswerLog))
-    #suite.addTest(unittest.makeSuite(TeacherCourseOfUploadVideo.Test_getCourseList))
-    #suite.addTest(unittest.makeSuite(TeacherPlanOfUploadVideo.test_getPlanList))
+    suite.addTest(unittest.makeSuite(TeacherCourseOfUploadVideo.Test_getCourseList))
+    suite.addTest(unittest.makeSuite(TeacherPlanOfUploadVideo.test_getPlanList))
+    
     #执行测试套件
     #now = time.strftime("%Y-%m-%d-%H_%M_%S",time.localtime(time.time()))
     #filePath =os.getcwd() + "/"+ now + "-TestResult.html"

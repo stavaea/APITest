@@ -5,7 +5,7 @@ import unittest
 import json
 import time
 import requests
-from PCClientInterface import Configuration,TestProvide
+from PCClientInterface import Configuration,TestProvide,Confirm
 
 class Test_getCourseList(unittest.TestCase):
     def setUp(self):
@@ -17,11 +17,11 @@ class Test_getCourseList(unittest.TestCase):
         self.params['v'] = 2
         self.params['time'] = self.timeStamp
         
-    def test_GetTeacherCousrse1(self): 
-        #构造参数
+    def test_GetVideoCousrse(self): 
+        '''获取录播课程列表--默认参数'''
         page = 1
         length = 20
-        userId = 255
+        userId = 281
         self.params['params'] = {
                                  "page":page,
                                  "length":length,
@@ -33,17 +33,23 @@ class Test_getCourseList(unittest.TestCase):
         print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
-        text = response.text
-        returnObj = json.loads(text)
+        returnObj = json.loads(response.text)
         print(returnObj) 
         self.assertEqual(returnObj['code'],0)
         self.assertEqual(returnObj['message'],"success")
+        OneCourse = {'courseId': 333, 
+                     'subname': '宏盛飞飞', 
+                     'classNum': 1, 
+                     'courseName': '测试录播课课程001'
+                }
+        self.assertTrue(Confirm.objIsInList(OneCourse, returnObj['result']['data']))
 
             
-    def test_GetTeacherCousrsePutPage(self): 
+    def test_GetVideoCousrsePaging(self):
+        '''录播课程列表--翻页(下一页)''' 
         page = 3
         length = 20
-        userId = 255
+        userId = 273
         self.params['params'] = {
                    "page": page,
                    "length":length,
@@ -58,15 +64,16 @@ class Test_getCourseList(unittest.TestCase):
         returnObj = json.loads(text)
         print(returnObj) 
         self.assertEqual(returnObj['result']['page'],page)
-        #self.assertEqual(returnObj['result']['length'],length)
-        self.assertIsNotNone(returnObj['result']['data'], "返回值不是一个对象")
+        self.assertEqual(len(returnObj['result']['data']),length)
+        self.assertIsNotNone(returnObj['result']['data'], "翻页后，课程列表为空")
         
     
-    def test_GetTeacherCousrseKeywords(self): 
+    def test_GetCVideoousrse_ByKeywords(self):
+        '''通过关键词搜索录播课程''' 
         page = 1
         length = 20
-        userId = 255
-        keyWords = "dev测试"
+        userId = 273
+        keyWords = "测试录播课1229"
         self.params['params'] = {
                    "page": page,
                    "length":length,
@@ -78,15 +85,15 @@ class Test_getCourseList(unittest.TestCase):
         print("Url: {} \n Parameter:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
-        text = response.text
-        returnObj = json.loads(text)
-        #self.assertEqual(returnObj['result']['page'],page)
+        returnObj = json.loads(response.text)
+        OneCourseObj = returnObj['result']['data'][0]
+        self.assertEqual(0,returnObj['code'])
+        self.assertEqual(OneCourseObj['courseName'],keyWords)
     
-    def Test_GetTeacherCousrseLessDefaultParam(self): 
-        #构造参数
+    def test_GetVideoCousrse_LessDefaultParameter(self): 
+        '''获取录播课程--缺少必传参数'''
         page = 1
         length = 20
-        #userId = 255
         self.params['params'] = {
                                  "page":page,
                                  "length":length

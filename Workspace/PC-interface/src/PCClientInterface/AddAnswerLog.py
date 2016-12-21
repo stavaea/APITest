@@ -13,9 +13,9 @@ import pymysql
 from pymysql import cursors
 
 
-#测试公布答案
+
 class AddAnswerLog(unittest.TestCase):
-    
+    '''测试公布答案'''
     def initsqlConnect(self):
         connect_url = {"host":"115.28.222.160","user":"michael", "passwd":"michael", "db":"db_course", "charset":"utf8", "cursorclass":pymysql.cursors.DictCursor}
         connect = pymysql.connect(**connect_url)
@@ -55,6 +55,7 @@ class AddAnswerLog(unittest.TestCase):
         return returnObj['result']['questId']
     
     def test_AddAnswerLog(self):
+        '''公布答案，答题情况记录在数据库'''
         QuestionId = self.publishQuestion()
         self.params['params'] = {
                 "data": [
@@ -73,15 +74,15 @@ class AddAnswerLog(unittest.TestCase):
                         "userId": 22520
                     },
                     {
-                        "answer": "",
-                        "answerStatus": 0,
+                        "answer": "D",
+                        "answerStatus": -1,
                         "planId": 3559,
                         "questId": QuestionId,
                         "userId": 22521
                     },
                     {
-                        "answer": "",
-                        "answerStatus": 0,
+                        "answer": "A",
+                        "answerStatus": -1,
                         "planId": 3559,
                         "questId": QuestionId,
                         "userId": 22522
@@ -98,25 +99,28 @@ class AddAnswerLog(unittest.TestCase):
         returnObj = json.loads(response.text) 
         self.assertEqual(1,returnObj['result']['code'])
         self.assertEqual(1,returnObj['result']['dbFlag'])
-        
         time.sleep(8)
         #验证数据库答题记录已更新
         Flag = True
-        inputAnswers = (json.loads(self.params['params']))['data']
+        inputAnswers = self.params['params']['data']
         sql = "SELECT fk_user,answer,answer_status FROM db_stat.`t_course_plan_phrase_log` WHERE fk_plan_phrase={}".format(QuestionId)
         connect = self.initsqlConnect()
         cursor = connect.cursor()
         cursor.execute(sql)
-        rows = self.cursor.fetchall()
+        rows = cursor.fetchall()
+        msg = ""
         for row in rows:
             for answer in inputAnswers:
                 if row['fk_user'] == answer["userId"]:
+                    if type(row['answer'])  is bytes:
+                        row['answer'] = row['answer'].decode('utf-8')
                     if row['answer']!=answer["answer"] or row["answer_status"]!= answer["answerStatus"]:
                         Flag = False
+                        msg = "not equal node--sql:{};requestPara:{}".format(row,answer)
                         break
         cursor.close()
         connect.close()
-        self.assertTrue(Flag, "数据库答题记录与实际不匹配")            
+        self.assertTrue(Flag, msg)            
     
     def test_AddAnswerlogWithlessParameter(self):
         '''公布答案--缺少PlanId'''

@@ -85,15 +85,15 @@ class TeacherMyClasses(unittest.TestCase):
         CourseSql = "SELECT c.`pk_course`,c.`title` FROM `t_course_teacher` AS t JOIN t_course AS c ON t.`fk_course`=c.`pk_course` WHERE  t.fk_user_teacher={}".format(self.teacherId)
         cursor.execute(CourseSql)
         rows = cursor.fetchall()
+        num = 0 
         for courseObj in returnObj['result']['list']['data']:
             for row in rows:
-                if courseObj['courseId']!=row['pk_course'] or courseObj['courseName'] != row['title']:
-                    msg = ("return CourseInfo:{}-{};from DB:{}-{}".format(courseObj['courseId'],courseObj['courseName'],row['pk_course'],row['title']))
-                    Flag = False
+                if courseObj['courseId']==row['pk_course'] and courseObj['courseName'] == row['title']:
+                    num = num +1 
                     break
         cursor.close()
         conn.close()        
-        self.assertTrue(Flag,msg)
+        self.assertTrue(len(rows),num)
         
     def test_getCourseList_multipleClass(self):
         """教师课程表--多班级课程"""
@@ -157,7 +157,7 @@ class TeacherMyClasses(unittest.TestCase):
                                  "page":2,
                                  "sort":2000,
                                  "status":0,
-                                 "teacherId":273,
+                                 "teacherId":281,
                                  "type":0
                             }
     
@@ -296,7 +296,7 @@ if __name__ == "__main__":
     suite = unittest.TestSuite()
     suite.addTest(TeacherMyClasses("test_GetTeacherCourse_all"))
     suite.addTest(TeacherMyClasses("test_SearchCourseByKeyword"))
-    #suite.addTest(TeacherMyClasses("test_TeacherCourseSortByStudent"))
+    suite.addTest(TeacherMyClasses("test_TeacherCourseSortByStudent"))
     suite.addTest(TeacherMyClasses("test_TeacherCourseOfLiving"))
     suite.addTest(TeacherMyClasses("test_TeacherCoursePaging"))
     suite.addTest(TeacherMyClasses("test_getCourseList_multipleClass"))
