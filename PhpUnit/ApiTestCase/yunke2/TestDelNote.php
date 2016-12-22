@@ -19,11 +19,7 @@ class TestDelNote extends PHPUnit_Framework_TestCase
         $this->url = "http://test.gn100.com/interface/note/DelNote";
         $this->http = new HttpClass();
         
-    } */
-    
-
-    
-    
+    } */  
     //---------------------删除笔记功能---------------------------------------
     
     //传参正确，返回节点数据是否正确
@@ -41,7 +37,7 @@ class TestDelNote extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-        $result=json_decode(HttpClass::HttpPost($url2, json_encode($postdata)),true);
+        $result=json_decode(HttpClass::HttpStaticPost($url2, json_encode($postdata)),true);
         self::assertEquals('0', $result['code']);//操作成功
          
     } 
@@ -59,7 +55,6 @@ class TestDelNote extends PHPUnit_Framework_TestCase
         $postdata['params']['uId']='23339';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1001', $result['code']);//缺少必传参数
     } 

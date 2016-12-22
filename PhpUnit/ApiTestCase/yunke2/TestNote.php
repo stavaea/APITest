@@ -9,7 +9,7 @@ require_once 'TestUpdateNote.php';
 class TestNote extends PHPUnit_Framework_TestCase
 {
     private $url;
-    private $http;
+    private   $http;
     static $u="i";
     static $v="2";
     
@@ -37,14 +37,11 @@ class TestNote extends PHPUnit_Framework_TestCase
            $key=interface_func::GetAppKey($postdata);
            $postdata['key']=$key;
            //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-           $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-            
+           $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true); 
            $this->assertEquals('0',$result['code']);
-           //var_dump($result['result']['noteId']);
            $this->assertArrayHasKey('noteId',$result['result']);
            $this->assertArrayHasKey('playTimeFormat',$result['result']);
            $this->assertArrayHasKey('playTimeTmpHandle',$result['result']);
-           
            TestCheckNote::testListDataIsOK($result['result']['noteId']);
            TestUpdateNote::testUpdateData($result['result']['noteId'], '我修改了内容哦');
            TestCheckNote::testUpdateListDataIsOK($result['result']['noteId']);

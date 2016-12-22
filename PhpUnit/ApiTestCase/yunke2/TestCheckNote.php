@@ -35,7 +35,7 @@ class TestCheckNote extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         //var_dump(HttpClass::HttpPost($url2, json_encode($postdata)));
-        $result=json_decode(HttpClass::HttpPost($url2, json_encode($postdata)),true);
+        $result=json_decode(HttpClass::HttpStaticPost($url2, json_encode($postdata)),true);
         self::assertEquals('0', $result['code']);
         self::assertEquals($noteId, $result['result']['items'][0]['id']);
         self::assertArrayHasKey('courseId', $result['result']['items'][0]);
@@ -62,7 +62,7 @@ class TestCheckNote extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         //var_dump(HttpClass::HttpPost($url2, json_encode($postdata)));
-        $result=json_decode(HttpClass::HttpPost($url2, json_encode($postdata)),true);
+        $result=json_decode(HttpClass::HttpStaticPost($url2, json_encode($postdata)),true);
         self::assertEquals('0', $result['code']);
         self::assertEquals($noteId, $result['result']['items'][0]['id']);
         self::assertEquals('我修改了内容哦', $result['result']['items'][0]['content']);
