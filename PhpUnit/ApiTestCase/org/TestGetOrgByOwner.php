@@ -12,17 +12,18 @@ class TestGetOrgByOwner extends PHPUnit_Framework_TestCase
      * Prepares the environment before running a test.
      */   
 
+
     public function testRequestHttpCodeIsOk()
     {
         $url='http://api.gn100.com/user/organization/getOrgByOwner/183';
         $http = new HttpClass();
-        //$result = json_decode($http ->HttpGet($url),true);
-        $this->assertEquals(200, $http->HttpGetCode($url));
         $result = json_decode($http->HttpGet($url),true);
         $this->assertEquals(116, $result['data']['oid']);
         $this->assertNotEmpty($result['data']['thumb_big']);
         $this->assertNotEmpty($result['data']['hot_type']);
     }
+ 
+ 
     public function testGetOrgID()
     {
         $url='http://api.gn100.com/user/organization/getOrgByOwner/183';
@@ -46,6 +47,7 @@ class TestGetOrgByOwner extends PHPUnit_Framework_TestCase
         $result = json_decode($http->HttpGet($url),true);
         $this->assertNotEmpty($result['data']['hot_type']);
     }
+
     
 }
 

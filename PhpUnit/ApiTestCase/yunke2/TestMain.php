@@ -101,7 +101,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_int($arrayResult[0]));
 
     }
-      
+      //推荐模块课程信息验证
     public function testRecommendsList()
     {
         $arrayRecommendName=array("小学阶段","初中阶段","高中阶段");
@@ -124,7 +124,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         $this->assertEquals('1', $result['result']['recommends']['2']['list']['0']['courseType']);
         $this->assertEquals('hye测试机构', $result['result']['recommends']['2']['list']['0']['orgSubname']);
     }
-   
+   //推荐模块验证
     public function testRecommendsCheckTotal()
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -139,6 +139,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         $this->assertEquals('0',$result['result']['recommends']['0']['list']['2']['total']);
     }
     
+    //兴趣模块课程信息验证
     public function testInterests()
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
