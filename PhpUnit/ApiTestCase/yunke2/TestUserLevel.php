@@ -17,7 +17,7 @@ class TestUserLevel extends PHPUnit_Framework_TestCase
     }
     
     //参数正确，返回节点是否正确
-    public function testDataIsOK($oid='469')
+    public function testDataIsOK($oid='0')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
@@ -28,11 +28,7 @@ class TestUserLevel extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code']);
-//         $this->assertArrayHasKey('day', $result['result']);
-//         $this->assertArrayHasKey('levelName', $result['result']);
-//         $this->assertArrayHasKey('continueDay', $result['result']);
-//         $this->assertArrayHasKey('extraEx', $result['result']);
-//         $this->assertArrayHasKey('status', $result['result']);
+
     
     }
 }

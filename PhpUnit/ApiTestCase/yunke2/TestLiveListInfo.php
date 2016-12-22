@@ -12,7 +12,7 @@ class TestLiveListInfo extends PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-        $this->url = "http://dev.gn100.com/interface/plan/latelyLiveList";
+        $this->url = "http://test.gn100.com/interface/plan/latelyLiveList";
         $this->http = new HttpClass();
     }
     
@@ -40,7 +40,7 @@ class TestLiveListInfo extends PHPUnit_Framework_TestCase
     }
     
     //sTime为2016-11-25，没有直播课程
-    public function testDataIsNull($oid='469')
+    public function testDataIsNull($oid='0')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;

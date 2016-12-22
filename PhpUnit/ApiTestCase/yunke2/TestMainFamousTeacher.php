@@ -13,7 +13,7 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-        $this->url = "http://dev.gn100.com/interface/teacher/famousList";
+        $this->url = "http://test.gn100.com/interface/teacher/famousList";
         $this->http = new HttpClass();
     }
     

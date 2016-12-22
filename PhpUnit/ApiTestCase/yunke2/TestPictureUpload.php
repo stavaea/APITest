@@ -13,12 +13,12 @@ class TestPictureUpload extends PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-        $this->url = "http://dev.gn100.com/interface/studentTask/UploadImage";
+        $this->url = "http://test.gn100.com/interface/studentTask/UploadImage";
         $this->http = new HttpClass();
     }
     
     //参数正确，返回节点是否正确
-    public function testDataIsOK($oid='469')
+    public function testDataIsOK($oid='0')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;

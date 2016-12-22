@@ -12,12 +12,12 @@ class TestLive extends PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-        $this->url = "http://dev.gn100.com/interface/plan/latelyLiveTop";
+        $this->url = "http://test.gn100.com/interface/plan/latelyLiveTop";
         $this->http = new HttpClass();
     }
     
     //参数正确，返回的数据节点是否正确
-    public function testDataIsOK($oid='469')
+    public function testDataIsOK($oid='0')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
@@ -35,7 +35,7 @@ class TestLive extends PHPUnit_Framework_TestCase
     }
     
     //判断返回的日期是否本周的所有日期
-    public function testDateIsWeek($oid='469')
+    public function testDateIsWeek($oid='0')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
