@@ -37,7 +37,7 @@ class yunkeSuite extends PHPUnit_Framework_TestSuite
     public function __construct()
     {
         $this->setName('yunkeSuite');
-      /*  $this->addTestSuite('TestMain');
+        $this->addTestSuite('TestMain');
         $this->addTestSuite('TestAnnouncement');
         $this->addTestSuite('TestCommitTask');
         $this->addTestSuite('TestCourseDetail');
@@ -55,7 +55,7 @@ class yunkeSuite extends PHPUnit_Framework_TestSuite
         $this->addTestSuite('TestTeacherInfo');
         $this->addTestSuite('TestTeacherPoint');
         $this->addTestSuite('TestTeacherSearch');
-        $this->addTestSuite('TestUserSign');*/
+        $this->addTestSuite('TestUserSign');
         $this->addTestSuite('TestUserInfo');
         $this->addTestSuite('TestCourseAttachList');
     }
