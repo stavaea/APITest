@@ -173,8 +173,12 @@ class TestMain extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals(0, $result['code']);
-        var_dump(count($result['result']['recommends'][0]['list']));
         $this->assertLessThanOrEqual('8', count($result['result']['recommends'][1]['list']));
+    }
+    
+    protected function tearDown()
+    {
+        unset($this->http);
     }
    
 }

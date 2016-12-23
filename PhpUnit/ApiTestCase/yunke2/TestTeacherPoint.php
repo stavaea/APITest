@@ -92,4 +92,9 @@ class TestTeacherPoint extends PHPUnit_Framework_TestCase
         $this->assertEquals('180', $result['result']['items'][0]['playTimeTmpHandle']);
         $this->assertEquals('00:03:00', $result['result']['items'][0]['playTimeFormat']);
     }
+    
+    protected function tearDown()
+    {
+        unset($this->http);
+    }
 }

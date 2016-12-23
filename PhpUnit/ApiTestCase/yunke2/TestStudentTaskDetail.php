@@ -27,7 +27,6 @@ class TestStudentTaskDetail extends PHPUnit_Framework_TestCase
     
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code']);
         $this->assertEquals('34', $result['result']['commit']['data']['fk_task']);
@@ -52,7 +51,6 @@ class TestStudentTaskDetail extends PHPUnit_Framework_TestCase
         
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1001', $result['code']);//缺少必传参数
     }
@@ -69,7 +67,6 @@ class TestStudentTaskDetail extends PHPUnit_Framework_TestCase
         
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1051', $result['code']);//此作业不存在
     }
@@ -86,9 +83,11 @@ class TestStudentTaskDetail extends PHPUnit_Framework_TestCase
         
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1052', $result['code']);//不是此学生作业
     }
-    
+    protected function tearDown()
+    {
+        unset($this->http);
+    }
 }

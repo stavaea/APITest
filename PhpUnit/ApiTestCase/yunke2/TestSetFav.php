@@ -72,7 +72,6 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($result);
         $this->assertEquals('1021', $result['code']);
         $this->assertEquals('no landing', $result['message']);
         $this->assertEquals('没有登陆', $result['errMsg']);        
@@ -141,4 +140,11 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $this->assertEquals('success', $result['message']);
         $this->assertEquals('操作成功', $result['errMsg']);     
     } 
+    
+    protected function tearDown()
+    {
+        unset($this->http);
+        unset($this->GetToken);
+        unset($this->tInfo);
+    }
 }

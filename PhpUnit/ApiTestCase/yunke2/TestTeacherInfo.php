@@ -229,5 +229,10 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals('3002', $result['code']);//获取数据失败
     }
 
+    protected function tearDown()
+    {
+        unset($this->http);
+        unset($this->GetToken);
+    }
     //
 }

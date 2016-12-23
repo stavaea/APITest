@@ -39,7 +39,7 @@ class TestTeacherComment extends PHPUnit_Framework_TestCase
         $this->assertEquals('1', $result['result']['page']);
         $this->assertEquals('22410', $result['result']['data'][1]['userId']);
         $this->assertEquals("泠嘻", $result['result']['data'][1]['userName']);
-        $this->assertEquals("http://testf.gn100.com/2,027984aae283", $result['result']['data'][1]['userImage']);
+        $this->assertArrayHasKey("userImage", $result['result']['data'][1]);
         $this->assertEquals("老师讲的很好", $result['result']['data'][1]['content']);
         $this->assertEquals('5', $result['result']['data'][1]['score']);
         $this->assertEquals("2016-12-13", $result['result']['data'][1]['time']);
@@ -132,5 +132,11 @@ class TestTeacherComment extends PHPUnit_Framework_TestCase
         {
             $this->assertGreaterThanOrEqual($result['result']['data'][1]['time'], $result['result']['data'][0]['time']);
         }
+        
+    }
+    protected function tearDown()
+    {
+        unset($this->http);
+        unset($this->Token);
     }
 }

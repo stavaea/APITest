@@ -40,7 +40,7 @@ class TestUserInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals($userInfo[0][0], $result['result']['nickName']);
         $this->assertEquals($userInfo[0][1], $result['result']['realName']);
          $this->assertContains($userInfo[0][2], $result['result']['mobile']);
-        $this->assertEquals($userInfo[0][3], $result['result']['image']);
+        $this->assertContains($userInfo[0][3], $result['result']['image']);
     }
 
     public function testNoRealNameUser($uid='196')
@@ -87,7 +87,7 @@ class TestUserInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertNotEquals('0', $result['code']);
+        $this->assertNotEquals(0, $result['code']);
     }
 }
 

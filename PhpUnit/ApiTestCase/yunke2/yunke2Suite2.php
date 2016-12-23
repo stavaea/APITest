@@ -1,10 +1,10 @@
 <?php
 require_once 'PHPUnit/Framework/TestSuite.php';
-
+require_once 'TestMain.php';
 /**
  * Static test suite.
  */
-class UserTestSuite extends PHPUnit_Framework_TestSuite
+class yunke2Suite2 extends PHPUnit_Framework_TestSuite
 {
 
     /**
@@ -12,7 +12,8 @@ class UserTestSuite extends PHPUnit_Framework_TestSuite
      */
     public function __construct()
     {
-        $this->setName('UserTestSuite');
+        $this->setName('yunke2Suite2');
+        $this->addTestSuite('TestMain');
     }
 
     /**

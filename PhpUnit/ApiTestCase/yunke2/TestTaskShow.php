@@ -26,7 +26,6 @@ class TestTaskShow extends PHPUnit_Framework_TestCase
         
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code']);
         $this->assertEquals('2016-11-14 星期一 17:07', $result['result']['reply']['data']['lastUpdatedHandle']);
@@ -48,8 +47,12 @@ class TestTaskShow extends PHPUnit_Framework_TestCase
         
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1052', $result['code']);//不是此学生作业
+    }
+    
+    protected function tearDown()
+    {
+        unset($this->http);
     }
 }

@@ -376,7 +376,6 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $this->assertEquals('1', $result['result']['class'][0]['section'][1]['isStudy']);
     }
 
@@ -614,6 +613,10 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
                 $this->assertEquals('hye2群',$result['result']['qqData']['qqun'][0]['type_name']);
                 $this->assertEquals('423569792',$result['result']['qqData']['qqun'][0]['type_value']);
             }
-
+            protected function tearDown()
+            {
+                unset($this->http);
+                unset($this->GetToken);
+            }
 }
 

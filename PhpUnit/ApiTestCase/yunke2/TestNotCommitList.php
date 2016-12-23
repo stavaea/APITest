@@ -27,7 +27,6 @@ class TestNotCommitList extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code']);
         $this->assertArrayHasKey('pk_task', $result['result']['data']);
@@ -69,4 +68,11 @@ class TestNotCommitList extends PHPUnit_Framework_TestCase
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1051', $result['code']);//此作业不存在
     }
+    
+    protected function tearDown()
+    {
+        unset($this->http);
+    }
+    
+    
 }

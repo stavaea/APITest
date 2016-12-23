@@ -36,7 +36,6 @@ class TestNote extends PHPUnit_Framework_TestCase
            $postdata['params']['uId']='23339';
            $key=interface_func::GetAppKey($postdata);
            $postdata['key']=$key;
-           //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
            $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true); 
            $this->assertEquals('0',$result['code']);
            $this->assertArrayHasKey('noteId',$result['result']);
@@ -143,7 +142,10 @@ class TestNote extends PHPUnit_Framework_TestCase
         }
     } 
      
-    
+    protected function tearDown()
+    {
+        unset($this->http);
+    }
     
     
 }

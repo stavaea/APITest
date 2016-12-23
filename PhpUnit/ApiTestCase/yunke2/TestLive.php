@@ -1,7 +1,7 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
 
 class TestLive extends PHPUnit_Framework_TestCase
 {
@@ -26,8 +26,6 @@ class TestLive extends PHPUnit_Framework_TestCase
         $postdata['params']['userId']='';//userId并不影响接口返回结果
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals(0, $result['code']);
         $this->assertArrayHasKey('days', $result['result']);
@@ -48,7 +46,6 @@ class TestLive extends PHPUnit_Framework_TestCase
         for($i=0;$i<=5;$i++)
         {
             $days=(strtotime(date('Y-m-d'))-strtotime($result['result']['days'][$i]['dayTime']))/(3600*24);
-            var_dump(($days));
             if(abs($days)<=6)
             {
                 $aa='是这个周的';
@@ -60,5 +57,10 @@ class TestLive extends PHPUnit_Framework_TestCase
             }
             
         }
+    }
+    
+    protected function tearDown()
+    {
+        unset($this->http);
     }
 }

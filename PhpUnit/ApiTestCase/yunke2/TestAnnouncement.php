@@ -93,6 +93,10 @@ class TestAnnouncement extends PHPUnit_Framework_TestCase
         $this->assertEmpty($result['result']);
     }
     
+    protected function tearDown()
+    {
+        unset($this->http);
+    }
 
     
 }

@@ -68,7 +68,6 @@ class TestStudentTaskList extends PHPUnit_Framework_TestCase
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code']);
-        var_dump($result['result']['data'][0]['days'][0]['reply_time']);
         if($result['result']['page']['total']>1)
         {
             $this->assertGreaterThanOrEqual($result['result']['data'][1]['days'][0]['reply_time'], $result['result']['data'][0]['days'][0]['reply_time']);
@@ -144,5 +143,10 @@ class TestStudentTaskList extends PHPUnit_Framework_TestCase
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code']);
         $this->assertEmpty($result['result']['data']);
+    }
+    
+    protected function tearDown()
+    {
+        unset($this->http);
     }
 }
