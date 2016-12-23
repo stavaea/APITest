@@ -1,5 +1,7 @@
 <?php
 require_once 'PHPUnit/Framework/TestSuite.php';
+require_once 'PHPUnit/Autoload.php';
+
 require_once 'TestMain.php';
 require_once 'TestAnnouncement.php';
 require_once 'TestCheckNote.php';
