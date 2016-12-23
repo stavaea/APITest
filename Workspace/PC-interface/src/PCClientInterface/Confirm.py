@@ -18,6 +18,14 @@ def VerifyDataStucture(Expect,actual):
     for key in actual:
         if key not in Expect:
             return False
-    return True     
+    return True
+
+def VerifyDictEqual(comp1,comp2):
+    keys = comp1.keys()
+    for key in keys:
+        if comp1[key] !=comp2[key]:
+            return False
+    
+    return True         
                 
 

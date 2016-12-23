@@ -13,7 +13,7 @@ import requests
 
 
 class Test_TeacherOfStudents(unittest.TestCase):
-
+    '''课程详情--学生列表接口'''
     def setUp(self):
         self.s = requests.session()
         self.s = TestProvide.login(self.s)
@@ -29,13 +29,13 @@ class Test_TeacherOfStudents(unittest.TestCase):
         pass
     
     def test_getStudentList(self):
-        """获取学生列表"""
+        """获取学生列表---通过班主任获取"""
         self.params['params'] = {
                 "page":1,
                 "length":20,
                 "classId": Configuration.class_id,
                 "courseId": Configuration.course_id,
-                "teacherId":self.teacherId,
+                "teacherId":273,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         print("Url:{}\r\n Parameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
@@ -46,6 +46,22 @@ class Test_TeacherOfStudents(unittest.TestCase):
         keys = ['startTime','address','sex','userName','mobile','userId']
         Result=Confirm.VerifyDataStucture(keys,firstObj.keys())
         self.assertTrue(Result, "学生属性值返回错误")
+    
+    def test_getStudentList_withlecturerId(self):
+        """获取学生列表---通过讲师获取"""
+        self.params['params'] = {
+                "page":1,
+                "length":20,
+                "classId": Configuration.class_id,
+                "courseId": Configuration.course_id,
+                "lecturerId":self.teacherId,
+              }
+        self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
+        print("Url:{}\r\n Parameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
+        response = self.s.post(self.url,data=json.dumps(self.params))
+        response.encoding= "utf-8"
+        returnObj = json.loads(response.text)
+        self.assertIsNotNone(returnObj['result']['data'],"返回学生列表为空")
          
     def test_getStudentWithPaging(self):
         """学生列表翻页"""
@@ -54,7 +70,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 "length":20,
                 "classId": Configuration.class_id,
                 "courseId":Configuration.course_id,
-                "teacherId":self.teacherId,
+                "lecturerId":self.teacherId,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         print("Url:{}\r\n Parameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
@@ -62,9 +78,12 @@ class Test_TeacherOfStudents(unittest.TestCase):
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         OneUser=  {
-                'mobile': '13645420000',
-                'userName': '周振宇',
-                'userId': '22519'
+                "userId": "22610",
+                "userName": "刘明中  ",
+                "sex": "",
+                "mobile": "13645420091",
+                "address": "移动 山东",
+                "startTime": "2016年09月02日 15:53"
             }
         
         if returnObj['code']==0:
@@ -79,7 +98,6 @@ class Test_TeacherOfStudents(unittest.TestCase):
         else:
             raise("接口返回失败")
              
-    
     def test_getStudentWithErrorClassId(self):
         """获取学生列表传入错误班级ID"""
         self.params['params'] = {
@@ -87,7 +105,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 "length":20,
                 "classId":1566,
                 "courseId":3623,
-                "teacherId":self.teacherId,
+                "lecturerId":self.teacherId,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         print("Url:{}\r\n Parameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
@@ -104,7 +122,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 "length":20,
                 "classId":1567,
                 "courseId":3624,
-                "teacherId":self.teacherId,
+                "lecturerId":self.teacherId,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         print("Url:{}\r\nParameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
