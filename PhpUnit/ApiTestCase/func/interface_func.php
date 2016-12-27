@@ -1,5 +1,4 @@
 <?php
-require_once 'Sconfig.php';
 require_once 'Http.class.php';
 require_once 'dbConfig.php';
 

@@ -76,7 +76,7 @@ class TestUserInfo extends PHPUnit_Framework_TestCase
     }
     
     //用户不存在应返回相应提示
-    public function testUserNoExist($uid='9989830')
+    public function testUserNoExist($uid='99898300')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;

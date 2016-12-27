@@ -40,8 +40,8 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://testf.gn100.com/5,02810efbc5ea', $result['result']['info']['thumbMed']);
         $this->assertEquals('老师详情接口测试', $result['result']['info']['name']);
         $this->assertEquals('2', $result['result']['info']['years']);
-        $this->assertEquals('武汉大学', $result['result']['info']['college']);
-        $this->assertEquals('', $result['result']['info']['subject']);
+        $this->assertEquals('武汉大学', $result['result']['info']['college']); 
+        $this->assertEquals("", $result['result']['info']['subject']);
         $this->assertEquals('老师简介desc-勿动', $result['result']['info']['desc']);
         $this->assertEquals('', $result['result']['info']['taughtGrade']);
         $this->assertEquals('5', $result['result']['info']['score']);
