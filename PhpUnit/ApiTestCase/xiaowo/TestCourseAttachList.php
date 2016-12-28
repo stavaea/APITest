@@ -115,8 +115,7 @@ static $v=2;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($result);
-        $this->assertEquals("3002",$result['code']]);
+        $this->assertEquals("3002",$result['code']);
     }
     
     //多班课件,非本班
