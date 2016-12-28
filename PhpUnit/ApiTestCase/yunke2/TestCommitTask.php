@@ -1,7 +1,7 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
 
 class TestCommitTask extends PHPUnit_Framework_TestCase
 {
@@ -30,8 +30,12 @@ class TestCommitTask extends PHPUnit_Framework_TestCase
         //$postdata['params']['images']['thumb_small']='';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         //$this->assertEquals('1053', $result['code']);//作业已经提交
+    }
+    
+    protected function tearDown()
+    {
+        unset($this->http);
     }
 }

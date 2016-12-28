@@ -100,7 +100,6 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-            var_dump($result['result']['data']['teacher'][0]['teacherId']);
             $this->assertEquals('23317', $result['result']['data']['teacher'][0]['teacherId']);
         }
         
@@ -162,8 +161,6 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-            var_dump($result['result']['data']['teacher'][0]['userTotal']);
-            var_dump($result['result']['data']['teacher'][1]['userTotal']);
             $this->assertGreaterThanOrEqual($result['result']['data']['teacher'][1]['userTotal'], $result['result']['data']['teacher'][0]['userTotal']);
         }
     

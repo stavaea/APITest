@@ -8,7 +8,7 @@ require_once '../func/Http.class.php';
 class TestUserInfoGet extends PHPUnit_Framework_TestCase
 {
 
-   // public  $uid;
+    public  $uid;
     public  $url;
     public  $HttpUrl;
    
@@ -44,34 +44,8 @@ class TestUserInfoGet extends PHPUnit_Framework_TestCase
         $result = json_decode($this->http->HttpGet($HttpUrl),true);
         $this->assertNotEmpty($result['data']['avatar']['large']);
     }
-  
-    /**
-     * 
-     * @dataProvider additionProvider
-     */
-    public function testUserInfoTypes($uid)
-    {
-        $HttpUrl=$this->url.$uid;
-        $result = json_decode($this->http->HttpGet($HttpUrl),true);
-        $this->assertTrue($result['data']['types']['student']);
-        if ($uid=='22410') {
-            $this->assertTrue($result['data']['types']['teacher']);
-            $this->assertTrue($result['data']['types']['organization']);
-        }
-        else
-        {
-            $this->assertFalse($result['data']['types']['teacher']);
-            $this->assertFalse($result['data']['types']['organization']);
-        }  
-    }
-    public function additionProvider()
-    {
-        return array(
-            array('22410'),
-            array('22415')
-        );
-    }
-    
+
+
     public function testUserInfoGetUserNotExist($uid=1000020230)
     {
         $HttpUrl=$this->url.$uid;
@@ -79,7 +53,20 @@ class TestUserInfoGet extends PHPUnit_Framework_TestCase
         $this->assertEquals('-102', $result['data']['code']);
     }
     
-    
+/**
+ * @dataProvider additionProvider
+ */
+    public function testUserInfoTypes($uid='22410')
+    {
+        $HttpUrl=$this->url.$uid;
+        $result = json_decode($this->http->HttpGet($HttpUrl),true);
+        $this->assertTrue($result['data']['types']['student']);
+        $this->assertTrue($result['data']['types']['teacher']);
+        $this->assertTrue($result['data']['types']['organization']);
+    }
+
+   
+  
     
 }
 

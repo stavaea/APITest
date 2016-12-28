@@ -13,7 +13,7 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-        $this->url = "http://dev.gn100.com/interface/teacher/famousList";
+        $this->url = "http://test.gn100.com/interface/teacher/famousList";
         $this->http = new HttpClass();
     }
     
@@ -27,7 +27,6 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
          //$result=$this->http->HttpPost($this->url, json_encode($postdata));
-         //var_dump($result);
         $result2=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         
         $this->assertArrayHasKey('typeId', $result2['result'][0]);
@@ -67,6 +66,12 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertLessThanOrEqual($result['result'][0]['teachers'][1]['counts'], $result['result'][0]['teachers'][2]['counts']);
+    }
+    
+    protected function tearDown()
+    {
+        unset($this->http);
+
     }
     
 }

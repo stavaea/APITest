@@ -29,9 +29,7 @@ class TestUserTokenVerify extends PHPUnit_Framework_TestCase
  
     }
     
-    /*
-     * �Կ��γ̣��Ǳ����û�
-     */
+
     public function testTokenVerifyTryCourse($planid="517")
     {   
         $token =$this->tokenClass->testUserTokenGenIsSuccess("22415");
@@ -42,9 +40,7 @@ class TestUserTokenVerify extends PHPUnit_Framework_TestCase
         $this->assertNotContains('reg', json_encode($result));
     }
     
-    /*
-     * �Կ��γ̣������û�
-     */
+
     public function testTokenVerifyRegUser($planid="1907")
     {
         $token =$this->tokenClass->testUserTokenGenIsSuccess("22415");
@@ -56,9 +52,7 @@ class TestUserTokenVerify extends PHPUnit_Framework_TestCase
         //  $this->assertContains("ok :1",);
     }
 
-    /*
-     * �Կ��γ̣��ο�
-     */
+
    public function testTokenVerifyVisitorWithTryCourse($planid="517")
    {
        $token =$this->tokenClass->testUserTokenGenVisitor();
@@ -69,9 +63,6 @@ class TestUserTokenVerify extends PHPUnit_Framework_TestCase
        $this->assertNotContains('is_reg', json_encode($result));
    }
    
-   /*
-    * ���Կ��γ̣�δ�����û�
-    */
    public function testTokenVerifyNoTryNoReg($planid="530")
    {
        $token =$this->tokenClass->testUserTokenGenIsSuccess("22415");

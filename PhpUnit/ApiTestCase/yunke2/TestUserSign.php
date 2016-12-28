@@ -16,9 +16,9 @@ class TestUserSign extends PHPUnit_Framework_TestCase
         $this->url = "http://test.gn100.com/interface/user/Sign";
         $this->http = new HttpClass();
     }
-    /*
+
     //参数正确，返回节点是否正确
-    public function testDataIsOK($uid='0')
+    public function testDataIsOK($uid='55')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
@@ -66,7 +66,7 @@ class TestUserSign extends PHPUnit_Framework_TestCase
             }
     }
  
-    /*
+
     //参数正确，刷签到
     public function testSignCheat($uid='5316')
     {
@@ -93,7 +93,7 @@ class TestUserSign extends PHPUnit_Framework_TestCase
           }
     }
     
-  */
+
     //参数正确，重复签到
     public function testSignRepeat($uid='5312')
     {
