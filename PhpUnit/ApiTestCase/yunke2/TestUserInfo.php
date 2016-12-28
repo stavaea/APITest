@@ -12,7 +12,7 @@ class TestUserInfo extends PHPUnit_Framework_TestCase
     private $url;
     private $http;
     static $u="i";
-    static $v="2";
+    static $v="2"; 
     static $db="db_user";
     private $GetToken;
     

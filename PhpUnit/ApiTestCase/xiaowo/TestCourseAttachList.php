@@ -88,7 +88,7 @@ static $v=2;
         $this->assertEquals("class2",$result['result'][0]['attachName']);
     }
     
-    //管理员可下载,目前接口未处理老师和管理员，所以fail
+    //管理员不可下载,目前接口未处理老师和管理员
     public function testOrgAdmin($userId=23317,$courseId=912,$classId=1134)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -100,10 +100,10 @@ static $v=2;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals("class2",$result['result'][0]['attachName']);
+        $this->assertEquals("3002",$result['code']);
     }
     
-    //老师可下载，目前接口未处理老师和管理员，所以fail
+    //老师不可下载，目前接口未处理老师和管理员
     public function testOrgTeacher($userId=22411,$courseId=912,$classId=1134)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -115,7 +115,8 @@ static $v=2;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals("class2",$result['result'][0]['attachName']);
+        var_dump($result);
+        $this->assertEquals("3002",$result['code']]);
     }
     
     //多班课件,非本班

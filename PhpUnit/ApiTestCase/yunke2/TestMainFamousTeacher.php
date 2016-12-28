@@ -23,12 +23,11 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uid']='3596';
+        $postdata['params']['uid']='22410';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
          //$result=$this->http->HttpPost($this->url, json_encode($postdata));
         $result2=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        
         $this->assertArrayHasKey('typeId', $result2['result'][0]);
         
         $this->assertArrayHasKey('type', $result2['result'][0]);
@@ -47,7 +46,7 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uid']='3596';
+        $postdata['params']['uid']='22410';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
@@ -61,7 +60,7 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uid']='3596';
+        $postdata['params']['uid']='22410';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);

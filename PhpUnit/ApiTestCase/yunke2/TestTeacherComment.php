@@ -18,7 +18,7 @@ class TestTeacherComment extends PHPUnit_Framework_TestCase
         $this->http = new HttpClass();
         $this->Token =new TestUserToken();
     }
-    
+ 
     //参数正确，返回字段是否正确
     public function testDataIsOK($tid='35655')
     {
@@ -114,19 +114,19 @@ class TestTeacherComment extends PHPUnit_Framework_TestCase
         $this->assertEquals('3002', $result['code']);//获取数据失败
     }
     
+   
     //时间顺序，倒叙排列
-    public function testTimeSort($oid='469')
+    public function testTimeSort($oid='116')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['oid']=$oid;
-        $postdata['params']['teacherId']='3596';
+        $postdata['params']['teacherId']='22410';
         $postdata['params']['page']='1';
         $postdata['params']['length']='20';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         if($result['result']['total']>=2)
         {
