@@ -22,7 +22,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
          $this->http = new HttpClass();
          $this->GetToken =new TestUserToken();     
     }
-
+/*
     //传参正确，确认返回节点
     public function testCourseDetailNode($courseid="659",$uid="868")
     {
@@ -167,7 +167,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         $this->assertContains($result['result']['class'][0]['section'][0]['startTime'],$courseinfo[0][1]);
         $this->assertEquals($courseinfo[0][3], $result['result']['class'][0]['classId']);
     }
-    
+    */
     //多班直播试看 且有班级删除508 
     public function testDeleteClassCourse($courseid='508',$uid='22410')
     {
@@ -180,10 +180,11 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('2', count($result['result']['class']));
+        $this->assertEquals('2', count($result['result']['class']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('1', $result['result']['class']['0']['section']['trySee']);
     }
     
+    /*
     //删除课时
     public function testDeletePlanCourse($courseid='1171',$uid='22410')
     {
@@ -613,6 +614,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
                 $this->assertEquals('hye2群',$result['result']['qqData']['qqun'][0]['type_name']);
                 $this->assertEquals('423569792',$result['result']['qqData']['qqun'][0]['type_value']);
             }
+            */
             protected function tearDown()
             {
                 unset($this->http);
