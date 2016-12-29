@@ -100,7 +100,7 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-            $this->assertEquals('23317', $result['result']['data']['teacher'][0]['teacherId']);
+            $this->assertEquals('23317', $result['result']['data']['teacher'][0]['teacherId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
         
         
@@ -120,7 +120,7 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-            $this->assertEquals('0', count($result['result']['data']['teacher']));
+            $this->assertEquals('0', count($result['result']['data']['teacher']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
         
         
@@ -141,7 +141,7 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-            $this->assertGreaterThanOrEqual($result['result']['data']['teacher'][0]['score'], $result['result']['data']['teacher'][1]['score']);
+            $this->assertGreaterThanOrEqual($result['result']['data']['teacher'][0]['score'], $result['result']['data']['teacher'][1]['score'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
         
         
@@ -161,7 +161,7 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-            $this->assertGreaterThanOrEqual($result['result']['data']['teacher'][1]['userTotal'], $result['result']['data']['teacher'][0]['userTotal']);
+            $this->assertGreaterThanOrEqual($result['result']['data']['teacher'][1]['userTotal'], $result['result']['data']['teacher'][0]['userTotal'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
     
 }

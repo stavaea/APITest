@@ -26,11 +26,11 @@ class TestAnnouncement extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;    
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
-        $this->assertEquals('4332', $result['result']['fkPlan']);
-        $this->assertEquals('这是课程公告，希望你们都看得见！', $result['result']['content']);
-        $this->assertEquals('1', $result['result']['status']);
-        $this->assertEquals('71', $result['result']['id']);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('4332', $result['result']['fkPlan'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('这是课程公告，希望你们都看得见！', $result['result']['content'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('1', $result['result']['status'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('71', $result['result']['id'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //参数正确，删除公告Plan
@@ -44,8 +44,8 @@ class TestAnnouncement extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
-        $this->assertEmpty($result['result']);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEmpty($result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //参数正确，修改公告Plan
@@ -59,9 +59,9 @@ class TestAnnouncement extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('4333', $result['result']['fkPlan']);
-        $this->assertEquals('更新公告内容', $result['result']['content']);
-        $this->assertEquals('1', $result['result']['status']);
+        $this->assertEquals('4333', $result['result']['fkPlan'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('更新公告内容', $result['result']['content'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('1', $result['result']['status'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
      
     //fkPlan为空，返回值
@@ -75,7 +75,7 @@ class TestAnnouncement extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1001', $result['code']);//缺少必传参数
+        $this->assertEquals('1001', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//缺少必传参数
     }
     
     //fkPlan不存在，返回值
@@ -89,8 +89,8 @@ class TestAnnouncement extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);//获取课程信息失败
-        $this->assertEmpty($result['result']);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//获取课程信息失败
+        $this->assertEmpty($result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     protected function tearDown()

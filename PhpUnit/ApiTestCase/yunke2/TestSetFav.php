@@ -36,9 +36,9 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
-        $this->assertEquals('success', $result['message']);
-        $this->assertEquals('操作成功', $result['errMsg']);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('success', $result['message'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('操作成功', $result['errMsg'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->tInfo->testTeacherFav($userId,$teacherId);           
     }
   
@@ -54,9 +54,9 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
-        $this->assertEquals('success', $result['message']);
-        $this->assertEquals('操作成功', $result['errMsg']);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('success', $result['message'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('操作成功', $result['errMsg'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->tInfo->testTeacherUnFav($userId,$teacherId);           
     }
 
@@ -72,9 +72,9 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1021', $result['code']);
-        $this->assertEquals('no landing', $result['message']);
-        $this->assertEquals('没有登陆', $result['errMsg']);        
+        $this->assertEquals('1021', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('no landing', $result['message'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('没有登陆', $result['errMsg'],'url:'.$this->url.'   Post data:'.json_encode($postdata));        
     }
     
     //errorcode，老师收藏自己，返回1025
@@ -88,9 +88,9 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1025', $result['code']);
-        $this->assertEquals("You can't collect yourself", $result['message']);
-        $this->assertEquals('自己不能收藏自己', $result['errMsg']);        
+        $this->assertEquals('1025', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals("You can't collect yourself", $result['message'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('自己不能收藏自己', $result['errMsg'],'url:'.$this->url.'   Post data:'.json_encode($postdata));        
     }
     
     //errorcode，未传必填参数
@@ -104,9 +104,9 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1021', $result['code']);
-        $this->assertEquals('no landing', $result['message']);
-        $this->assertEquals('没有登陆', $result['errMsg']);        
+        $this->assertEquals('1021', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('no landing', $result['message'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('没有登陆', $result['errMsg'],'url:'.$this->url.'   Post data:'.json_encode($postdata));        
     }
     
     //errorcode，传参名错误
@@ -120,9 +120,9 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1021', $result['code']);
-        $this->assertEquals('no landing', $result['message']);
-        $this->assertEquals('没有登陆', $result['errMsg']);        
+        $this->assertEquals('1021', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('no landing', $result['message'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('没有登陆', $result['errMsg'],'url:'.$this->url.'   Post data:'.json_encode($postdata));        
     }
     
     //errorcode，传参teacherId非老师id
@@ -136,9 +136,9 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
-        $this->assertEquals('success', $result['message']);
-        $this->assertEquals('操作成功', $result['errMsg']);     
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('success', $result['message'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('操作成功', $result['errMsg'],'url:'.$this->url.'   Post data:'.json_encode($postdata));     
     } 
     
     protected function tearDown()

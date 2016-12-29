@@ -18,7 +18,7 @@ private $http;
         $result =json_decode($http->HttpPost($url, json_encode($postData)),true);
         $resultCode =$http->HttpPostCode($url, json_encode($postData));
         $this->assertEquals("200", $resultCode);
-        $this->assertEquals("22410", $result['data']['userId']);
+        $this->assertEquals("22410", $result['data']['userId'],'url:'.$this->url);
         // TODO Auto-generated TestGetUserIdSubDomain::setUp()
     }
     
@@ -28,7 +28,7 @@ private $http;
         $postData['subdomain']="h.g100.com";
         $http = new HttpClass();
         $result =json_decode($http->HttpPost($url, json_encode($postData)),true);
-        $this->assertEquals("-2", $result['result']['code']);
+        $this->assertEquals("-2", $result['result']['code'],'url:'.$this->url);
     }
     
     Public function testGetUserIdBySubDomainNoParams()
@@ -36,7 +36,7 @@ private $http;
         $url ="http://api.gn100.com/user/organization/GetUserIdBySubDomain/";
         $http = new HttpClass();
         $result =json_decode($http->HttpPost($url,''),true);
-        $this->assertEquals("-1", $result['result']['code']);
+        $this->assertEquals("-1", $result['result']['code'],'url:'.$this->url);
     }
       
 }

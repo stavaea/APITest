@@ -37,10 +37,10 @@ class TestUserInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals($userInfo[0][0], $result['result']['nickName']);
-        $this->assertEquals($userInfo[0][1], $result['result']['realName']);
-         $this->assertContains($userInfo[0][2], $result['result']['mobile']);
-        $this->assertContains($userInfo[0][3], $result['result']['image']);
+        $this->assertEquals($userInfo[0][0], $result['result']['nickName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals($userInfo[0][1], $result['result']['realName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertContains($userInfo[0][2], $result['result']['mobile'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertContains($userInfo[0][3], $result['result']['image'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
 
     public function testNoRealNameUser($uid='196')
@@ -57,8 +57,8 @@ class TestUserInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals($userInfo[0][0], $result['result']['nickName']);
-        $this->assertEmpty($result['result']['realName']);
+        $this->assertEquals($userInfo[0][0], $result['result']['nickName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEmpty($result['result']['realName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     public function testUserNoLogin($uid='0')
@@ -72,7 +72,7 @@ class TestUserInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('3002', $result['code']);
+        $this->assertEquals('3002', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //用户不存在应返回相应提示
@@ -87,7 +87,7 @@ class TestUserInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertNotEquals(0, $result['code']);
+        $this->assertNotEquals(0, $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
 }
 

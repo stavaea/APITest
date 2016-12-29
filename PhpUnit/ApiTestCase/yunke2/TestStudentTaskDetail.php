@@ -32,10 +32,9 @@ class TestStudentTaskDetail extends PHPUnit_Framework_TestCase
         $this->assertEquals('34', $result['result']['commit']['data']['fk_task']);
         $this->assertEquals('我是杨明娟。。。。。。', $result['result']['commit']['data']['desc']);
         $this->assertEquals('2016-10-18 11:38:26', $result['result']['commit']['data']['last_updated']);
-        //var_dump($result['result']['publish']['tag'][0]['name']);//tag这个值有的时候有，有的时候没有
         //$this->assertEquals('', $result['result']['publish']['tag']);
         //$this->assertEquals('6,b7c667ea9e19', $result['result']['commit']['thumb'][0]['thumb_big']);
-        $this->assertEquals('杨明娟', $result['result']['taskInfo']['teacherName']);
+        $this->assertEquals('杨明娟', $result['result']['taskInfo']['teacherName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     
@@ -52,7 +51,7 @@ class TestStudentTaskDetail extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1001', $result['code']);//缺少必传参数
+        $this->assertEquals('1001', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//缺少必传参数
     }
     
     //pkTaskStudent参数不存在，返回值
@@ -68,7 +67,7 @@ class TestStudentTaskDetail extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1051', $result['code']);//此作业不存在
+        $this->assertEquals('1051', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//此作业不存在
     }
     
     //uId为空或者是pk=142，返回值

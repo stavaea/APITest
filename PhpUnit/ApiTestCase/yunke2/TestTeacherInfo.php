@@ -35,19 +35,19 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals(0, $result['code']);
-        $this->assertEquals('23402', $result['result']['info']['teacherId']);
-        $this->assertEquals('http://testf.gn100.com/5,02810efbc5ea', $result['result']['info']['thumbMed']);
-        $this->assertEquals('老师详情接口测试', $result['result']['info']['name']);
-        $this->assertEquals('2', $result['result']['info']['years']);
-        $this->assertEquals('武汉大学', $result['result']['info']['college']); 
-        $this->assertEquals("", $result['result']['info']['subject']);
-        $this->assertEquals('老师简介desc-勿动', $result['result']['info']['desc']);
-        $this->assertEquals('', $result['result']['info']['taughtGrade']);
-        $this->assertEquals('5', $result['result']['info']['score']);
-        $this->assertEquals('2', $result['result']['info']['comment']);
-        $this->assertEquals('0', $result['result']['info']['isFav']);
-        $this->assertEquals('', $result['result']['info']['address']);
+        $this->assertEquals(0, $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('23402', $result['result']['info']['teacherId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('http://testf.gn100.com/5,02810efbc5ea', $result['result']['info']['thumbMed'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('老师详情接口测试', $result['result']['info']['name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('2', $result['result']['info']['years'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('武汉大学', $result['result']['info']['college'],'url:'.$this->url.'   Post data:'.json_encode($postdata)); 
+        $this->assertEquals("", $result['result']['info']['subject'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('老师简介desc-勿动', $result['result']['info']['desc'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('', $result['result']['info']['taughtGrade'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('5', $result['result']['info']['score'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('2', $result['result']['info']['comment'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('0', $result['result']['info']['isFav'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('', $result['result']['info']['address'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
 
    // 传参正确，返回老师统计数据正确
@@ -66,9 +66,9 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $dbStat=interface_func::ConnectDB('db_stat', $sql);
-        $this->assertEquals($dbStat[0][1], $result['result']['info']['courseCount']);
-        $this->assertEquals($dbStat[0][2], $result['result']['info']['userTotal']);
-        $this->assertEquals(round($dbStat[0][4]/3600), round($result['result']['info']['courseTotalTime']));
+        $this->assertEquals($dbStat[0][1], $result['result']['info']['courseCount'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals($dbStat[0][2], $result['result']['info']['userTotal'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals(round($dbStat[0][4]/3600), round($result['result']['info']['courseTotalTime']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //传参正确，uid不为空，且收藏老师，返回info老师被收藏
@@ -86,7 +86,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1', $result['result']['info']['isFav']);
+        $this->assertEquals('1', $result['result']['info']['isFav'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //传参正确，uid不为空，且收藏老师，返回info老师被收藏
@@ -104,7 +104,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['result']['info']['isFav']);
+        $this->assertEquals('0', $result['result']['info']['isFav'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
 
     //传参正确，老师plan类型（数组）且返回字段是否正确
@@ -122,15 +122,15 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $arrayResult=array_keys($result['result']['plan']);
-        $this->assertTrue(is_int($arrayResult[0]));
+        $this->assertTrue(is_int($arrayResult[0]),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $arrayKey=array_column($result['result']['plan'],'planId');
         foreach ($arrayKey as $key => $value)
         {
              if ($arrayKey[$key]=='3464')
-                 $this->assertEquals('已开课，报名用户已评价type=0',$result['result']['plan'][$key]['sectionDesc']);
-                 $this->assertEquals('第1课时',$result['result']['plan'][$key]['sectionName']);
-                 $this->assertEquals('1',$result['result']['plan'][$key]['courseType']);
-                 $this->assertEquals('http://testf.gn100.com/5,6d50e938e6ac',$result['result']['plan'][$key]['thumbMed']);
+                 $this->assertEquals('已开课，报名用户已评价type=0',$result['result']['plan'][$key]['sectionDesc'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                 $this->assertEquals('第1课时',$result['result']['plan'][$key]['sectionName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                 $this->assertEquals('1',$result['result']['plan'][$key]['courseType'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                 $this->assertEquals('http://testf.gn100.com/5,6d50e938e6ac',$result['result']['plan'][$key]['thumbMed'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
        
     }
@@ -150,17 +150,17 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $arrayResult=array_keys($result['result']['course']['list']);
-        $this->assertTrue(is_int($arrayResult[0]));
+        $this->assertTrue(is_int($arrayResult[0]),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $arrayKey=array_column($result['result']['course']['list'],'courseId');
         foreach ($arrayKey as $key => $value)
         {
              if ($arrayKey[$key]=='918')
-                 $this->assertEquals('测试联通支付',$result['result']['course']['list'][$key]['title']);
-                 $this->assertEquals('xiawot',$result['result']['course']['list'][$key]['orgSubname']);
-                 $this->assertEquals('1',$result['result']['course']['list'][$key]['courseType']);
-                 $this->assertEquals('http://testf.gn100.com/5,5cc0ffb7ec6d',$result['result']['course']['list'][$key]['thumbMed']);
-                 $this->assertLessThanOrEqual($result['result']['course']['list'][$key]['userTotal'],'2');
-                 $this->assertEquals('1',$result['result']['course']['list'][$key]['price']);
+                 $this->assertEquals('测试联通支付',$result['result']['course']['list'][$key]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                 $this->assertEquals('xiawot',$result['result']['course']['list'][$key]['orgSubname'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                 $this->assertEquals('1',$result['result']['course']['list'][$key]['courseType'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                 $this->assertEquals('http://testf.gn100.com/5,5cc0ffb7ec6d',$result['result']['course']['list'][$key]['thumbMed'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                 $this->assertLessThanOrEqual($result['result']['course']['list'][$key]['userTotal'],'2','url:'.$this->url.'   Post data:'.json_encode($postdata));
+                 $this->assertEquals('1',$result['result']['course']['list'][$key]['price'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
     }
     
@@ -178,11 +178,11 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertLessThan($result['result']['course']['list'],0);
+        $this->assertLessThan($result['result']['course']['list'],0,'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //传参正确，老师无课程数据
-    public function testTeacherNoCourse($uid='22410',$teacherId='35652')
+    public function testTeacherNoCourse($uid='22486',$teacherId='35652')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
@@ -195,6 +195,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertEmpty($result['result']['course'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
    
     //必传参数为空，返回值
@@ -210,7 +211,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1000', $result['code']);//请求参数为空
+        $this->assertEquals('1000', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//请求参数为空
     }
     
     //参数不存在，返回值
@@ -226,7 +227,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('3002', $result['code']);//获取数据失败
+        $this->assertEquals('3002', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//获取数据失败
     }
 
     protected function tearDown()

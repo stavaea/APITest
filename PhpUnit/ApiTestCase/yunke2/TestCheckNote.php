@@ -36,15 +36,15 @@ class TestCheckNote extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         //var_dump(HttpClass::HttpPost($url2, json_encode($postdata)));
         $result=json_decode(HttpClass::HttpStaticPost($url2, json_encode($postdata)),true);
-        self::assertEquals('0', $result['code']);
-        self::assertEquals($noteId, $result['result']['items'][0]['id']);
-        self::assertArrayHasKey('courseId', $result['result']['items'][0]);
-        self::assertArrayHasKey('planId', $result['result']['items'][0]);
-        self::assertArrayHasKey('userId', $result['result']['items'][0]);
-        self::assertArrayHasKey('status', $result['result']['items'][0]);
-        self::assertEquals('啊哈哈哈哈', $result['result']['items'][0]['content']);
-        self::assertEquals('123', $result['result']['items'][0]['playTimeTmp']);
-        self::assertEquals('00:02:03', $result['result']['items'][0]['playTimeFormat']);
+        self::assertEquals('0', $result['code'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals($noteId, $result['result']['items'][0]['id'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertArrayHasKey('courseId', $result['result']['items'][0],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertArrayHasKey('planId', $result['result']['items'][0],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertArrayHasKey('userId', $result['result']['items'][0],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertArrayHasKey('status', $result['result']['items'][0],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals('啊哈哈哈哈', $result['result']['items'][0]['content'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals('123', $result['result']['items'][0]['playTimeTmp'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals('00:02:03', $result['result']['items'][0]['playTimeFormat'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
        
         
     } 
@@ -63,29 +63,12 @@ class TestCheckNote extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         //var_dump(HttpClass::HttpPost($url2, json_encode($postdata)));
         $result=json_decode(HttpClass::HttpStaticPost($url2, json_encode($postdata)),true);
-        self::assertEquals('0', $result['code']);
-        self::assertEquals($noteId, $result['result']['items'][0]['id']);
-        self::assertEquals('我修改了内容哦', $result['result']['items'][0]['content']);
-        self::assertEquals('123', $result['result']['items'][0]['playTimeTmp']);
-        self::assertEquals('00:02:03', $result['result']['items'][0]['playTimeFormat']);
-         
-    
+        self::assertEquals('0', $result['code'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals($noteId, $result['result']['items'][0]['id'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals('我修改了内容哦', $result['result']['items'][0]['content'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals('123', $result['result']['items'][0]['playTimeTmp'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals('00:02:03', $result['result']['items'][0]['playTimeFormat'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+
     }
     
-    //必填参数为空，返回值
-      public function testListParamsIsNull()
-    {
-        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
-        $postdata['u']=self::$u;
-        $postdata['v']=self::$v;
-        
-        $postdata['params']['planId']='3724';
-        $postdata['params']['videoStatus']='2';
-        $postdata['params']['uId']='';
-        $key=interface_func::GetAppKey($postdata);
-        $postdata['key']=$key;
-        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1001', $result['code']);
-        
-    }  
 }

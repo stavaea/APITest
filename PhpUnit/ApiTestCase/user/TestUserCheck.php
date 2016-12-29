@@ -18,7 +18,7 @@ class TestUserCheck extends PHPUnit_Framework_TestCase
     {
         $postdata["uname"]="13011165159";
         $data = json_encode($postdata,true);  
-       $this->assertEquals(200, $this->http->HttpPostCode($this->url, $data));
+       $this->assertEquals(200, $this->http->HttpPostCode($this->url, $data),'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     public function testUserCheckRegUser()
@@ -26,7 +26,7 @@ class TestUserCheck extends PHPUnit_Framework_TestCase
         $postdata["uname"]="13011165159";
         $data = json_encode($postdata,true);
         $result = json_decode($this->http->HttpPost($this->url, $data),true);
-        $this->assertEquals('0',$result['result']['code']);
+        $this->assertEquals('0',$result['result']['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     public function testUserCheckUnregUser()
@@ -34,7 +34,7 @@ class TestUserCheck extends PHPUnit_Framework_TestCase
         $postdata["uname"]="+85253152718";
         $data = json_encode($postdata,true);
         $result = json_decode($this->http->HttpPost($this->url, $data),true);
-        $this->assertEquals('-3',$result['result']['code']);
+        $this->assertEquals('-3',$result['result']['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     public function testUserCheckPhoneNumIsError()
@@ -42,7 +42,7 @@ class TestUserCheck extends PHPUnit_Framework_TestCase
         $postdata["uname"]="1301116515900033";
         $data = json_encode($postdata,true);
         $result = json_decode($this->http->HttpPost($this->url, $data),true);
-        $this->assertEquals('-1', $result['result']['code']);
+        $this->assertEquals('-1', $result['result']['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
 
 }

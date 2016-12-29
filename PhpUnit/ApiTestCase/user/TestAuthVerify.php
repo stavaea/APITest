@@ -25,7 +25,7 @@ class TestAuthVerify extends PHPUnit_Framework_TestCase
         $postData['password'] = "123456";
         $postData['login_ip']="121.69.7.6";
         $postdata=json_encode($postData,true);
-        $this->assertEquals("200", $this->http->HttpPostCode($this->url, $postdata));
+        $this->assertEquals("200", $this->http->HttpPostCode($this->url, $postdata),'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
    
     public function testAuthVerifyIsSuccess()
@@ -37,7 +37,7 @@ class TestAuthVerify extends PHPUnit_Framework_TestCase
         $postdata=json_encode($postData,true);
        // $httpPost  = new HttpClass();
         $result = json_decode($this->http->HttpPost($this->url, $postdata),true);
-        $this->assertEquals("22410", $result['data']['uid']);
+        $this->assertEquals("22410", $result['data']['uid'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     public function testInternationalNumberIsOK()
@@ -47,7 +47,7 @@ class TestAuthVerify extends PHPUnit_Framework_TestCase
         $postData['login_ip']="121.69.7.6";
         $postdata=json_encode($postData,true);
         $result = json_decode($this->http->HttpPost($this->url, $postdata),true);
-        $this->assertEquals("22410", $result['data']['uid']);
+        $this->assertEquals("22410", $result['data']['uid'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
     }
     
@@ -62,7 +62,7 @@ class TestAuthVerify extends PHPUnit_Framework_TestCase
         $postData['login_ip']="121.69.7.6";
         $postdata=json_encode($postData,true);
         $result = json_decode($this->http->HttpPost($this->url, $postdata),true);
-        $this->assertEquals("-3", $result['result']['code']);   
+        $this->assertEquals("-3", $result['result']['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));   
     }
     
     public function testPhoneNumIsError()
@@ -72,7 +72,7 @@ class TestAuthVerify extends PHPUnit_Framework_TestCase
         $postData['login_ip']="121.69.7.6";
         $postdata=json_encode($postData,true);
         $result = json_decode($this->http->HttpPost($this->url, $postdata),true);
-        $this->assertEquals("-1", $result['result']['code']);
+        $this->assertEquals("-1", $result['result']['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     public function testPasswordIsError()
@@ -83,7 +83,7 @@ class TestAuthVerify extends PHPUnit_Framework_TestCase
         $postdata=json_encode($postData,true);
         $result = json_decode($this->http->HttpPost($this->url, $postdata),true);
         var_dump( json_decode($this->http->HttpPost($this->url, $postdata),true));
-        $this->assertEquals("-2", $result['result']['code']);
+        $this->assertEquals("-2", $result['result']['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
 

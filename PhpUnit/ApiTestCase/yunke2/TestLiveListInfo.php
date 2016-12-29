@@ -31,10 +31,10 @@ class TestLiveListInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;//此key值必须放到后面，要不然会验证失败
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
-        $this->assertArrayHasKey('isSign', $result['result']['data'][0]);
-        $this->assertArrayHasKey('courseId', $result['result']['data'][0]);
-        $this->assertArrayHasKey('stime', $result['result']['data'][0]);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('isSign', $result['result']['data'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('courseId', $result['result']['data'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('stime', $result['result']['data'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //sTime为2016-11-25，没有直播课程
@@ -53,7 +53,7 @@ class TestLiveListInfo extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('3002', $result['code']);
+        $this->assertEquals('3002', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
     }
     protected function tearDown()

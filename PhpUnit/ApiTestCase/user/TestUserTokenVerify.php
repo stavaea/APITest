@@ -35,9 +35,9 @@ class TestUserTokenVerify extends PHPUnit_Framework_TestCase
         $token =$this->tokenClass->testUserTokenGenIsSuccess("22415");
         $requestUrl=$this->url.$token."/".$planid;
         $result = json_decode($this->http->HttpGet($requestUrl),true);
-        $this->assertEquals(1,$result['result']['ok']);
-        $this->assertEquals("300",$result['result']['try_seconds']);
-        $this->assertNotContains('reg', json_encode($result));
+        $this->assertEquals(1,$result['result']['ok'],'url:'.$this->url);
+        $this->assertEquals("300",$result['result']['try_seconds'],'url:'.$this->url);
+        $this->assertNotContains('reg', json_encode($result),'url:'.$this->url);
     }
     
 
@@ -46,8 +46,8 @@ class TestUserTokenVerify extends PHPUnit_Framework_TestCase
         $token =$this->tokenClass->testUserTokenGenIsSuccess("22415");
         $requestUrl=$this->url.$token."/".$planid;
         $result = json_decode($this->http->HttpGet($requestUrl),true);
-        $this->assertEquals(1,$result['result']['ok']);
-        $this->assertContains('reg', json_encode($result));
+        $this->assertEquals(1,$result['result']['ok'],'url:'.$this->url);
+        $this->assertContains('reg', json_encode($result),'url:'.$this->url);
         // assertContains
         //  $this->assertContains("ok :1",);
     }
@@ -58,9 +58,9 @@ class TestUserTokenVerify extends PHPUnit_Framework_TestCase
        $token =$this->tokenClass->testUserTokenGenVisitor();
        $requestUrl=$this->url.$token."/".$planid;
        $result = json_decode($this->http->HttpGet($requestUrl),true);
-       $this->assertEquals(1,$result['result']['ok']);
-       $this->assertEquals("300",$result['result']['try_seconds']);
-       $this->assertNotContains('is_reg', json_encode($result));
+       $this->assertEquals(1,$result['result']['ok'],'url:'.$this->url);
+       $this->assertEquals("300",$result['result']['try_seconds'],'url:'.$this->url);
+       $this->assertNotContains('is_reg', json_encode($result),'url:'.$this->url);
    }
    
    public function testTokenVerifyNoTryNoReg($planid="530")
@@ -68,7 +68,7 @@ class TestUserTokenVerify extends PHPUnit_Framework_TestCase
        $token =$this->tokenClass->testUserTokenGenIsSuccess("22415");
        $requestUrl=$this->url.$token."/".$planid;
        $result = json_decode($this->http->HttpGet($requestUrl),true);
-       $this->assertEquals(-1,$result['result']['code']);
+       $this->assertEquals(-1,$result['result']['code'],'url:'.$this->url);
    }
    
 }

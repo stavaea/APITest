@@ -24,7 +24,7 @@ class TestUserTeacherGet extends PHPUnit_Framework_TestCase
     {
         $httpurl=$this->url.$uid;
         $result=json_decode($this->http->HttpGet($httpurl),true);
-        $this->assertEquals("junior", $result['data']['scopes']['0']);
+        $this->assertEquals("junior", $result['data']['scopes']['0'],'url:'.$this->url);
     }
     
     //机构导入老师，需手动保存资料
@@ -32,7 +32,7 @@ class TestUserTeacherGet extends PHPUnit_Framework_TestCase
     {
         $httpurl=$this->url.$uid;
         $result=json_decode($this->http->HttpGet($httpurl),true);
-        $this->assertEquals("-2",$result['result']['code']);
+        $this->assertEquals("-2",$result['result']['code'],'url:'.$this->url);
         //$this->assertEquals("junior", $result['data']['scopes']);
     }
     
@@ -40,7 +40,7 @@ class TestUserTeacherGet extends PHPUnit_Framework_TestCase
     {
         $httpurl=$this->url.$uid;
         $result=json_decode($this->http->HttpGet($httpurl),true);
-        $this->assertEquals("-2",$result['result']['code']);
+        $this->assertEquals("-2",$result['result']['code'],'url:'.$this->url);
     }
    
 }

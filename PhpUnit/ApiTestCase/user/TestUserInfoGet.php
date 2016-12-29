@@ -22,7 +22,7 @@ class TestUserInfoGet extends PHPUnit_Framework_TestCase
     {
         $HttpUrl=$this->url.$uid;
         $result =json_decode($this->http->HttpGet($HttpUrl),true);
-        $this->assertEquals('200', $this->http->HttpGetCode($HttpUrl));
+        $this->assertEquals('200', $this->http->HttpGetCode($HttpUrl),'url:'.$this->url);
         return $result;
     }
     
@@ -30,11 +30,10 @@ class TestUserInfoGet extends PHPUnit_Framework_TestCase
     {
         $HttpUrl=$this->url.$uid;
         $result = json_decode($this->http->HttpGet($HttpUrl),true);
-        $this->assertEquals("nickname", $result['data']['name']);
-        $this->assertContains('泠妞妞',($result['data']['profile']['real_name']));
-        $result['data']['profile']['real_name'];
-        $this->assertEquals("13122223333",$result['data']['mobile']);
-        $this->assertEquals('normal',$result['data']['status']);
+        $this->assertEquals("nickname", $result['data']['name'],'url:'.$this->url);
+        $this->assertContains('泠妞妞',($result['data']['profile']['real_name']),'url:'.$this->url);
+        $this->assertEquals("13122223333",$result['data']['mobile'],'url:'.$this->url);
+        $this->assertEquals('normal',$result['data']['status'],'url:'.$this->url);
     }
     
     
@@ -42,7 +41,7 @@ class TestUserInfoGet extends PHPUnit_Framework_TestCase
     {
         $HttpUrl=$this->url.$uid;
         $result = json_decode($this->http->HttpGet($HttpUrl),true);
-        $this->assertNotEmpty($result['data']['avatar']['large']);
+        $this->assertNotEmpty($result['data']['avatar']['large'],'url:'.$this->url);
     }
 
 
@@ -50,7 +49,7 @@ class TestUserInfoGet extends PHPUnit_Framework_TestCase
     {
         $HttpUrl=$this->url.$uid;
         $result = json_decode($this->http->HttpGet($HttpUrl),true);
-        $this->assertEquals('-102', $result['data']['code']);
+        $this->assertEquals('-102', $result['data']['code'],'url:'.$this->url);
     }
     
 /**
@@ -60,9 +59,9 @@ class TestUserInfoGet extends PHPUnit_Framework_TestCase
     {
         $HttpUrl=$this->url.$uid;
         $result = json_decode($this->http->HttpGet($HttpUrl),true);
-        $this->assertTrue($result['data']['types']['student']);
-        $this->assertTrue($result['data']['types']['teacher']);
-        $this->assertTrue($result['data']['types']['organization']);
+        $this->assertTrue($result['data']['types']['student'],'url:'.$this->url);
+        $this->assertTrue($result['data']['types']['teacher'],'url:'.$this->url);
+        $this->assertTrue($result['data']['types']['organization'],'url:'.$this->url);
     }
 
    

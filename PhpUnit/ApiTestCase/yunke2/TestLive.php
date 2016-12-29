@@ -27,9 +27,9 @@ class TestLive extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals(0, $result['code']);
-        $this->assertArrayHasKey('days', $result['result']);
-        $this->assertArrayHasKey('cateList', $result['result']);
+        $this->assertEquals(0, $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('days', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('cateList', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //判断返回的日期是否本周的所有日期
@@ -49,11 +49,11 @@ class TestLive extends PHPUnit_Framework_TestCase
             if(abs($days)<=6)
             {
                 $aa='是这个周的';
-                $this->assertEquals('是这个周的', $aa);
+                $this->assertEquals('是这个周的', $aa,'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }
             else 
             {
-                $this->assertEquals('是这个周的', $aa);
+                $this->assertEquals('是这个周的', $aa,'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }
             
         }
