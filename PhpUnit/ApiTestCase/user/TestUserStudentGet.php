@@ -24,7 +24,6 @@ class TestUserStudentGet extends PHPUnit_Framework_TestCase
     {
         $httpurl=$this->url.$uid;
         $result=json_decode($this->http->HttpGet($httpurl),true);
-        var_dump($result);
         $this->assertNotEmpty($result['data']['thumb_big'],'url:'.$this->url);
         $this->assertEquals("majing123",$result['data']['name'],'url:'.$this->url);
         $this->assertEquals("0",$result['data']['school_type'],'url:'.$this->url);

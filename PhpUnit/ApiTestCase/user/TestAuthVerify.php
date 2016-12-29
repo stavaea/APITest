@@ -82,7 +82,6 @@ class TestAuthVerify extends PHPUnit_Framework_TestCase
         $postData['login_ip']="121.69.7.6";
         $postdata=json_encode($postData,true);
         $result = json_decode($this->http->HttpPost($this->url, $postdata),true);
-        var_dump( json_decode($this->http->HttpPost($this->url, $postdata),true));
         $this->assertEquals("-2", $result['result']['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
