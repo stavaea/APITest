@@ -17,11 +17,11 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-       $this->url="dev.gn100.com/interface/course/commentv2";
+       $this->url="test.gn100.com/interface/course/commentv2";
        $this->http = new HttpClass();
        $this->Token =new TestUserToken();
     }
-    /*
+
     public function testCourseCommentVerifyNodes($courseid="480")
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -52,7 +52,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals("3002", $result['code']);
     }
-    */
+
     public function testCourseCommentVerifyComments($courseid="283")
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));

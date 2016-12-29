@@ -25,7 +25,6 @@ class TestCustomNav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=$this->http->HttpPost($this->url, json_encode($postdata));
-        var_dump($result);
     }
   
 }

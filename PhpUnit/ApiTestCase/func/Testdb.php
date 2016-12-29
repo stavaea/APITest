@@ -22,6 +22,5 @@ class Testdb extends PHPUnit_Framework_TestCase
     $q=array("course_count"=>"1,20","user_status"=>1);
     $seekdata=new seek();
     $result = $seekdata->TeacherSeek($f, $q, $ob);
-    var_dump($result);
     }
 }

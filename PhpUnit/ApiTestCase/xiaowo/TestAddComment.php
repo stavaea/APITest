@@ -39,10 +39,9 @@ class TestAddComment extends PHPUnit_Framework_TestCase
         $token =$this->Token->testUserTokenGenIsSuccess($uid);
         $postdata['token']=$token;
         $result=$this->http->HttpPost($this->url, json_encode($postdata));
-        var_dump($result);
-        //$result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-       // $this->assertEquals("success", $result['message']);
-        //$this->assertEquals("0", $result['code']);
+        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertEquals("success", $result['message']);
+        $this->assertEquals("0", $result['code']);
     }
     
 

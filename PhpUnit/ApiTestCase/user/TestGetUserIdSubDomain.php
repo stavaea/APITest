@@ -1,43 +1,49 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once '../func/Http.class.php';
+require_once '../func/dbConfig.php';
 
 /**
  * test case.
  */
 class TestGetUserIdSubDomain extends PHPUnit_Framework_TestCase
 {
-private $url;
-private $http;
-  
+
+    private $url;
+
+    private $http;
+
+    protected function setUp()
+    {
+        global $IP;
+        $this->url = "http://". $IP . "/user/organization/GetUserIdBySubDomain/";
+        $this->http = new HttpClass($this->url);
+    }
+
     Public function testGetUserIdBySubDomain()
     {
-        $url ="http://api.gn100.com/user/organization/GetUserIdBySubDomain/";
-        $postData['subdomain']="hye1.gn100.com";
+        $postData['subdomain'] = "hye1.gn100.com";
         $http = new HttpClass();
-        $result =json_decode($http->HttpPost($url, json_encode($postData)),true);
-        $resultCode =$http->HttpPostCode($url, json_encode($postData));
+        $result = json_decode($http->HttpApiPost($this->url, json_encode($postData)), true);
+        $resultCode = $http->HttpApiPostCode($this->url, json_encode($postData));
         $this->assertEquals("200", $resultCode);
-        $this->assertEquals("22410", $result['data']['userId'],'url:'.$this->url);
+        $this->assertEquals("22410", $result['data']['userId'], 'url:' . $this->url);
         // TODO Auto-generated TestGetUserIdSubDomain::setUp()
     }
-    
+
     Public function testGetUserIdBySubDomainNotExit()
     {
-        $url ="http://api.gn100.com/user/organization/GetUserIdBySubDomain/";
-        $postData['subdomain']="h.g100.com";
+        $postData['subdomain'] = "h.g100.com";
         $http = new HttpClass();
-        $result =json_decode($http->HttpPost($url, json_encode($postData)),true);
-        $this->assertEquals("-2", $result['result']['code'],'url:'.$this->url);
+        $result = json_decode($http->HttpApiPost($this->url, json_encode($postData)), true);
+        $this->assertEquals("-2", $result['result']['code'], 'url:' . $this->url);
     }
-    
+
     Public function testGetUserIdBySubDomainNoParams()
     {
-        $url ="http://api.gn100.com/user/organization/GetUserIdBySubDomain/";
         $http = new HttpClass();
-        $result =json_decode($http->HttpPost($url,''),true);
-        $this->assertEquals("-1", $result['result']['code'],'url:'.$this->url);
+        $result = json_decode($http->HttpApiPost($this->url, ''), true);
+        $this->assertEquals("-1", $result['result']['code'], 'url:' . $this->url);
     }
-      
 }
 

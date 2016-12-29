@@ -1,7 +1,7 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
 require_once '../BussinessUseCase/TestUserToken.php';
 require_once 'TestAddComment.php';
 
@@ -42,7 +42,6 @@ class TestDelComment extends PHPUnit_Framework_TestCase
         $token =$this->Token->testUserTokenGenIsSuccess($uid);
         $postdata['token']=$token;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($result);
     }
    
     Public function additionProvider()
@@ -50,8 +49,8 @@ class TestDelComment extends PHPUnit_Framework_TestCase
         return array(
            // "no reg user"=>array('695','2249','8303'),
           //  "no login user"=>array('283','888','5401'),
-          //  "login user"=>array('794','2629','23361')
-            "reg user"=>array('976','3464','5312')
+            "login user"=>array('794','2629','23361')
+            //"reg user"=>array('976','3464','5312')
         );
     }
     public function testDelCommentNoComment()
