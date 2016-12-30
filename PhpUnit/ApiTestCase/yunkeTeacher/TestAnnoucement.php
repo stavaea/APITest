@@ -2,7 +2,7 @@
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once 'func/Http.class.php';
 require_once 'func/interface_func.php';
-require_once 'yunkeTeacher/TestAnnoucementGet.php';
+require_once 'yunkeTeacher/TestAnnoucementGet';
 
 
 
