@@ -1,7 +1,7 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
 
 class TestStudentList extends PHPUnit_Framework_TestCase
 {
@@ -29,9 +29,10 @@ class TestStudentList extends PHPUnit_Framework_TestCase
         $postdata['params']['classId']= '1277';//2班：1385
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('13', count($result['result']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('李胜红', $result['result'][0]['name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
     }
     //缺少必传参数
@@ -62,6 +63,22 @@ class TestStudentList extends PHPUnit_Framework_TestCase
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEmpty($result['result']);
+    }
+    
+    //报名人数有500人
+    public function testStudentNumIsBig()
+    {
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['params']['courseId']= "1186";
+        $postdata['params']['classId']= '1389';
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key;
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('周振宇', $result['result'][0]['name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
 }
