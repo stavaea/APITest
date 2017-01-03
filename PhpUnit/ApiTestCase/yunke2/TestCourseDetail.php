@@ -167,6 +167,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         $this->assertContains($result['result']['class'][0]['section'][0]['startTime'],$courseinfo[0][1],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals($courseinfo[0][3], $result['result']['class'][0]['classId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
+ 
 
     //多班直播试看 且有班级删除508 
     public function testDeleteClassCourse($courseid='508',$uid='22410')
@@ -181,7 +182,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('2', count($result['result']['class']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('1', $result['result']['class']['0']['section']['trySee'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('1', $result['result']['class']['0']['section'][1]['trySee'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
 
@@ -620,5 +621,6 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
                 unset($this->http);
                 unset($this->GetToken);
             }
+          
 }
 
