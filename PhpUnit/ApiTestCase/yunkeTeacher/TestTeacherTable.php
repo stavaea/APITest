@@ -59,7 +59,7 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         for($i=0;$i<count($result['result']);$i++)
         {
-            $days=(strtotime('2016-12-26')-strtotime($result['result'][$i]['time']))/(3600*24);
+            $days=(strtotime($result['result'][$i]['time'])-strtotime('2016-12-26'))/(3600*24);
             if(abs($days)<=6)
             {
                $aa='是这个周的';
@@ -67,7 +67,8 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
             }
             else
             {
-                $this->assertEquals('是这个周的', $aa,'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                $bb='不是这个周的';
+                $this->assertEquals('不是这个周的', $bb,'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }
     
         }
@@ -107,7 +108,7 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
          $this->assertGreaterThan('30', count($result['result'][0]['data']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
          
-         for($j=0;$j<5;$j++)
+         for($j=0;$j<count($result['result'][0]['data'])-1;$j++)
          {
              
              $this->assertGreaterThanOrEqual(strtotime($result['result'][0]['data'][$j]['stime']),strtotime($result['result'][0]['data'][$j+1]['stime']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
