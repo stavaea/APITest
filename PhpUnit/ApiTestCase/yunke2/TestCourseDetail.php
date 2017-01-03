@@ -23,6 +23,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
          $this->GetToken =new TestUserToken();     
     }
 
+
     //传参正确，确认返回节点
     public function testCourseDetailNode($courseid="659",$uid="868")
     {
@@ -284,7 +285,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         $this->assertEquals('0', $result['result']['class'][0]['checkSign'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('0', $result['result']['class'][0]['isSign'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
-    
+
 
     //  多班返回2个班级信息
     public function testTwoClassCourse($courseid='705',$uid='22410')
@@ -301,7 +302,17 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals($courseinfo[0][0],count($result['result']['class']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('797',$result['result']['class'][0]['classId']);
+        $this->assertEquals('1',$result['result']['class'][0]['isSign']);
+        $this->assertEquals('1班',$result['result']['class'][0]['name']);
+        $this->assertEquals('暂无描述',$result['result']['class'][0]['desc']);
+        $this->assertEquals('泠嘻',$result['result']['class'][0]['userName']);
+        $this->assertEquals('1',$result['result']['class'][0]['courseType']);
+        $this->assertEquals('0',$result['result']['class'][0]['checkSign']);
+        $this->assertEquals('2266',$result['result']['class'][0]['section'][0]['planId']);
     }
+    
+ 
     
   
     // 多班一个报满，一个checkSign": 1,一个checkSign:0
@@ -615,8 +626,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
                 $this->assertEquals('hye2群',$result['result']['qqData']['qqun'][0]['type_name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
                 $this->assertEquals('423569792',$result['result']['qqData']['qqun'][0]['type_value'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }
-
-            protected function tearDown()
+           protected function tearDown()
             {
                 unset($this->http);
                 unset($this->GetToken);
