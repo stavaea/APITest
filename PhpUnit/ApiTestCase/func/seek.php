@@ -10,28 +10,29 @@ class seek
     {
         $this->http = new HttpClass();
     }
+
     
     //请求course中间层
-    public function CourseSeek($url,$f,$q,$ob,$p,$pl)
+    public function CourseSeek($f,$q,$ob,$p,$pl)
     {
         global $IP;
         $url="http://".$IP."/seek/course/list/";
-        $postdata['f']=$f;
-        $postdata['q']=$q;
-        $postdata['ob']=$ob;
+        $postdata['f']=$f;    //传参格式如：$f=array("course_id","status");
+        $postdata['q']=$q;   //传参格式如：$q=array("status"=>1);
+        $postdata['ob']=$ob;    // 传参格式如：$ob=array("course_id"=>"desc");
         $postdata['p']=$p;
         $postdata['pl']=$pl;
         $result=json_decode($this->http->HttpApiPost($url, json_encode($postdata)),true);
         return $result;
     }
     
-    public function PlanSeek($url,$f,$q,$ob,$p,$pl)
+    public function PlanSeek($f,$q,$ob,$p,$pl)
     {
         global $IP;
         $url="http://".$IP."/seek/plan/list/";
-         $postdata['f']=$f;
-         $postdata['q']=$q;
-         $postdata['ob']=$ob;
+         $postdata['f']=$f;  //传参格式如：$f=array("plan_id","status");
+         $postdata['q']=$q; //传参格式如：$q=array("plan_id"=>"120","status"=>1);
+         $postdata['ob']=$ob; // 传参格式如：$ob=array("plan_id"=>"desc");
          $postdata['p']=$p;
          $postdata['pl']=$pl;
          $result=json_decode($this->http->HttpApiPost($url, json_encode($postdata)),true);
@@ -42,9 +43,9 @@ class seek
     {
         global $IP;
         $url="http://".$IP."/seek/teacher/list/";
-        $postdata['f']=$f;
-        $postdata['q']=$q;
-        $postdata['ob']=$ob;
+        $postdata['f']=$f; //传参格式如：$f=array("teacher_id","user_status","real_name");
+        $postdata['q']=$q; //传参格式如：$q=array("course_count"=>"1,20","user_status"=>1);
+        $postdata['ob']=$ob;  // 传参格式如：$ob=array("course_id"=>"desc");
         $postdata['p']=1;
         $postdata['pl']=20;
         $result=json_decode($this->http->HttpApiPost($url, json_encode($postdata)),true);
