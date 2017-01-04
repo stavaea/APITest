@@ -180,6 +180,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertLessThan($result['result']['course']['list'],0,'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
+
     
     //传参正确，老师无课程数据
     public function testTeacherNoCourse($uid='22486',$teacherId='35652')
@@ -195,7 +196,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEmpty($result['result']['course'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEmpty('0',$result['result']['info']['courseCount'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
    
     //必传参数为空，返回值

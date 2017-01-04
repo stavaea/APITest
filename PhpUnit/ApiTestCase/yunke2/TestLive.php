@@ -32,6 +32,24 @@ class TestLive extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('cateList', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
+    //校验cateList信息
+    public function testCateList($oid='0')
+    {
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['oid']=$oid;
+        $postdata['params']['userId']='';//userId并不影响接口返回结果
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key;
+        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertEquals(0, $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata)); 
+        $this->assertEquals('全部', $result['result']['cateList'][0]['cateName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('小学', $result['result']['cateList'][1]['cateName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('初中', $result['result']['cateList'][2]['cateName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('高中', $result['result']['cateList'][3]['cateName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+    }
+    
     //判断返回的日期是否本周的所有日期
     public function testDateIsWeek($oid='0')
     {
