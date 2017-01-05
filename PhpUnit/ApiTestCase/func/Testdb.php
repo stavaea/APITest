@@ -20,7 +20,10 @@ class Testdb extends PHPUnit_Framework_TestCase
     $f=array("teacher_id","user_status","real_name");
     $ob=array("course_id"=>"desc");
     $q=array("course_count"=>"1,20","user_status"=>1);
+    $p=1;
+    $pl=1;
     $seekdata=new seek();
-    $result = $seekdata->TeacherSeek($f, $q, $ob);
+    $result = $seekdata->TeacherSeek($f, $q, $ob,$p,$pl);
+    var_dump($result);
     }
 }
