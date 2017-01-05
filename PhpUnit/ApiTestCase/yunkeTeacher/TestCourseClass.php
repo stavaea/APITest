@@ -36,10 +36,10 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertLessThanOrEqual('50', count($result['result']));
-        $this->assertArrayHasKey('title', $result['result'][0]);
-        $this->assertArrayHasKey('courseId', $result['result'][0]);
-        $this->assertArrayHasKey('class', $result['result'][0]);
+        $this->assertLessThanOrEqual('50', count($result['result']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('title', $result['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('courseId', $result['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('class', $result['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //搜索关键字，中文
@@ -95,7 +95,7 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $postdata['token']=$token;
         var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1000', $result['code']);//请求参数为空
+        $this->assertEquals('1000', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//请求参数为空
     }
     
     
