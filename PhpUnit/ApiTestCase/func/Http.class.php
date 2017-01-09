@@ -127,4 +127,19 @@
           curl_close($ch);
           return $result;  
       }
+      
+      public static function HttpStaticApiPost($url,$data)
+      {
+          $ch = curl_init($url);
+          curl_setopt($ch, CURLOPT_HEADER, 0);
+          curl_setopt($ch, CURLOPT_POST, 1);
+          curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+          curl_setopt($ch,CURLOPT_HTTPHEADER,array("Host: api.gn100.com"));
+          curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+          curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+          $result = curl_exec($ch);
+          curl_close($ch);
+          return $result;
+      }
     } 
