@@ -72,9 +72,7 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $this->assertContains($seekData['data'][0]['thumb_big'], $result['result']['data']['teacher'][0]['thumbMed'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             $this->assertEquals($seekData['data'][0]['avg_score'], $result['result']['data']['teacher'][0]['score'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             $this->assertEquals($seekData['data'][0]['comment'], $result['result']['data']['teacher'][0]['comment'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-            $this->assertEquals($seekData['data'][0]['course_count'], $result['result']['data']['teacher'][0]['courseCount'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-            
-         
+            $this->assertEquals($seekData['data'][0]['course_count'], $result['result']['data']['teacher'][0]['courseCount'],'url:'.$this->url.'   Post data:'.json_encode($postdata));  
         }
         
         

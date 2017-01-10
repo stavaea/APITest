@@ -51,7 +51,7 @@ class TestUserInfoGet extends PHPUnit_Framework_TestCase
     {
         $HttpUrl = $this->url . $uid;
         $result = json_decode($this->http->HttpApiGet($HttpUrl), true);
-        $this->assertEquals('-102', $result['data']['code'], 'url:' . $this->url);
+        $this->assertEquals('-102', $result['code'], 'url:' . $this->url);
     }
 
     /**

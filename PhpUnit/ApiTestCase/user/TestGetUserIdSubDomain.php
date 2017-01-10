@@ -22,12 +22,13 @@ class TestGetUserIdSubDomain extends PHPUnit_Framework_TestCase
 
     Public function testGetUserIdBySubDomain()
     {
-        $postData['subdomain'] = "hye1.gn100.com";
+        $postData['subdomain'] = "test.gn100.com";
         $http = new HttpClass();
         $result = json_decode($http->HttpApiPost($this->url, json_encode($postData)), true);
+        var_dump($result);
         $resultCode = $http->HttpApiPostCode($this->url, json_encode($postData));
         $this->assertEquals("200", $resultCode);
-        $this->assertEquals("22410", $result['data']['userId'], 'url:' . $this->url);
+        $this->assertEquals("183", $result['data']['userId'], 'url:' . $this->url);
         // TODO Auto-generated TestGetUserIdSubDomain::setUp()
     }
 
