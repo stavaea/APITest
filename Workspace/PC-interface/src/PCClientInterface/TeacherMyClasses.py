@@ -58,8 +58,9 @@ class TeacherMyClasses(unittest.TestCase):
         self.assertEqual(returnObj['code'],0)
         self.assertEqual(returnObj['message'],"success")
         ActualFirstCourseOfList = returnObj['result']['list']['data'][0]
-        CourseProperty = ['courseId','courseName','courseImg','classList','subname','courseType']
-        self.assertTrue(Confirm.VerifyDataStucture(CourseProperty,ActualFirstCourseOfList.keys()),"数据结构不匹配")
+        CourseProperty = ['courseId','courseName','courseImg','classList','subname','courseType','userTotal']
+        text = "数据结构不匹配 Expect keys:{};response keys:{}".format(CourseProperty,ActualFirstCourseOfList.keys())
+        self.assertTrue(Confirm.VerifyDataStucture(CourseProperty,ActualFirstCourseOfList.keys()),text)
         conn = self.create_SqlConnect()
         cursor = conn.cursor()
         sql = "SELECT COUNT(c.`pk_course`) AS num,c.`type` FROM t_course_teacher AS t JOIN t_course AS c ON t.`fk_course`=c.`pk_course` WHERE t.`fk_user_teacher`={} GROUP BY c.`type`".format(self.teacherId)
@@ -112,13 +113,11 @@ class TeacherMyClasses(unittest.TestCase):
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
-        if returnObj['code'] ==0:
-            ExpectCouresObj = {
-                    "courseId": 1158,
-                    "courseName": "新版课程表--多班级课程",
-                    "courseImg": "http://testf.gn100.com/5,82d771f39607",
-                    "courseType": 1,
-                    "classList": [
+        self.assertEqual(0,returnObj['code'], "获取教师课表表失败")
+        Flag =False
+        for CourseObj in returnObj['result']['list']['data']:
+            if CourseObj['courseId'] == 1158 and CourseObj['courseName']=="新版课程表--多班级课程":
+                ClassList =  [
                         {
                             "classId": "1355",
                             "className": "基础班",
@@ -137,18 +136,12 @@ class TeacherMyClasses(unittest.TestCase):
                             "sectionNum": 2,
                             "sectionName": "第0章"
                         }
-                    ],
-                    "subname": "宏盛飞飞"
-                }
-            if ExpectCouresObj in returnObj['result']['list']['data']:
-                Result = True
-            else:
-                Result = False        
-            self.assertTrue(Result,"多班级课程不在此列表内")
-        else:
-            raise "获取教师课表表失败"
-        
-     
+                    ]
+                if ClassList == CourseObj['classList']:
+                    Flag =True
+                break
+        self.assertTrue(Flag,"没有返回多班级课程")
+                   
 #获取教师课程--分页，下一页
     def test_TeacherCoursePaging(self):
         """班主任下课程--翻页"""

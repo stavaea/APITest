@@ -34,17 +34,8 @@ class Test_getCourseList(unittest.TestCase):
         response = self.s.post(self.url,data=json.dumps(self.params))
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
-        print(returnObj) 
-        self.assertEqual(returnObj['code'],0)
-        self.assertEqual(returnObj['message'],"success")
-        OneCourse = {'courseId': 333, 
-                     'subname': '宏盛飞飞', 
-                     'classNum': 1, 
-                     'courseName': '测试录播课课程001'
-                }
-        self.assertTrue(Confirm.objIsInList(OneCourse, returnObj['result']['data']))
-
-            
+        self.assertEqual(3002,returnObj['code'])
+  
     def test_GetVideoCousrsePaging(self):
         '''录播课程列表--翻页(下一页)''' 
         page = 3
