@@ -50,7 +50,7 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
         {
             $q=array("teacher_status"=>1,"visiable"=>1,"subject_id"=>"2","course_count"=>'1,5000');
             $ob =array("student_count"=>"desc");
-            $f=array("teacher_id","org_name","name","real_name","thumb_big","subject_id","totaltime","student_count","avg_score","grade","subject","course_count","comment");
+            $f=array("teacher_id","name","real_name","thumb_big","subject_id","org_teacher","totaltime","student_count","avg_score","grade","subject","course_count","comment");
             $p=1;
             $pl=1;
             $this->seek = new seek();
@@ -67,10 +67,10 @@ class TestTeacherSearch extends PHPUnit_Framework_TestCase
             $postdata['key']=$key;
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true); 
             $this->assertEquals($seekData['data'][0]['teacher_id'], $result['result']['data']['teacher'][0]['teacherId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-            $this->assertEquals($seekData['data'][0]['org_name'], $result['result']['data']['teacher'][0]['orgName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+            $this->assertEquals($seekData['data'][0]['org_teacher'][0]['subname'], $result['result']['data']['teacher'][0]['orgName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             $this->assertEquals($seekData['data'][0]['real_name'], $result['result']['data']['teacher'][0]['name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             $this->assertContains($seekData['data'][0]['thumb_big'], $result['result']['data']['teacher'][0]['thumbMed'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-            $this->assertEquals($seekData['data'][0]['avg_score'], $result['result']['data']['teacher'][0]['score'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+            $this->assertEquals(round($seekData['data'][0]['avg_score'],1), $result['result']['data']['teacher'][0]['score'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             $this->assertEquals($seekData['data'][0]['comment'], $result['result']['data']['teacher'][0]['comment'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             $this->assertEquals($seekData['data'][0]['course_count'], $result['result']['data']['teacher'][0]['courseCount'],'url:'.$this->url.'   Post data:'.json_encode($postdata));  
         }

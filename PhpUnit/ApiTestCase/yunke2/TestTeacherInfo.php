@@ -34,6 +34,8 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $postdata['token']=$token;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
+
+        
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals(0, $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('23402', $result['result']['info']['teacherId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
@@ -41,7 +43,7 @@ class TestTeacherInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals('老师详情接口测试', $result['result']['info']['name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('2', $result['result']['info']['years'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('武汉大学', $result['result']['info']['college'],'url:'.$this->url.'   Post data:'.json_encode($postdata)); 
-        $this->assertEquals("", $result['result']['info']['subject'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals("数学,英语,语文", $result['result']['info']['subject'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('老师简介desc-勿动', $result['result']['info']['desc'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('', $result['result']['info']['taughtGrade'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('5', $result['result']['info']['score'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
