@@ -24,6 +24,6 @@ class Testdb extends PHPUnit_Framework_TestCase
     $pl=1;
     $seekdata=new seek();
     $result = $seekdata->TeacherSeek($f, $q, $ob,$p,$pl);
-    var_dump($result);
+  //  var_dump($result);
     }
 }
