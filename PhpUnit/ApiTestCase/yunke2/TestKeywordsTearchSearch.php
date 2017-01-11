@@ -3,7 +3,7 @@ require_once 'PHPUnit/Framework/TestCase.php';
 require_once '../func/Http.class.php';
 require_once '../func/interface_func.php';
 
-class TestTeacherSearch extends PHPUnit_Framework_TestCase
+class TestKeywordsTearchSearch extends PHPUnit_Framework_TestCase
 {
     private $url;
     private $http;

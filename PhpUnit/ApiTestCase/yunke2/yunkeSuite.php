@@ -24,6 +24,7 @@ require_once 'TestTeacherSearch.php';
 require_once 'TestUpdateNote.php';
 require_once 'TestUserInfo.php';
 require_once 'TestUserSign.php';
+require_once 'TestKeywordsTearchSearch.php';
 require_once '../xiaowo/TestCourseAttachList.php';
 
 /**
@@ -56,6 +57,7 @@ class yunkeSuite extends PHPUnit_Framework_TestSuite
         $this->addTestSuite('TestTeacherInfo');
         $this->addTestSuite('TestTeacherPoint');
         $this->addTestSuite('TestTeacherSearch');
+        $this->addTestSuite('TestKeywordsTearchSearch');
         $this->addTestSuite('TestUserSign');
         $this->addTestSuite('TestUserInfo');
         $this->addTestSuite('TestCourseAttachList');
