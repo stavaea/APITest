@@ -135,10 +135,10 @@ class TestNote extends PHPUnit_Framework_TestCase
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         //var_dump($result['code']);
-        $this->assertEquals('2054',$result['code']);
+        $this->assertEquals('2054',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         if($result['code']!='2054'){
         
-            TestDelNote::testDelDataIsOK($result['result']['noteId']);
+            TestDelNote::testDelDataIsOK($result['result']['noteId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
     } 
      

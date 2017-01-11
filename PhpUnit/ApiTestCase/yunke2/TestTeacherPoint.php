@@ -69,7 +69,7 @@ class TestTeacherPoint extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1001', $result['code']);//缺少必传参数
+        $this->assertEquals('1001', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//缺少必传参数
     }
     
     
@@ -87,10 +87,10 @@ class TestTeacherPoint extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('360', $result['result']['items'][0]['pTime']);
-        $this->assertEquals('视频3', $result['result']['items'][0]['content']);
-        $this->assertEquals('180', $result['result']['items'][0]['playTimeTmpHandle']);
-        $this->assertEquals('00:03:00', $result['result']['items'][0]['playTimeFormat']);
+        $this->assertEquals('360', $result['result']['items'][0]['pTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('视频3', $result['result']['items'][0]['content'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('180', $result['result']['items'][0]['playTimeTmpHandle'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('00:03:00', $result['result']['items'][0]['playTimeFormat'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     protected function tearDown()

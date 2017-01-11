@@ -1,7 +1,6 @@
 <?php
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/Autoload.php';
-
 require_once 'TestMain.php';
 require_once 'TestAnnouncement.php';
 require_once 'TestCheckNote.php';
@@ -13,7 +12,7 @@ require_once 'TestLiveListInfo.php';
 require_once 'TestMainFamousTeacher.php';
 require_once 'TestNotCommitList.php';
 require_once 'TestNote.php';
-require_once 'TestPictureUpload.php';
+//require_once 'TestPictureUpload.php';
 require_once 'TestSetFav.php';
 require_once 'TestStudentTaskDetail.php';
 require_once 'TestStudentTaskList.php';
@@ -48,7 +47,7 @@ class yunkeSuite extends PHPUnit_Framework_TestSuite
         $this->addTestSuite('TestMainFamousTeacher');
         $this->addTestSuite('TestNotCommitList');
         $this->addTestSuite('TestNote');
-        $this->addTestSuite('TestPictureUpload');
+        //$this->addTestSuite('TestPictureUpload');
         $this->addTestSuite('TestSetFav');
         $this->addTestSuite('TestStudentTaskDetail');
         $this->addTestSuite('TestStudentTaskList');

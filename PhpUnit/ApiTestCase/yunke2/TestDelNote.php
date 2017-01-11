@@ -38,7 +38,7 @@ class TestDelNote extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode(HttpClass::HttpStaticPost($url2, json_encode($postdata)),true);
-        self::assertEquals('0', $result['code']);//操作成功
+        self::assertEquals('0', $result['code'],'url:'.self::$url.'   Post data:'.json_encode($postdata));//操作成功
          
     } 
     
@@ -55,8 +55,8 @@ class TestDelNote extends PHPUnit_Framework_TestCase
         $postdata['params']['uId']='23339';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1001', $result['code']);//缺少必传参数
+        $result=json_decode($this->http->HttpPost(self::$url, json_encode($postdata)),true);
+        $this->assertEquals('1001', $result['code'],'url:'.self::$url.'   Post data:'.json_encode($postdata));//缺少必传参数
     } 
     
     

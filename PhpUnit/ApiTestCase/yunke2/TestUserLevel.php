@@ -8,7 +8,7 @@ class TestUserLevel extends PHPUnit_Framework_TestCase
     private $url;
     private $http;
     static $u="i";
-    static $v="2";
+    static $v="2"; 
     
     protected function setUp()
     {
@@ -27,7 +27,7 @@ class TestUserLevel extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
 
     
     }

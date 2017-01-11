@@ -16,7 +16,7 @@ class TestPictureUpload extends PHPUnit_Framework_TestCase
         $this->url = "http://test.gn100.com/interface/studentTask/UploadImage";
         $this->http = new HttpClass();
     }
-    
+    /*
     //参数正确，返回节点是否正确
     public function testDataIsOK($oid='0')
     {
@@ -31,7 +31,7 @@ class TestPictureUpload extends PHPUnit_Framework_TestCase
         $postdata['params']['image']='44444444444444444444';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $this->assertEquals('0', $result['code']);
        // $this->assertEquals('1,b803ca9b9016', $result['result']['big']);
        // $this->assertEquals('2,b802d78e6fce', $result['result']['small']);
@@ -41,4 +41,5 @@ class TestPictureUpload extends PHPUnit_Framework_TestCase
     {
         unset($this->http);
     }
+    */
 }

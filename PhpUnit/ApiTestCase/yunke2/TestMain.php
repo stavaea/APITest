@@ -30,11 +30,11 @@ class TestMain extends PHPUnit_Framework_TestCase
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals(0, $result['code']);
         //比对是否存在相应的节点数据
-        $this->assertArrayHasKey('ad',$result['result']);
-        $this->assertArrayHasKey('types',$result['result']);
-        $this->assertArrayHasKey('lives',$result['result']);
-        $this->assertArrayHasKey('interests',$result['result']);
-        $this->assertArrayHasKey('recommends',$result['result']);
+        $this->assertArrayHasKey('ad',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('types',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('lives',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('interests',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('recommends',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
 
     /*参数正确，接口返回banner字段正确  */  
@@ -52,9 +52,9 @@ class TestMain extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $postdata['dinfo']['rw']="414.000000";
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals(count($ad), count($result['result']['ad']));
-        $this->assertContains($ad[0][1],$result['result']['ad']['0']['image']);
-        $this->assertContains($ad[0][2],$result['result']['ad']['0']['url']);
+        $this->assertEquals(count($ad), count($result['result']['ad']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertContains($ad[0][1],$result['result']['ad']['0']['image'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertContains($ad[0][2],$result['result']['ad']['0']['url'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
               
     }
 
@@ -70,7 +70,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEmpty(array_diff($arraytype,array_column($result['result']['types'],'name')));          
+        $this->assertEmpty(array_diff($arraytype,array_column($result['result']['types'],'name')),'url:'.$this->url.'   Post data:'.json_encode($postdata));          
     }
     
     //传参正确，recommend模块返回sc字段
@@ -84,7 +84,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('8',$result['result']['recommends']['1']['sc']);
+        $this->assertEquals('8',$result['result']['recommends']['1']['sc'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     //传参正确，直播课堂模块，返回日期和list模块类型和字段正确，array
     public function testLive()
@@ -98,7 +98,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $arrayResult=array_keys($result['result']['lives']);
-        $this->assertTrue(is_int($arrayResult[0]));
+        $this->assertTrue(is_int($arrayResult[0]),'url:'.$this->url.'   Post data:'.json_encode($postdata));
 
     }
       //推荐模块课程信息验证
@@ -114,15 +114,15 @@ class TestMain extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $arrayResult=array_keys($result['result']['recommends']['0']['list']);
-        $this->assertTrue(is_int($arrayResult[0]));
-        $this->assertEmpty(array_diff($arrayRecommendName,array_column($result['result']['recommends'],'attrName')));
-        $this->assertEquals('2',$result['result']['recommends']['1']['list']['1']['type']);
+        $this->assertTrue(is_int($arrayResult[0]),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEmpty(array_diff($arrayRecommendName,array_column($result['result']['recommends'],'attrName')),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('2',$result['result']['recommends']['1']['list']['1']['type'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $arrayJunior=array_column($result['result']['recommends']['1']['list'],'total');
-        $this->assertLessThan( $arrayJunior[0],  $arrayJunior[1]);
+        $this->assertLessThan( $arrayJunior[0],  $arrayJunior[1],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('976', $result['result']['recommends']['2']['list']['0']['courseId']);
-        $this->assertEquals('app-plancomment接口测试课程', $result['result']['recommends']['2']['list']['0']['title']);
-        $this->assertEquals('1', $result['result']['recommends']['2']['list']['0']['courseType']);
-        $this->assertEquals('hye测试机构', $result['result']['recommends']['2']['list']['0']['orgSubname']);
+        $this->assertEquals('app-plancomment接口测试课程', $result['result']['recommends']['2']['list']['0']['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('1', $result['result']['recommends']['2']['list']['0']['courseType'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('hye测试机构', $result['result']['recommends']['2']['list']['0']['orgSubname'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
    //推荐模块验证
     public function testRecommendsCheckTotal()
@@ -135,8 +135,8 @@ class TestMain extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('3',$result['result']['recommends']['0']['list']['2']['type']);
-        $this->assertEquals('0',$result['result']['recommends']['0']['list']['2']['total']);
+        $this->assertEquals('3',$result['result']['recommends']['0']['list']['2']['type'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('0',$result['result']['recommends']['0']['list']['2']['total'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //兴趣模块课程信息验证
@@ -151,13 +151,13 @@ class TestMain extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $arrayResult=array_column($result['result']['interests']['0']['list'],'courseId');
-        $this->assertTrue(is_int($arrayResult[0]));
+        $this->assertTrue(is_int($arrayResult[0]),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         foreach ($arrayResult as $key =>$value)
         {
             if ($arrayResult[$key]=='686')
-                $this->assertEquals("勿动-黄金会员课程2", $result['result']['interests']['0']['list'][$key]['courseName']);
-                $this->assertEquals("http://testf.gn100.com/5,439078e1bc02", $result['result']['interests']['0']['list'][$key]['imgurl']);
-                $this->assertNotEmpty($result['result']['interests']['0']['list'][$key]['userTotal']);               
+                $this->assertEquals("勿动-黄金会员课程2", $result['result']['interests']['0']['list'][$key]['courseName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                $this->assertEquals("http://testf.gn100.com/5,439078e1bc02", $result['result']['interests']['0']['list'][$key]['imgurl'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                $this->assertNotEmpty($result['result']['interests']['0']['list'][$key]['userTotal'],'url:'.$this->url.'   Post data:'.json_encode($postdata));               
         }         
     }
        
@@ -172,8 +172,8 @@ class TestMain extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals(0, $result['code']);
-        $this->assertLessThanOrEqual('8', count($result['result']['recommends'][1]['list']));
+        $this->assertEquals(0, $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertLessThanOrEqual('8', count($result['result']['recommends'][1]['list']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     protected function tearDown()

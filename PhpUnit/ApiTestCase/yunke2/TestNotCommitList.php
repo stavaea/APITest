@@ -28,16 +28,16 @@ class TestNotCommitList extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
-        $this->assertArrayHasKey('pk_task', $result['result']['data']);
-        $this->assertArrayHasKey('desc', $result['result']['data']);
-        $this->assertEquals('已截止', $result['result']['data']['countdown']);
-        $this->assertEquals('san', $result['result']['data']['teacherName']);
-        $this->assertEquals('5304', $result['result']['data']['fk_user_teacher']);
-        $this->assertEquals('http://testf.gn100.com/1,0266abcef015', $result['result']['data']['thumb_big']);
-        $this->assertArrayHasKey('attach', $result['result']);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('pk_task', $result['result']['data'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('desc', $result['result']['data'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('已截止', $result['result']['data']['countdown'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('san', $result['result']['data']['teacherName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('5304', $result['result']['data']['fk_user_teacher'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('http://testf.gn100.com/1,0266abcef015', $result['result']['data']['thumb_big'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('attach', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //$this->assertNotNull($result['result']['tag']);//fail
-        $this->assertEquals('152', $result['result']['thumb'][0]['small_width']);
+        $this->assertEquals('152', $result['result']['thumb'][0]['small_width'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     } 
     
     //参数为空，返回值
@@ -51,7 +51,7 @@ class TestNotCommitList extends PHPUnit_Framework_TestCase
         $postdata['key']=$key; 
        // var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1001', $result['code']);//缺少必传参数
+        $this->assertEquals('1001', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//缺少必传参数
     }
     
     //参数不存在，返回值
@@ -66,7 +66,7 @@ class TestNotCommitList extends PHPUnit_Framework_TestCase
         
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1051', $result['code']);//此作业不存在
+        $this->assertEquals('1051', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//此作业不存在
     }
     
     protected function tearDown()

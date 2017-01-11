@@ -28,10 +28,10 @@ class TestTaskShow extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code']);
-        $this->assertEquals('2016-11-14 星期一 17:07', $result['result']['reply']['data']['lastUpdatedHandle']);
-        $this->assertEquals('4', $result['result']['reply']['data']['level']);
-        $this->assertEquals('11-14 16:26', $result['result']['publish']['data']['startTimeHandle']);
-        $this->assertArrayHasKey('taskInfo', $result['result']);
+        $this->assertEquals('2016-11-14 星期一 17:07', $result['result']['reply']['data']['lastUpdatedHandle'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('4', $result['result']['reply']['data']['level'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('11-14 16:26', $result['result']['publish']['data']['startTimeHandle'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('taskInfo', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
       
         //$this->assertNotEmpty(count($result['result']['publish']['tag']));
     }
@@ -48,7 +48,7 @@ class TestTaskShow extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1052', $result['code']);//不是此学生作业
+        $this->assertEquals('1052', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//不是此学生作业
     }
     
     protected function tearDown()

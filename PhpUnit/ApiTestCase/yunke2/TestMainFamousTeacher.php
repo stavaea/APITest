@@ -23,23 +23,22 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uid']='3596';
+        $postdata['params']['uid']='22410';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
          //$result=$this->http->HttpPost($this->url, json_encode($postdata));
         $result2=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertArrayHasKey('typeId', $result2['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
-        $this->assertArrayHasKey('typeId', $result2['result'][0]);
+        $this->assertArrayHasKey('type', $result2['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
-        $this->assertArrayHasKey('type', $result2['result'][0]);
+        $this->assertArrayHasKey('teachers', $result2['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
-        $this->assertArrayHasKey('teachers', $result2['result'][0]);
+        $this->assertArrayHasKey('originName', $result2['result'][0]['teachers'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
-        $this->assertArrayHasKey('originName', $result2['result'][0]['teachers'][0]);
-        
-        $this->assertArrayHasKey('score', $result2['result'][0]['teachers'][0]);
-        $this->assertArrayHasKey('counts', $result2['result'][0]['teachers'][0]);
-        $this->assertArrayHasKey('lessons', $result2['result'][0]['teachers'][0]);
+        $this->assertArrayHasKey('score', $result2['result'][0]['teachers'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('counts', $result2['result'][0]['teachers'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('lessons', $result2['result'][0]['teachers'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     //参数正确，分类最多返回10条数据
     public function testDataIsLeastTen()
@@ -47,11 +46,11 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uid']='3596';
+        $postdata['params']['uid']='22410';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertLessThanOrEqual(10, count($result['result'][0]['teachers']));
+        $this->assertLessThanOrEqual(10, count($result['result'][0]['teachers']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
     }
     
@@ -61,11 +60,11 @@ class TestMainFamousTeacher extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uid']='3596';
+        $postdata['params']['uid']='22410';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertLessThanOrEqual($result['result'][0]['teachers'][1]['counts'], $result['result'][0]['teachers'][2]['counts']);
+        $this->assertLessThanOrEqual($result['result'][1]['teachers'][0]['counts'], $result['result'][1]['teachers'][1]['counts'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     protected function tearDown()

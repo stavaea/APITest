@@ -28,15 +28,15 @@ class TestUserSign extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;   
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
-        $this->assertArrayHasKey('levelName', $result['result']);
-        $this->assertArrayHasKey('levelColor', $result['result']);
-        $this->assertArrayHasKey('level', $result['result']);
-        $this->assertArrayHasKey('continueDay', $result['result']);
-        $this->assertArrayHasKey('extraEx', $result['result']);
-        $this->assertArrayHasKey('status', $result['result']);
-        $this->assertArrayHasKey('nextEx', $result['result']);
-        $this->assertArrayHasKey('nextLevelName', $result['result']);
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('levelName', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('levelColor', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('level', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('continueDay', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('extraEx', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('status', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('nextEx', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('nextLevelName', $result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
 
 
@@ -55,14 +55,14 @@ class TestUserSign extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals($score[0][1], $result['result']['level']);
-        $this->assertEquals($score[0][2], $result['result']['levelName']);
+        $this->assertEquals($score[0][1], $result['result']['level'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals($score[0][2], $result['result']['levelName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         if($result['result']['continueDay']>0)
             {
-                $this->assertEquals($score[0][3]+2, $result['result']['ex']);
+                $this->assertEquals($score[0][3]+2, $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }else 
             {
-                $this->assertEquals($score[0][3]+7, $result['result']['ex']);
+                $this->assertEquals($score[0][3]+7, $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }
     }
  
@@ -85,10 +85,10 @@ class TestUserSign extends PHPUnit_Framework_TestCase
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             if($result['result']['continueDay']>0)
             {
-                $this->assertEquals($score[0][3]+2, $result['result']['ex']);
+                $this->assertEquals($score[0][3]+2, $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }else 
             {
-                $this->assertEquals($score[0][3]+7, $result['result']['ex']);
+                $this->assertEquals($score[0][3]+7, $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }
           }
     }
@@ -109,7 +109,7 @@ class TestUserSign extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);        
         $this->assertEquals('0', $result['code']);
-        $this->assertEquals($score[0][3], $result['result']['ex']);
+        $this->assertEquals($score[0][3], $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //未登陆签到
@@ -123,7 +123,7 @@ class TestUserSign extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;    
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1000', $result['code']);//请求参数为空   
+        $this->assertEquals('1000', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//请求参数为空   
     }
     
     //参数Uid不存在，返回值
@@ -137,7 +137,7 @@ class TestUserSign extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']); 
+        $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata)); 
     }
 
 }
