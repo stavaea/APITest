@@ -146,7 +146,7 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['params']['userId']='23339';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
-         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+         var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
          if($result['code']!='3002')
          {

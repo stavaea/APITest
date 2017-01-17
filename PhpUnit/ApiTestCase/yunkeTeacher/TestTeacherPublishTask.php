@@ -3,9 +3,9 @@ require_once 'PHPUnit/Framework/TestCase.php';
 require_once '../func/Http.class.php';
 require_once '../func/interface_func.php';
 require_once '../BussinessUseCase/TestUserToken.php';
-require_once 'yunkeTeacher/TestTeacherTaskList.php';
-require_once 'yunkeTeacher/TestTeacherDeleteTask.php';
-require_once 'yunkeTeacher/TestTeacherUpdateTaskShow.php';
+require_once '../yunkeTeacher/TestTeacherTaskList.php';
+require_once '../yunkeTeacher/TestTeacherDeleteTask.php';
+require_once '../yunkeTeacher/TestTeacherUpdateTaskShow.php';
 
 class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
 {
@@ -246,8 +246,8 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         );
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        //$result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-       // $this->assertEquals('2061', $result['code']);
+        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertEquals('2067', $result['code']);
     }
     
     //tag标签超过五个
