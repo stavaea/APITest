@@ -42,7 +42,7 @@ class TestCheckNote extends PHPUnit_Framework_TestCase
         self::assertArrayHasKey('planId', $result['result']['items'][0],'url:'.self::$url.'   Post data:'.json_encode($postdata));
         self::assertArrayHasKey('userId', $result['result']['items'][0],'url:'.self::$url.'   Post data:'.json_encode($postdata));
         self::assertArrayHasKey('status', $result['result']['items'][0],'url:'.self::$url.'   Post data:'.json_encode($postdata));
-        self::assertEquals('啊哈哈哈哈', $result['result']['items'][0]['content'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals('1：55', $result['result']['items'][0]['content'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
         self::assertEquals('123', $result['result']['items'][0]['playTimeTmp'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
         self::assertEquals('00:02:03', $result['result']['items'][0]['playTimeFormat'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
        
@@ -65,7 +65,7 @@ class TestCheckNote extends PHPUnit_Framework_TestCase
         $result=json_decode(HttpClass::HttpStaticPost($url2, json_encode($postdata)),true);
         self::assertEquals('0', $result['code'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
         self::assertEquals($noteId, $result['result']['items'][0]['id'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
-        self::assertEquals('我修改了内容哦', $result['result']['items'][0]['content'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
+        self::assertEquals('2：55', $result['result']['items'][0]['content'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
         self::assertEquals('123', $result['result']['items'][0]['playTimeTmp'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
         self::assertEquals('00:02:03', $result['result']['items'][0]['playTimeFormat'],'url:'.self::$url.'   Post data:'.json_encode($postdata));
 

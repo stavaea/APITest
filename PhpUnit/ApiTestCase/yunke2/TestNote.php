@@ -31,20 +31,22 @@ class TestNote extends PHPUnit_Framework_TestCase
            $postdata['v']=self::$v;
            $postdata['params']['planId']='3724';
            $postdata['params']['videoStatus']='2';
-           $postdata['params']['content']='啊哈哈哈哈';
+           $postdata['params']['content']='1：55';
            $postdata['params']['playTimeTmp']='123';//02：03
            $postdata['params']['uId']='23339';
            $key=interface_func::GetAppKey($postdata);
            $postdata['key']=$key;
-           $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true); 
+           $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+           var_dump($result); 
            $this->assertEquals('0',$result['code']);
            $this->assertArrayHasKey('noteId',$result['result']);
            $this->assertArrayHasKey('playTimeFormat',$result['result']);
            $this->assertArrayHasKey('playTimeTmpHandle',$result['result']);
-           TestCheckNote::testListDataIsOK($result['result']['noteId']);
-           TestUpdateNote::testUpdateData($result['result']['noteId'], '我修改了内容哦');
-           TestCheckNote::testUpdateListDataIsOK($result['result']['noteId']);
            TestDelNote::testDelDataIsOK($result['result']['noteId']);
+//            TestCheckNote::testListDataIsOK($result['result']['noteId']);
+//            TestUpdateNote::testUpdateData($result['result']['noteId'], '2：55');
+//            TestCheckNote::testUpdateListDataIsOK($result['result']['noteId']);
+//            TestDelNote::testDelDataIsOK($result['result']['noteId']);
        }   
        
        
