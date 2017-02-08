@@ -169,8 +169,7 @@ class TestMain extends PHPUnit_Framework_TestCase
             $this->assertEquals($resultSeek['data'][0]['user_total'],$result['result']['interests'][0]['list'][0]['userTotal'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
     }
-       
-   
+
     //参数正确，推荐课程最多四门课程
     public function testRecommendsMoreFour()
     {
