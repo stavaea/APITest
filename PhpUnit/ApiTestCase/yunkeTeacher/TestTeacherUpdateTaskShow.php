@@ -8,7 +8,7 @@ class TestTeacherUpdateTaskShow extends PHPUnit_Framework_TestCase
 {
     static $u="i";
     static $v="2";
-    static $url="http://dev.gn100.com/interface/teacherTask/UpdateTaskShow";
+    static $url="http://test.gn100.com/interface/teacherTask/UpdateTaskShow";
     
     
     
@@ -18,17 +18,55 @@ class TestTeacherUpdateTaskShow extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uId']='3596';
+        $postdata['params']['uId']='23339';
         $postdata['params']['taskId']=$taskId;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =TestUserToken::testUserStaticTokenGenIsSuccess('3596');
+        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        var_dump(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)));
+        //var_dump(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)));
         $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
         self::assertEquals($taskId, $result['result']['data']['pkTask']);
         self::assertEquals('app老师发布作业啊！！！！！', $result['result']['data']['desc']);
-        self::assertEquals('http://devf.gn100.com/devf.gn100.com/6,d70804e3d1d6', $result['result']['thumb'][0]['srcBig']);
+        self::assertEquals('http://testf.gn100.com/testf.gn100.com/6,d70804e3d1d6', $result['result']['thumb'][0]['srcBig']);
         self::assertEquals('语文', $result['result']['tag'][0]['name']);
+    }
+    
+    
+    //参数正确，将图片信息返回
+     public static function testReturnImage()
+     {
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['params']['uId']='23339';
+        $postdata['params']['taskId']='147';
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key;
+        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23339');
+        $postdata['token']=$token;
+        //var_dump(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)));
+        $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
+
+        return $result['result']['thumb'];
+    }
+    
+    
+    
+    //参数正确，将标签信息返回
+    public static function testReturnTag()
+    {
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['params']['uId']='23339';
+        $postdata['params']['taskId']='147';
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key;
+        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23339');
+        $postdata['token']=$token;
+        //var_dump(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)));
+        $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
+        return $result['result']['tag'];
     }
 }

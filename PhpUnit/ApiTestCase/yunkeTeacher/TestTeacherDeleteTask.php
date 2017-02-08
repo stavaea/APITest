@@ -7,7 +7,7 @@ class TestTeacherDeleteTask extends PHPUnit_Framework_TestCase
 {
     static $u="i";
     static $v="2";
-    static $url="http://dev.gn100.com/interface/teacherTask/DeleteTask" ;
+    static $url="http://test.gn100.com/interface/teacherTask/DeleteTask" ;
     static $fkTask;
     
     

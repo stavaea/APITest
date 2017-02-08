@@ -18,7 +18,7 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //老师发布作业
-        $this->url = "http://dev.gn100.com/interface/teacherTask/PublishTask";
+        $this->url = "http://test.gn100.com/interface/teacherTask/PublishTask";
         $this->http = new HttpClass();
         $this->Token =new TestUserToken();
     
@@ -30,18 +30,18 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
-        $postdata['params']['uId']= "3596";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
+        $postdata['params']['uId']= "23339";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
-        $postdata['params']['startTime']= "2017-01-06 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             )
@@ -66,18 +66,18 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
         $postdata['params']['uId']= "";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
-        $postdata['params']['startTime']= "2017-01-06 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             )
@@ -99,14 +99,14 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
-        $postdata['params']['uId']= "3596";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
+        $postdata['params']['uId']= "23339";
         $postdata['params']['desc']= "";
-        $postdata['params']['startTime']= "2017-01-06 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             
         );
@@ -129,18 +129,18 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
-        $postdata['params']['uId']= "3596";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
+        $postdata['params']['uId']= "23339";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
-        $postdata['params']['startTime']= "2017-01-05 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= "2017-02-05 14:18:00";
+        $postdata['params']['endTime']= "2017-02-09 14:18:00";
         $postdata['params']['taskImages'] =  array(
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             )
@@ -162,78 +162,78 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
-        $postdata['params']['uId']= "3596";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
+        $postdata['params']['uId']= "23339";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
-        $postdata['params']['startTime']= "2017-01-06 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             ),
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             )
@@ -256,18 +256,18 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
-        $postdata['params']['uId']= "3596";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
+        $postdata['params']['uId']= "23339";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
-        $postdata['params']['startTime']= "2017-01-06 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             )
@@ -305,18 +305,18 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
-        $postdata['params']['uId']= "3596";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
+        $postdata['params']['uId']= "23339";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
-        $postdata['params']['startTime']= "2017-01-06 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             )
@@ -339,18 +339,18 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
-        $postdata['params']['uId']= "3596";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
+        $postdata['params']['uId']= "23339";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
-        $postdata['params']['startTime']= "2017-01-06 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             )
@@ -373,18 +373,18 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('3596');
+        $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "4596";
-        $postdata['params']['fkClass']= "3350";
-        $postdata['params']['uId']= "3596";
+        $postdata['params']['fkCourse']= "783";
+        $postdata['params']['fkClass']= "916";
+        $postdata['params']['uId']= "23339";
         $postdata['params']['desc']= "我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们a";
-        $postdata['params']['startTime']= "2017-01-06 14:18:00";
-        $postdata['params']['endTime']= "2017-01-09 14:18:00";
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             array(
-                'thumbSmall'=>'devf.gn100.com/3,d70720fec11a',
-                'thumbBig'=>'devf.gn100.com/6,d70804e3d1d6',
+                'thumbSmall'=>'testf.gn100.com/3,d70720fec11a',
+                'thumbBig'=>'testf.gn100.com/6,d70804e3d1d6',
                 'srcMallWidth'=>'200',
                 'srcMallHeight'=>'300'
             )

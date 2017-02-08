@@ -43,10 +43,10 @@ class TestNote extends PHPUnit_Framework_TestCase
            $this->assertArrayHasKey('playTimeFormat',$result['result']);
            $this->assertArrayHasKey('playTimeTmpHandle',$result['result']);
            TestDelNote::testDelDataIsOK($result['result']['noteId']);
-//            TestCheckNote::testListDataIsOK($result['result']['noteId']);
-//            TestUpdateNote::testUpdateData($result['result']['noteId'], '2：55');
-//            TestCheckNote::testUpdateListDataIsOK($result['result']['noteId']);
-//            TestDelNote::testDelDataIsOK($result['result']['noteId']);
+           TestCheckNote::testListDataIsOK($result['result']['noteId']);
+           TestUpdateNote::testUpdateData($result['result']['noteId'], '2：55');
+           TestCheckNote::testUpdateListDataIsOK($result['result']['noteId']);
+           TestDelNote::testDelDataIsOK($result['result']['noteId']);
        }   
        
        

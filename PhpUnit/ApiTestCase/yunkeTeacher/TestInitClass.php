@@ -34,7 +34,7 @@ class TestInitClass extends PHPUnit_Framework_TestCase
         $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1000', $result['code']);//请求参数为空
     }
@@ -45,14 +45,15 @@ class TestInitClass extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $token =$this->Token->testUserTokenGenIsSuccess('23339');
-        $postdata['token']=$token;
+       // $token =$this->Token->testUserTokenGenIsSuccess('23339');
+        //$postdata['token']=$token;
         $postdata['params']['planId']= "4606";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
        // var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        var_dump($result);
         $this->assertArrayHasKey('stream', $result['result']);
         $this->assertArrayHasKey('plan', $result['result']);
         $this->assertArrayHasKey('announcement', $result['result']);

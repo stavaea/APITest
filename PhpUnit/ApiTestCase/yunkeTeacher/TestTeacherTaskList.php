@@ -8,7 +8,7 @@ class TestTeacherTaskList extends PHPUnit_Framework_TestCase
 {
     static $u="i";
     static $v="2";
-    static $url="http://dev.gn100.com/interface/teacherTask/TaskList" ;
+    static $url="http://test.gn100.com/interface/teacherTask/TaskList" ;
     static $Token;
     
     
@@ -20,11 +20,11 @@ class TestTeacherTaskList extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['page']='1';
-        $postdata['params']['uId']='3596';
+        $postdata['params']['uId']='23339';
         $postdata['params']['status']='0';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =TestUserToken::testUserStaticTokenGenIsSuccess('3596');
+        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23339');
         $postdata['token']=$token;
         $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
         $pkTask=$result['result']['data'][0]['days'][0]['pkTask'];
