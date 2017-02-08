@@ -2,6 +2,7 @@
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once '../func/Http.class.php';
 require_once '../func/interface_func.php';
+require_once '../func/seek.php';
 
 class TestMain extends PHPUnit_Framework_TestCase
 {
@@ -16,7 +17,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         //$this->url = "http://dev.gn100.com/interface/main/homev2";
         $this->http = new HttpClass();
     }
-  
+
     //参数正确，返回节点是否正确
     public function testDataIsOK()
     {
@@ -38,6 +39,7 @@ class TestMain extends PHPUnit_Framework_TestCase
     }
 
     /*参数正确，接口返回banner字段正确  */  
+
     public function testAdFields()
     {
         $db="db_platform";
@@ -119,10 +121,10 @@ class TestMain extends PHPUnit_Framework_TestCase
         $this->assertEquals('2',$result['result']['recommends']['1']['list']['1']['type'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $arrayJunior=array_column($result['result']['recommends']['1']['list'],'total');
         $this->assertLessThan( $arrayJunior[0],  $arrayJunior[1],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('976', $result['result']['recommends']['2']['list']['0']['courseId']);
-        $this->assertEquals('app-plancomment接口测试课程', $result['result']['recommends']['2']['list']['0']['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('766', $result['result']['recommends']['2']['list']['0']['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('小沃0830直播', $result['result']['recommends']['2']['list']['0']['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('1', $result['result']['recommends']['2']['list']['0']['courseType'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('hye测试机构', $result['result']['recommends']['2']['list']['0']['orgSubname'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('xiawot', $result['result']['recommends']['2']['list']['0']['orgSubname'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
    //推荐模块验证
     public function testRecommendsCheckTotal()
@@ -135,32 +137,40 @@ class TestMain extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('3',$result['result']['recommends']['0']['list']['2']['type'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('0',$result['result']['recommends']['0']['list']['2']['total'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('3',$result['result']['recommends']['0']['list']['0']['type'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('79',$result['result']['recommends']['0']['list']['0']['total'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
+
     
     //兴趣模块课程信息验证
     public function testInterests()
     {
+        $f=array("course_id","title","org_subname","thumb_med","user_total");
+        $ob=array("course_id"=>"desc");
+        $q=array("third_cate"=>"169","status"=>"1,2,3","admin_status"=>"1","org_status"=>"1");
+        $p=1;
+        $pl=4;
+        $seekdata=new seek();
+        $resultSeek = $seekdata->CourseSeek($f, $q, $ob, $p, $pl);
+        var_dump($resultSeek);
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['condition']='170';
+        $postdata['params']['condition']='169';
         $postdata['params']['uid']='183';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $arrayResult=array_column($result['result']['interests']['0']['list'],'courseId');
-        $this->assertTrue(is_int($arrayResult[0]),'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        foreach ($arrayResult as $key =>$value)
-        {
-            if ($arrayResult[$key]=='686')
-                $this->assertEquals("勿动-黄金会员课程2", $result['result']['interests']['0']['list'][$key]['courseName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-                $this->assertEquals("http://testf.gn100.com/5,439078e1bc02", $result['result']['interests']['0']['list'][$key]['imgurl'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-                $this->assertNotEmpty($result['result']['interests']['0']['list'][$key]['userTotal'],'url:'.$this->url.'   Post data:'.json_encode($postdata));               
-        }         
+        if (count($resultSeek)==0)
+            $this->assertEmpty($result['result']['interests'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        else {
+            $this->assertEquals($resultSeek['data'][0]['course_id'], $result['result']['interests'][0]['list'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+            $this->assertContains($resultSeek['data'][0]['thumb_med'], $result['result']['interests'][0]['list'][0]['imgurl'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+            $this->assertEquals($resultSeek['data'][0]['user_total'],$result['result']['interests'][0]['list'][0]['userTotal'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        }
     }
        
+   
     //参数正确，推荐课程最多四门课程
     public function testRecommendsMoreFour()
     {
@@ -175,6 +185,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertLessThanOrEqual('8', count($result['result']['recommends'][1]['list']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
+   
     
     protected function tearDown()
     {
