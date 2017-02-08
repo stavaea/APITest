@@ -23,14 +23,16 @@ class TestCommitTask extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['oid']=$oid;
-        $postdata['params']['fkTask']='8';
-        $postdata['params']['uId']='5304';
-        //$postdata['params']['desc']='我是杨明娟，这是我的作业哦。。。。能提交成功吗？';
-        $postdata['params']['images']['thumb_big']='';
-        //$postdata['params']['images']['thumb_small']='';
+        $postdata['params']['fkTask']='140';
+        $postdata['params']['uId']='269';
+        $postdata['params']['desc']='我是杨明娟，这是我的作业哦。。。。能提交成功吗？';
+       // $postdata['params']['images'] =  array(
+            
+        //);
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        var_dump($result);
         //$this->assertEquals('1053', $result['code']);//作业已经提交
     }
     
