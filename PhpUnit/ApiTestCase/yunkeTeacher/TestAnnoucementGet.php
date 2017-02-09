@@ -1,11 +1,11 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
 
-class TestAnnouncementGet extends PHPUnit_Framework_TestCase
+class TestAnnoucementGet extends PHPUnit_Framework_TestCase
 {
-    static $url =  "http://test.gn100.com/interface/announcement/GetAnnouncement ";
+    static $url="http://test.gn100.com/interface/announcement/GetAnnouncement";
     static $u="i";
     static $v="2";
     static $planId;

@@ -52,10 +52,10 @@ class Test_CoursePlanOfTeacher(unittest.TestCase):
                 'status': 1,
                 'teacherId': 281,
                 'totalTime': 0,
-                'teacherName': '王喜山勿添加'
+                'teacherName': '王喜山'
             }
         
-        self.assertTrue(Confirm.VerifyDictEqual(OnePlanInfo,returnObj['result']['data'][0]),"排课信息不匹配")
+        self.assertTrue(Confirm.VerifyDictEqual(OnePlanInfo,returnObj['result']['data'][0]),"排课信息不匹配  预期:{},返回值:{}".format(OnePlanInfo,returnObj['result']['data'][0]))
         
     def test_getCoursePlansWithlessTeacherId(self):
         '''不传入班主任Id'''
@@ -181,8 +181,8 @@ class Test_CoursePlanOfTeacher(unittest.TestCase):
         return connect      
         
 if __name__ == "__main__":
-    unittest.main()
-    #suite = unittest.TestSuite()
-    #suite.addTest(Test_CoursePlanOfTeacher('test_getCoursePlanWithAllTeacher'))
-    #runner = unittest.TextTestRunner()
-    #runner.run(suite)
+    #unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(Test_CoursePlanOfTeacher('test_getCoursePlans_onlyTeacherId'))
+    runner = unittest.TextTestRunner()
+    runner.run(suite)

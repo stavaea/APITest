@@ -7,12 +7,6 @@ HostUrl = "http://pingtai.gn100.com"
 mobile="13641174151"
 password= "111111"
 
-
-#直播列表
-month=10    #月份
-year = 2016 #年份 
-
-
 #开始上课/继续上课PlanID
 Plan_Id= 3559 
 
