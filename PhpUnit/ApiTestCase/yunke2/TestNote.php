@@ -9,7 +9,7 @@ require_once 'TestUpdateNote.php';
 class TestNote extends PHPUnit_Framework_TestCase
 {
     private $url;
-    private   $http;
+    private $http;
     static $u="i";
     static $v="2";
     
