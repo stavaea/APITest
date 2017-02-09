@@ -19,7 +19,8 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $this->http = new HttpClass();
     }
     
-/*
+
+    //接口返回数据节点正确
     public function testGetAppHomeHttpCode($oid=1)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -30,11 +31,11 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $postdata['params']['thirdId']="121,321,34";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-       $this->assertEquals("200", $this->http->HttpPostCode($this->url, json_encode($postdata)));
+       $this->assertEquals("200", $this->http->HttpPostCode($this->url, json_encode($postdata)),'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
   
-    
-    
+     
+    //接口返回数据节点。
     public function testGetAppHomeGetNodeRight($oid=214)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -45,16 +46,16 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result =json_decode($this->http->HttpPost($this->url,json_encode($postdata)),true);
-        $this->assertEquals(0, $result['code']);
-        $this->assertTrue($result['result']['ad']);
-        $this->assertTrue($result['result']['secondIds']);
-        $this->assertTrue($result['result']['thirdIds']);
-        $this->assertTrue($result['result']['special']);
-        $this->assertTrue($result['result']['recommends']);
+        $this->assertEquals(0, $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('ad',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('secondIds',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('thirdIds',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('special',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('recommends',$result['result'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
    
 
- 
+ //正确返回ad轮播图模块数据，imgurl,url,title
     public function testGetAppHomeVerifyBannerDataSmallImg($oid=214)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -92,6 +93,7 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $this->assertEquals('',$result['result']['ad'][0]['name']);
     }
     
+    //正确返回ad\special大图（ipad尺寸）
      public function testGetAppHomeVerifyBanneBigImg($oid=214)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -124,6 +126,7 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://testf.gn100.com/4,4a5885f7f4a1', $result['result']['special'][0]['specialImg']);
     }
 
+    //无banner，返回ad为空
     public function testGetAppHomeVerifyBannerIsNull($oid=216)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -137,7 +140,7 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $this->assertEquals('0',count($result['result']['ad']));
     }
     
-    
+    //机构设置二级分类，正确返回机构多个二级分类字段验证，name\id\
      public function testGetAppHomeVerifySecondIdsData($oid=214)
      {
      $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -167,7 +170,7 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
          $this->assertEmpty($result['result']['secondIds']);
      }
    
-     
+     //正确返回机构多个三级分类字段，课程字段验证
      public function testGetAppHomeVerifyThirdIdsData($oid=214)
      {
      static $testResult;
@@ -203,9 +206,9 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
      }
           
      }
-     */
-          /*
-     //special为字典类型
+ 
+ 
+     //special为数组类型，  正确返回机构专题字段验证
      public function testGetAppHomeVerifySpecialData($oid=214)
      {
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -216,12 +219,14 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          $result =json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-         //$this->assertInternalType('array', json_encode($result['result']['special']));
+         $specialKeys=array_keys($result['result']['special']);
+         $this->assertTrue(is_int($specialKeys[0]));
          $this->assertEquals('http://testf.gn100.com/5,494853240e81', $result['result']['special'][0]['specialImg']);
          $this->assertEquals('https://www.yunke.com/', $result['result']['special'][0]['specialUrl']);
      }
-    
-    
+     
+   
+   //无专题模块，数据返回
         public function testGetAppHomeVerifySpecialIsNull($oid=216)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -235,6 +240,8 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $this->assertEquals('0',count($result['result']['special']));
     }
 
+   
+    //三级分类为空，机构用户选择兴趣无数据，三级分类节点返回空
     public function testGetAppHomeNoThirdIds($oid=214)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -248,7 +255,7 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $this->assertEquals('0',count($result['result']['thirdIds']));
     }
      
-
+    //传参错误，参数错误返回3002
     public function testGetAppHomeParamsError($oid=116)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -259,11 +266,10 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result =json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $this->assertEquals("0",$result['code']);
     }
 
- 
+ //传参oid不存在，正常返回
     public function testGetAppHomeOidNotExist($oid=842000)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -276,9 +282,9 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $result =json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEmpty($result['result']['thirdIds']['0']['list'],"Fail! thirdIds has course info!");
     }    
-     
-    
-    //todo
+   
+
+    // 自动推荐模块数据验证
     public function testGetAppHomeVerifyRecommendData($oid=214)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -289,33 +295,26 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result =json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals("分销课程",$result['result']['recommends']['0']['name']);
-        $this->assertEquals("609",$result['result']['recommends']['0']['list']['0']['courseId']);
-        $this->assertNotEmpty($result['result']['recommends']['0']['list']['0']['courseName']);
-        $this->assertNotEmpty($result['result']['recommends']['0']['list']['0']['imgurl']);
-        $this->assertEquals("6",$result['result']['recommends']['0']['list']['0']['userTotal']);
-    }
-
-  
-    //TO DO thirdids 返回多条课程数据，每个分类最多返回4条
-        public function testGetAppHomeThirdIdsList($oid=842)
+        $templateName=array_column($result['result']['recommends'],'name');
+        foreach($templateName as $key =>$value)
+        {
+            if ($value=="自动推荐")
+                $this->assertNotEquals(0,count($result['result']['recommends'][$key]['list']),"Fail! no course info returned in search template".' Post data:'.json_encode($postdata));  
+        }
+       }
+            
+    //thirdids 返回课程每个分类最多返回4条
+        public function testGetAppHomeThirdIdsList($oid=214)
     {
-        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['oid']=$oid;
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['secondId']="";
-        $postdata['params']['thirdId']="27,30,42";
+        $postdata['params']['thirdId']="176";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
-        $this->assertEquals("摄影",$result['result']['thirdIds']['0']['name']);
-        $this->assertEquals("169",$result['result']['thirdIds']['0']['id']);
-        $this->assertEquals("511",$result['result']['thirdIds']['0']['list']['0']['courseId']);
-        $this->assertNotEmpty($result['result']['thirdIds']['0']['list']['0']['courseName']);
-        $this->assertNotEmpty($result['result']['thirdIds']['0']['list']['0']['imgurl']);
-        $this->assertEquals("1",$result['result']['thirdIds']['0']['list']['0']['userTotal']);
+        $result =json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        $this->assertEquals(4,count($result['result']['thirdIds']['0']['list']),json_encode($postdata));
     }
 
     
@@ -344,13 +343,9 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
      }
     }
     
-
-    
-    
-  */
-          
-    //todo 需要foreach 遍历recommends里模板，Id为76的模板返回课程应为空
-    public function testGetAppHomeVerifyResellCourse($oid=116)
+   
+    //分销课程不显示 分销模板返回课程应为空
+    public function testGetAppHomeVerifyResellCourse($oid=214)
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['oid']=$oid;
@@ -361,17 +356,15 @@ class TestGetAppHome extends PHPUnit_Framework_TestCase
         $postdata['params']['userId']="23361";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-       var_dump(json_encode($postdata));
-       // $result =json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-      //  $result =$this->http->HttpPost($this->url, json_encode($postdata));
-      //  if (empty($result['result']['recommends']['list']['courseId']))
-         //   $this->assertEmpty($result['result']['recommends']['list']['courseId']);
-      //  else 
-        //    echo 222;
-           // $this->assertFalse(in_array('640', $result['result']['recommends']['list']['courseId']));
-        //$this->assertEquals("3002",$result['code'],"Oid not exist! should return 3002");
-      //  var_dump($result);
-    }
+       $result =json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+       $templateName=array_column($result['result']['recommends'],'name');
+       foreach($templateName as $key =>$value)
+       {
+           if ($value=="分销课程")
+               $this->assertEquals(0,count($result['result']['recommends'][$key]['list']),"Fail! resell course should be hided".' Post data:'.json_encode($postdata));
+       }
+       }
+     
   
 
   
