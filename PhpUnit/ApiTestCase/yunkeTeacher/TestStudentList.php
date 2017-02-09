@@ -78,7 +78,7 @@ class TestStudentList extends PHPUnit_Framework_TestCase
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('周振宇', $result['result'][0]['name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        
     }
     
 }

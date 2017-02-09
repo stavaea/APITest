@@ -1,8 +1,8 @@
 <?php
 require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'func/Http.class.php';
-require_once 'func/interface_func.php';
-require_once 'yunkeTeacher/TestAnnoucementGet';
+require_once '../func/Http.class.php';
+require_once '../func/interface_func.php';
+require_once 'TestAnnoucementGet.php';
 
 
 
@@ -39,7 +39,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
     
         $this->assertEquals('0',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
-        TestAnnouncementGet::testAnnouceDataIsOK($fk_plan);
+        TestAnnoucementGet::testAnnouceDataIsOK($fk_plan);
     }
     
     //status不存在，返回值
@@ -133,7 +133,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
        
            $this->assertEquals('0',$result['code']);
        
-           TestAnnouncementGet::testAnnouceUpdateDataIsOK($fk_plan);
+           TestAnnoucementGet::testAnnouceUpdateDataIsOK($fk_plan);
        
        }
        
@@ -149,7 +149,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
            $postdata['key']=$key;
            $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
            $this->assertEquals('0',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-           TestAnnouncementGet::testAnnouceDelDataIsOK($fk_plan);
+           TestAnnoucementGet::testAnnouceDelDataIsOK($fk_plan);
        }
        
        
