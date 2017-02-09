@@ -20,7 +20,7 @@ class yunkeTeacherSuite extends PHPUnit_Framework_TestSuite
      */
     public function __construct()
     {
-        $this->setName('yunkeSuite');
+        $this->setName('yunkeTeacherSuite');
         $this->addTestSuite('TestAnnoucement');//老师发布公告
         $this->addTestSuite('TestCourseClass');//作业--课程搜索      
         $this->addTestSuite('TestStudentList');//学生列表
