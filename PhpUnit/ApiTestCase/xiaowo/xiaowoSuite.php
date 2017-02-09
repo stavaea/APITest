@@ -13,8 +13,8 @@ class xiaowoSuite extends PHPUnit_Framework_TestSuite
     public function __construct()
     {
         $this->setName('xiaowoSuite');
-        $this->addTestSuite('TestGetAppHome');
-        $this->addTestSuite('TestCourseAttachList');
+        $this->addTestSuite('TestGetAppHome'); //小沃首页
+        $this->addTestSuite('TestCourseAttachList');  //课程详情附件
     }
 
     /**
