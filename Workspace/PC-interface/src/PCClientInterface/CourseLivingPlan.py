@@ -9,7 +9,8 @@ import unittest
 import json
 import time
 import requests
-from PCClientInterface import Configuration,TestProvide,Confirm
+from PCClientInterface import Configuration,TestProvide,Confirm,Seek
+from datetime import datetime
 
 class Test_courseLivingPlan(unittest.TestCase):
 
@@ -25,8 +26,8 @@ class Test_courseLivingPlan(unittest.TestCase):
     
     def test_getLivingPlan(self):
         teacherId = self.s.cookies.get('uid_test')
-        month = Configuration.month
-        year  = Configuration.year
+        month = 2016
+        year  =  9
         self.params['params'] = {
                                  "month":month,
                                  "teacherId":teacherId,
@@ -47,32 +48,23 @@ class Test_courseLivingPlan(unittest.TestCase):
                 self.assertTrue(Confirm.VerifyDataStucture(ExpectKeys, CompareObj))
                 break
             
-        OneDayPlanInfo  =  {
-                    'sectionDescipt': '001',
-                    'start_time': '17:55',
-                    'status': '继续上课',
-                    'class_id': '1224',
-                    'thumb': "http: //testf.gn100.com/3,73b4d6997d24",
-                    'type': '1',
-                    'class_name': '1班',
-                    'section_name': '1',
-                    'teacher_name': '王喜山',
-                    'course_id': '1005',
-                    'userTotal': '40',
-                    'num': '3',
-                    'title': 'PC-Client接口测试1026',
-                    'plan_id': '3558',
-                    'course_type': '1'
-                }
-        Result = False
-        PlanList = returnObj['result']['26']['data']
-        for planObj  in PlanList:
-            if planObj['start_time'] == OneDayPlanInfo['start_time'] and planObj['status'] == OneDayPlanInfo['status'] and planObj['plan_id'] == OneDayPlanInfo['plan_id'] \
-            and planObj['section_name'] == OneDayPlanInfo['section_name']:
-                Result = True
-        
-        self.assertTrue(Result,"返回排课信息不匹配")                      
+        count = 0
+        format = ["course_name","class_name","section_name","section_desc","course_type","plan_id","start_time","totaltime","teacher_id","teacher_real_name"]
+        query = {"start_time":"2016-09-01,2016-10-01","teacher_id":281,"status":"1,2,3"}
+        ob = {"start_time":"asc"}
+        planList = Seek.seekPlan(format, query,ob)
+        planList = planList['data']
+        print(planList)
+        for i in range(len(planList)):
+            dateObj = datetime.strptime(planList[i]['start_time'],"%Y-%m-%d %H:%M:%S")
+            key = str(dateObj.day)
+            for plan in returnObj['result'][key]['data']:
+                if plan['title'] == planList[i]['course_name'] and plan['class_name']==planList[i]['class_name'] and plan['plan_id']==planList[i]['plan_id'] \
+                and plan['section_desc']==planList[i]['sectionDescipt']:
+                    count += 1
+                
+        self.assertEqual(len(planList), count, "排课信息不符")        
+                            
 
 if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
