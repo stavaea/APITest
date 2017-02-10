@@ -23,7 +23,7 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
     public function testDataIsOK()
     {
         $db="db_tag";
-        $sql = "select name from t_tag where pk_tag=(SELECT fk_tag FROM t_mapping_tag_task WHERE fk_task='142') LIMIT 0, 1000
+        $sql = "select name from t_tag where pk_tag=(SELECT fk_tag FROM t_mapping_tag_task WHERE fk_task='142')
         ;";
         $ad=interface_func::ConnectDB($db, $sql);
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -98,6 +98,26 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1001', $result['code']);
     }
+    
+    
+//     //已交列表顺序按照最新交作业开始排列---接口未做处理
+//     public function testCommitListSort()
+//     {
+//         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+//         $postdata['u']=self::$u;
+//         $postdata['v']=self::$v;
+//         $postdata['params']['pkTask']= '39';
+//         $key=interface_func::GetAppKey($postdata);
+//         $postdata['key']=$key;
+//         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+//         $this->assertEquals('0', $result['code']);
+//         var_dump($result['result']['commitList']['items'][0]['createTime']);
+//         var_dump($result['result']['commitList']['items'][1]['createTime']);
+//         var_dump($result['result']['commitList']['items'][2]['createTime']);
+//         var_dump($result['result']['commitList']['items'][3]['createTime']);
+        
+//         $this->assertGreaterThanOrEqual($result['result']['commitList']['items'][0]['createTime'], $result['result']['commitList']['items'][1]['createTime']);
+//     }
     
     
     //删除空格和回车

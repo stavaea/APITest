@@ -26,10 +26,17 @@ class TestTeacherUpdateTaskShow extends PHPUnit_Framework_TestCase
         $postdata['token']=$token;
         //var_dump(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)));
         $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
+        $db="db_tag";
+        $sql = "select name from t_tag where pk_tag=(SELECT fk_tag FROM t_mapping_tag_task WHERE fk_task=$taskId)
+        ;";
+        $ad=interface_func::ConnectDB($db, $sql);
         self::assertEquals($taskId, $result['result']['data']['pkTask']);
         self::assertEquals('app老师发布作业啊！！！！！', $result['result']['data']['desc']);
         self::assertEquals('http://testf.gn100.com/testf.gn100.com/6,d70804e3d1d6', $result['result']['thumb'][0]['srcBig']);
-        self::assertEquals('语文', $result['result']['tag'][0]['name']);
+        if($ad!=null)
+        {
+        self::assertEquals('语文',$ad[0][0]);
+        }
     }
     
     
