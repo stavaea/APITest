@@ -39,7 +39,7 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $this->assertLessThanOrEqual('50', count($result['result']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertArrayHasKey('title', $result['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertArrayHasKey('courseId', $result['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertArrayHasKey('class', $result['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertArrayHasKey('className', $result['result'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //搜索关键字，中文
@@ -55,7 +55,7 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('云课2.0测试课程', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('1101', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
@@ -74,7 +74,7 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('zhibo', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('872', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
@@ -93,7 +93,7 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $token =$this->Token->testUserTokenGenIsSuccess('23339');
         $postdata['token']=$token;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1000', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//请求参数为空
     }
