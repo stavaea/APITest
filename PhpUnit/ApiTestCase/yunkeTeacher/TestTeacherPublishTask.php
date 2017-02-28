@@ -24,6 +24,9 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
     
     }
     
+    
+    
+    
     //参数正确，返回数据结果
     public function testDataIsOK()
     {
@@ -398,5 +401,13 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('2063', $result['code']);
+    }
+    
+    
+    
+    //待批改作业
+    public function testStatusIsNotReply()
+    {
+        TestTeacherTaskList::testFkTask2();
     }
 }

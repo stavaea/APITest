@@ -37,12 +37,12 @@ class TestNote extends PHPUnit_Framework_TestCase
            $key=interface_func::GetAppKey($postdata);
            $postdata['key']=$key;
            $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-           var_dump($result); 
+           //var_dump($result); 
            $this->assertEquals('0',$result['code']);
            $this->assertArrayHasKey('noteId',$result['result']);
            $this->assertArrayHasKey('playTimeFormat',$result['result']);
            $this->assertArrayHasKey('playTimeTmpHandle',$result['result']);
-           TestDelNote::testDelDataIsOK($result['result']['noteId']);
+           //TestDelNote::testDelDataIsOK($result['result']['noteId'];
            TestCheckNote::testListDataIsOK($result['result']['noteId']);
            TestUpdateNote::testUpdateData($result['result']['noteId'], '2：55');
            TestCheckNote::testUpdateListDataIsOK($result['result']['noteId']);

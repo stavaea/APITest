@@ -15,7 +15,7 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //老师作业详情页
-        $this->url = "http://test.gn100.com/interface/teacherTask/TaskDetail";
+        $this->url = "http://dev.gn100.com/interface/teacherTask/TaskDetail";
         $this->http = new HttpClass();
     
     }
@@ -30,9 +30,11 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['pkTask']= '142';
+        $postdata['params']['page']='1';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('0', $result['code']);
         //班级
         $this->assertEquals('作业列表1', $result['result']['taskInfo']['className'],'url:'.$this->url.'   Post data:'.json_encode($postdata));

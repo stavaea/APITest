@@ -30,4 +30,24 @@ class TestTeacherTaskList extends PHPUnit_Framework_TestCase
         $pkTask=$result['result']['data'][0]['days'][0]['pkTask'];
         return $pkTask;
     }
+    
+    //待批改作业
+    public static function testFkTask2()
+    {
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['params']['page']='1';
+        $postdata['params']['uId']='23339';
+        $postdata['params']['status']='1';
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key;
+        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23339');
+        $postdata['token']=$token;
+        //var_dump('url:'.self::$url.'   Post data:'.json_encode($postdata));
+        $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
+        //$pkTask=$result['result']['data'][0]['days'][0]['pkTask'];
+        //return $pkTask;
+        return $result;
+    }
 }

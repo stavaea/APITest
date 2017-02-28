@@ -6,25 +6,17 @@ require_once '../func/interface_func.php';
 class TestCheckNote extends PHPUnit_Framework_TestCase
 {
     static $url="http://test.gn100.com/interface/note/NoteList";
-    //private $http;
     static $u="i";
     static $v="2";
     static $noteId;
     
-    /* protected function setUp()
-    {
-       
-        //笔记列表
-        //$this->url = "http://test.gn100.com/interface/note/NoteList";
-        //$this->http = new HttpClass();
-    } */
     
     
     
     //---------------------笔记列表功能---------------------------------------
      public static function testListDataIsOK($noteId)
     {
-        //var_dump($noteId);
+        
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
