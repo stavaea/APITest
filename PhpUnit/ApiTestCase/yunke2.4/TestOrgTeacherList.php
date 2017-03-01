@@ -13,7 +13,7 @@ class TestOrgTeacherList extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //机构老师列表
-        $this->url = "http://dev.gn100.com/interface/org/teacherList";
+        $this->url = "http://test.gn100.com/interface/org/teacherList";
         $this->http = new HttpClass();
     
     }
@@ -24,12 +24,12 @@ class TestOrgTeacherList extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['orgId']= "84215";
+        $postdata['params']['orgId']= "231";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('7', count($result['result']['data']));
+        $this->assertEquals('6', count($result['result']['data']));
         $this->assertArrayHasKey('name', $result['result']['data'][0]);
         $this->assertArrayHasKey('thumbMed', $result['result']['data'][0]);
         $this->assertArrayHasKey('score', $result['result']['data'][0]);

@@ -13,7 +13,7 @@ class TestInterest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //兴趣列表
-        $this->url = "http://dev.gn100.com/interface/config/interest";
+        $this->url = "http://test.gn100.com/interface/config/interest";
         $this->http = new HttpClass();
     
     }

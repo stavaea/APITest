@@ -13,7 +13,7 @@ class TestOrgCourseList extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //机构课程列表
-        $this->url = "http://dev.gn100.com/interface/org/courseList";
+        $this->url = "http://test.gn100.com/interface/org/courseList";
         $this->http = new HttpClass();
     
     }
@@ -24,7 +24,7 @@ class TestOrgCourseList extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['orgId']= "84215";
+        $postdata['params']['orgId']= "231";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);

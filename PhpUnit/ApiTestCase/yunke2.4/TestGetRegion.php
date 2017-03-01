@@ -13,7 +13,7 @@ class TestGetRegion extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //最近直播头部，地区
-        $this->url = "http://dev.gn100.com/interface/config/getRegion";
+        $this->url = "http://test.gn100.com/interface/config/getRegion";
         $this->http = new HttpClass();
     
     }

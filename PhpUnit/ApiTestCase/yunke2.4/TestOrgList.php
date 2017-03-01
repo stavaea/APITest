@@ -13,7 +13,7 @@ class TestOrgList extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //机构列表
-        $this->url = "http://dev.gn100.com/interface/org/list";
+        $this->url = "http://test.gn100.com/interface/org/list";
         $this->http = new HttpClass();
     
     }
@@ -31,6 +31,7 @@ class TestOrgList extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        //var_dump($result);
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         for($i=0;$i<count($result['result']['data']);$i++)
         {
