@@ -152,7 +152,6 @@ class TestMain extends PHPUnit_Framework_TestCase
         $pl=4;
         $seekdata=new seek();
         $resultSeek = $seekdata->CourseSeek($f, $q, $ob, $p, $pl);
-        var_dump($resultSeek);
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
