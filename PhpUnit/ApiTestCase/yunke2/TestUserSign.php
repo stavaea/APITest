@@ -55,13 +55,16 @@ class TestUserSign extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        
         $this->assertEquals($score[0][1], $result['result']['level'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals($score[0][2], $result['result']['levelName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         if($result['result']['continueDay']>0)
             {
-                $this->assertEquals($score[0][3]+2, $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                
+                $this->assertEquals($score[0][3], $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }else 
             {
+                
                 $this->assertEquals($score[0][3]+7, $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }
     }
@@ -85,7 +88,7 @@ class TestUserSign extends PHPUnit_Framework_TestCase
             $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             if($result['result']['continueDay']>0)
             {
-                $this->assertEquals($score[0][3]+2, $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+                $this->assertEquals($score[0][3], $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
             }else 
             {
                 $this->assertEquals($score[0][3]+7, $result['result']['ex'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
