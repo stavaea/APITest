@@ -326,7 +326,7 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         );
         $postdata['params']['tags']= array(
             array(
-                'name'=>"语文语文语文语文语文语文"
+                'name'=>"语文语文语文语文语文aaaa"
             )
         );
         $key=interface_func::GetAppKey($postdata);
@@ -409,5 +409,11 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
     public function testStatusIsNotReply()
     {
         TestTeacherTaskList::testFkTask2();
+    }
+    
+    //作业列表
+    public function testTaskList()
+    {
+        TestTeacherTaskList::testFkTask3();
     }
 }

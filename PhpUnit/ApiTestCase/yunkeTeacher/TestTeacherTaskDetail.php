@@ -15,7 +15,7 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //老师作业详情页
-        $this->url = "http://dev.gn100.com/interface/teacherTask/TaskDetail";
+        $this->url = "http://test.gn100.com/interface/teacherTask/TaskDetail";
         $this->http = new HttpClass();
     
     }
@@ -39,11 +39,11 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
         //班级
         $this->assertEquals('作业列表1', $result['result']['taskInfo']['className'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //课程名称
-        $this->assertEquals('作业列表测试课_2016-8-29', $result['result']['taskInfo']['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        //发布时间
-        $this->assertEquals('01-13 17:25', $result['result']['taskInfo']['createTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        //截止时间
-        $this->assertEquals('2017-01-16 星期一 25:00', $result['result']['taskInfo']['endTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('作业列表测试课_2016-8-29', $result['result']['taskInfo']['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         //发布时间
+         $this->assertEquals('01-13 17:25', $result['result']['taskInfo']['createTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         //截止时间
+         $this->assertEquals('2017-01-16 星期一 25:00', $result['result']['taskInfo']['endTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //授课老师
         $this->assertEquals('杨明娟', $result['result']['taskInfo']['teacherName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //作业文字内容

@@ -13,7 +13,7 @@ class TestInterest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //兴趣列表
-        $this->url = "http://test.gn100.com/interface/config/interest";
+        $this->url = "http://dev.gn100.com/interface/config/interest";
         $this->http = new HttpClass();
     
     }
@@ -27,13 +27,12 @@ class TestInterest extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
-        //var_dump($result);
-        $this->assertEquals('小学', $result['result'][0]['name']);
-        $this->assertEquals('10', count($result['result'][0]['children']));
-        $this->assertEquals('初中', $result['result'][1]['name']);
-        $this->assertEquals('6', count($result['result'][1]['children']));
-        $this->assertEquals('高中', $result['result'][2]['name']);
-        $this->assertEquals('6', count($result['result'][2]['children']));
+        
+        $this->assertEquals('小学', $result['result'][0]['data']['name']);
+        $this->assertEquals('10', count($result['result'][0]['data']['data']));
+        $this->assertEquals('初中', $result['result'][1]['data']['name']);
+        $this->assertEquals('6', count($result['result'][1]['data']['data']));
+        $this->assertEquals('高中', $result['result'][2]['data']['name']);
+        $this->assertEquals('6', count($result['result'][2]['data']['data']));
     }
 }
