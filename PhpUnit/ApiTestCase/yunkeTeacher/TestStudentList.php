@@ -45,7 +45,7 @@ class TestStudentList extends PHPUnit_Framework_TestCase
         $postdata['params']['classId']= '';//2班：1385
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('1008', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
@@ -59,7 +59,7 @@ class TestStudentList extends PHPUnit_Framework_TestCase
         $postdata['params']['classId']= '11111111';//2班：1385
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEmpty($result['result']);
@@ -78,6 +78,7 @@ class TestStudentList extends PHPUnit_Framework_TestCase
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        var_dump(count($result['result']));
         
     }
     

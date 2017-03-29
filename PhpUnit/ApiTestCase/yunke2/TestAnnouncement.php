@@ -26,7 +26,6 @@ class TestAnnouncement extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;    
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($result);
         $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('4332', $result['result']['fkPlan'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('这是课程公告，希望你们都看得见！东方', $result['result']['content'],'url:'.$this->url.'   Post data:'.json_encode($postdata));

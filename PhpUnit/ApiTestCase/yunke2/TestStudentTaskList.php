@@ -16,14 +16,30 @@ class TestStudentTaskList extends PHPUnit_Framework_TestCase
     }
     
     //参数正确，返回节点是否正确
-    public function testDataIsOK()
+    public function testGetUncommitTaskNum($uid='23339')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['page']='1';
         $postdata['params']['status']='0';//未提交
-        $postdata['params']['uId']='23339';
+        $postdata['params']['uId']=$uid;
+        $key=interface_func::GetAppKey($postdata);
+        $postdata['key']=$key; 
+        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+         return $result['result']['page']['total'];
+    }
+    
+    //参数正确，返回节点是否正确
+    public function testDataIsOK($uId='23339')
+    {
+        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
+        $postdata['u']=self::$u;
+        $postdata['v']=self::$v;
+        $postdata['params']['page']='1';
+        $postdata['params']['status']='0';//未提交
+        $postdata['params']['uId']=$uId;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));

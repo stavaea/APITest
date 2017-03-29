@@ -31,10 +31,12 @@ class TestTaskReplyDetail extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        var_dump('url:'.$this->$url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('0', $result['code']);
         //var_dump($result['result']['commit']['thumb'][0]['srcMall']);
         $this->assertEquals('杨明娟', $result['result']['info']['rename']);
         $this->assertEquals('http://testf.gn100.com/5,028ed7a2ba14', $result['result']['info']['thumbMed']);
+        
         //接口返回的格式化时间取了分和秒，dev已改，周一验证test
         //$this->assertEquals('02-08 星期三 16:54', $result['result']['commit']['data']['commitTime']);
         $this->assertEquals('我是杨明娟，这是我的作业哦', $result['result']['commit']['data']['desc']);

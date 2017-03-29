@@ -23,13 +23,13 @@ class TestNotCommitList extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         
-        $postdata['params']['taskId']='141';
+        $postdata['params']['taskId']='153';
         $postdata['params']['uId']='23339';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($result);
+        //var_dump($result);
         $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertArrayHasKey('pk_task', $result['result']['data'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertArrayHasKey('desc', $result['result']['data'],'url:'.$this->url.'   Post data:'.json_encode($postdata));

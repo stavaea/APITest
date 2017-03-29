@@ -30,18 +30,20 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['pkTask']= '142';
+        $postdata['params']['page']='1';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('0', $result['code']);
         //班级
         $this->assertEquals('作业列表1', $result['result']['taskInfo']['className'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //课程名称
-        $this->assertEquals('作业列表测试课_2016-8-29', $result['result']['taskInfo']['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        //发布时间
-        $this->assertEquals('01-13 17:25', $result['result']['taskInfo']['createTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        //截止时间
-        $this->assertEquals('2017-01-16 星期一 25:00', $result['result']['taskInfo']['endTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('作业列表测试课_2016-8-29', $result['result']['taskInfo']['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         //发布时间
+         $this->assertEquals('01-13 17:25', $result['result']['taskInfo']['createTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         //截止时间
+         $this->assertEquals('2017-01-16 星期一 25:00', $result['result']['taskInfo']['endTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //授课老师
         $this->assertEquals('杨明娟', $result['result']['taskInfo']['teacherName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //作业文字内容

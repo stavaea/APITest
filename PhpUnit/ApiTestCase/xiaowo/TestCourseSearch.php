@@ -17,7 +17,7 @@ class TestSearchCourse  extends PHPUnit_Framework_TestCase
         $this->http = new HttpClass();
        
     }
-    /*
+
       public function testDataIsOK($oid="116")
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
@@ -154,7 +154,7 @@ public function testKeywordsIsEnglish($oid="116")
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals("2", $result['result']['data'][0]['courseType']);
     }
-    */ 
+   
  
     //page和length修改
     public function testPageAndLength($oid="116")
