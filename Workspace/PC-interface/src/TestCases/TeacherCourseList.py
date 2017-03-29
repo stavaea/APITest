@@ -10,14 +10,14 @@ import unittest
 import json
 import time
 import requests
-from PCClientInterface import Configuration,TestProvide,Confirm
-import HTMLTestRunner
+from Provide import TestProvide,Confirm
+import Configuration
 import os,re
 from pymysql import cursors
 import pymysql
 
-class TeacherMyClasses(unittest.TestCase):
-
+class TeacherCourseList(unittest.TestCase):
+    """教师课程列表"""
     def setUp(self):
         self.s = requests.session()
         self.url = Configuration.HostUrl +"/interface/teacher/PcCourseList"
@@ -287,12 +287,12 @@ def suite():
         
 if __name__ == "__main__":
     suite = unittest.TestSuite()
-    suite.addTest(TeacherMyClasses("test_GetTeacherCourse_all"))
-    suite.addTest(TeacherMyClasses("test_SearchCourseByKeyword"))
-    suite.addTest(TeacherMyClasses("test_TeacherCourseSortByStudent"))
-    suite.addTest(TeacherMyClasses("test_TeacherCourseOfLiving"))
-    suite.addTest(TeacherMyClasses("test_TeacherCoursePaging"))
-    suite.addTest(TeacherMyClasses("test_getCourseList_multipleClass"))
+    suite.addTest(TeacherCourseList("test_GetTeacherCourse_all"))
+    suite.addTest(TeacherCourseList("test_SearchCourseByKeyword"))
+    suite.addTest(TeacherCourseList("test_TeacherCourseSortByStudent"))
+    suite.addTest(TeacherCourseList("test_TeacherCourseOfLiving"))
+    suite.addTest(TeacherCourseList("test_TeacherCoursePaging"))
+    suite.addTest(TeacherCourseList("test_getCourseList_multipleClass"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
     

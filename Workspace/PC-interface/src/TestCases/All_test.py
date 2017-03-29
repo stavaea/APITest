@@ -6,9 +6,8 @@ Created on 2016年11月10日
 @author: lsh
 '''
 import os
-from PCClientInterface import AddAnswerLog,ClassAnnouncement,GetAnnounce,CourseLivingPlan,TeacherStudents,TeacherMyClasses,GetQuestion, \
-StartOrRestartClass,CoursePlanOfTeacher, TeacherCourseOfUploadVideo,\
-    TeacherPlanOfUploadVideo
+from TestCases import AddAnswerLog,ClassAnnouncement,GetAnnounce,CourseLivingPlan,TeacherStudents,TeacherCourseList,GetQuestion, \
+StartOrRestartClass,TeacherPlans, TeacherCourseOfUploadVideo,TeacherPlanOfUploadVideo
 import unittest
 import HTMLTestRunner
 import time
@@ -16,12 +15,12 @@ import time
 def suite():
     suite = unittest.TestSuite()
     #将所有测试用例加入到测试套件中(容器)
+    suite.addTest(unittest.makeSuite(TeacherCourseList.TeacherCourseList))
+    suite.addTest(unittest.makeSuite(TeacherPlans.Test_CoursePlanOfTeacher))
     suite.addTest(unittest.makeSuite(TeacherStudents.Test_TeacherOfStudents))
     suite.addTest(unittest.makeSuite(ClassAnnouncement.Test_Announcement))
     suite.addTest(unittest.makeSuite(GetAnnounce.Test_getAnnounce))
     suite.addTest(unittest.makeSuite(CourseLivingPlan.Test_courseLivingPlan))
-    suite.addTest(unittest.makeSuite(TeacherMyClasses.TeacherMyClasses))
-    suite.addTest(unittest.makeSuite(CoursePlanOfTeacher.Test_CoursePlanOfTeacher))
     suite.addTest(unittest.makeSuite(StartOrRestartClass.Test_startClass))
     suite.addTest(unittest.makeSuite(GetQuestion.Test_GetQuestion))
     suite.addTest(unittest.makeSuite(AddAnswerLog.AddAnswerLog))

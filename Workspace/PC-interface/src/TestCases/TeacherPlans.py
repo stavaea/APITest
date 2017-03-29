@@ -6,7 +6,8 @@ Created on 2016年11月3日
 @author: lsh
 '''
 import unittest
-from PCClientInterface import TestProvide,Configuration,Confirm
+from Provide import TestProvide,Confirm
+import Configuration
 import json
 import time
 import requests
@@ -14,7 +15,7 @@ import pymysql
 from pymysql import cursors
 
 class Test_CoursePlanOfTeacher(unittest.TestCase):
-    '''课程详情--学生列表'''
+    '''课程卡片详情--学生列表'''
     def setUp(self):
         self.s = requests.session()
         self.url = Configuration.HostUrl +"/interface/teacher/plans"

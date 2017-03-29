@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 #/usr/bin/env python3
-from PCClientInterface import Configuration
+import Configuration
 import json
 import hashlib
 import time

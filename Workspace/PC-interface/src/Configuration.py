@@ -3,6 +3,12 @@
 salt = "gn1002015"
 HostUrl = "http://pingtai.gn100.com"
 
+#db 建立连接信息
+db_host="116.25.222.160"
+db_user="michael"
+db_passwd = "michael"
+db_name = "db_course"
+
 #教师用户名和密码
 mobile="13641174151"
 password= "111111"
