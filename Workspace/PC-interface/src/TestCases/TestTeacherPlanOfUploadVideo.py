@@ -9,9 +9,10 @@ import unittest
 import json
 import time
 import requests
-from PCClientInterface import Configuration,TestProvide,Confirm
+from Provide import TestProvide,Confirm
+import Configuration
 
-class test_getPlanList(unittest.TestCase):
+class test_teacherPlanOfUpload(unittest.TestCase):
     def setUp(self):
         self.s = requests.session()
         #self.s = TestProvide.login(self.s)

@@ -10,7 +10,8 @@ import unittest
 import requests
 import time
 import json
-from PCClientInterface import TestProvide,Configuration
+from Provide import TestProvide
+import Configuration
 
 class Test_getAnnounce(unittest.TestCase):
 

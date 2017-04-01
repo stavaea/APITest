@@ -8,12 +8,12 @@ Created on 2016年10月28日
 '''
 import unittest
 import requests
-from PCClientInterface import Configuration,TestProvide
+from Provide import TestProvide
+import Configuration
 import time,json
 import pymysql
 import pymysql.cursors
 import os
-
 
 class Test_Announcement(unittest.TestCase):
     

@@ -16,7 +16,7 @@ import os,re
 from pymysql import cursors
 import pymysql
 
-class TeacherCourseList(unittest.TestCase):
+class Test_TeacherCourseList(unittest.TestCase):
     """教师课程列表"""
     def setUp(self):
         self.s = requests.session()
@@ -287,12 +287,12 @@ def suite():
         
 if __name__ == "__main__":
     suite = unittest.TestSuite()
-    suite.addTest(TeacherCourseList("test_GetTeacherCourse_all"))
-    suite.addTest(TeacherCourseList("test_SearchCourseByKeyword"))
-    suite.addTest(TeacherCourseList("test_TeacherCourseSortByStudent"))
-    suite.addTest(TeacherCourseList("test_TeacherCourseOfLiving"))
-    suite.addTest(TeacherCourseList("test_TeacherCoursePaging"))
-    suite.addTest(TeacherCourseList("test_getCourseList_multipleClass"))
+    suite.addTest(Test_TeacherCourseList("test_GetTeacherCourse_all"))
+    suite.addTest(Test_TeacherCourseList("test_SearchCourseByKeyword"))
+    suite.addTest(Test_TeacherCourseList("test_TeacherCourseSortByStudent"))
+    suite.addTest(Test_TeacherCourseList("test_TeacherCourseOfLiving"))
+    suite.addTest(Test_TeacherCourseList("test_TeacherCoursePaging"))
+    suite.addTest(Test_TeacherCourseList("test_getCourseList_multipleClass"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
     

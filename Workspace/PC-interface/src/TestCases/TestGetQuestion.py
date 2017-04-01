@@ -10,7 +10,8 @@ import unittest
 import json
 import time
 import requests
-from PCClientInterface import Configuration,TestProvide,Confirm
+from Provide import TestProvide,Confirm
+import Configuration
 import pymysql
 import pymysql.cursors
 

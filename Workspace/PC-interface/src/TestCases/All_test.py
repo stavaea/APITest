@@ -6,8 +6,8 @@ Created on 2016年11月10日
 @author: lsh
 '''
 import os
-from TestCases import AddAnswerLog,ClassAnnouncement,GetAnnounce,CourseLivingPlan,TeacherStudents,TeacherCourseList,GetQuestion, \
-StartOrRestartClass,TeacherPlans, TeacherCourseOfUploadVideo,TeacherPlanOfUploadVideo
+from TestCases import TestClassAnnouncement,TestGetAnnounce,TestCourseLivingPlan,TestPlanListOfCourse,TestStudentListOfCourse,TestTeacherCourseList,TestGetQuestion,TestAddAnswerLog, \
+TestStartOrRestartClass,TestTeacherCourseOfUploadVideo,TestTeacherPlanOfUploadVideo
 import unittest
 import HTMLTestRunner
 import time
@@ -15,17 +15,16 @@ import time
 def suite():
     suite = unittest.TestSuite()
     #将所有测试用例加入到测试套件中(容器)
-    suite.addTest(unittest.makeSuite(TeacherCourseList.TeacherCourseList))
-    suite.addTest(unittest.makeSuite(TeacherPlans.Test_CoursePlanOfTeacher))
-    suite.addTest(unittest.makeSuite(TeacherStudents.Test_TeacherOfStudents))
-    suite.addTest(unittest.makeSuite(ClassAnnouncement.Test_Announcement))
-    suite.addTest(unittest.makeSuite(GetAnnounce.Test_getAnnounce))
-    suite.addTest(unittest.makeSuite(CourseLivingPlan.Test_courseLivingPlan))
-    suite.addTest(unittest.makeSuite(StartOrRestartClass.Test_startClass))
-    suite.addTest(unittest.makeSuite(GetQuestion.Test_GetQuestion))
-    suite.addTest(unittest.makeSuite(AddAnswerLog.AddAnswerLog))
-    suite.addTest(unittest.makeSuite(TeacherCourseOfUploadVideo.Test_getCourseList))
-    suite.addTest(unittest.makeSuite(TeacherPlanOfUploadVideo.test_getPlanList))
+    suite.addTest(unittest.makeSuite(TestPlanListOfCourse.Test_CoursePlanOfTeacher))
+    suite.addTest(unittest.makeSuite(TestStudentListOfCourse.Test_TeacherOfStudents))
+    suite.addTest(unittest.makeSuite(TestClassAnnouncement.Test_Announcement))
+    suite.addTest(unittest.makeSuite(TestGetAnnounce.Test_getAnnounce))
+    suite.addTest(unittest.makeSuite(TestCourseLivingPlan.Test_courseLivingPlan))
+    suite.addTest(unittest.makeSuite(TestStartOrRestartClass.Test_startClass))
+    suite.addTest(unittest.makeSuite(TestGetQuestion.Test_GetQuestion))
+    suite.addTest(unittest.makeSuite(TestAddAnswerLog.Test_AddAnswerLog))
+    suite.addTest(unittest.makeSuite(TestTeacherCourseOfUploadVideo.Test_getCourseList))
+    suite.addTest(unittest.makeSuite(TestTeacherPlanOfUploadVideo.test_teacherPlanOfUpload))
     
     #执行测试套件
     #now = time.strftime("%Y-%m-%d-%H_%M_%S",time.localtime(time.time()))

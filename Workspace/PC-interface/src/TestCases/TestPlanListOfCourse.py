@@ -182,8 +182,4 @@ class Test_CoursePlanOfTeacher(unittest.TestCase):
         return connect      
         
 if __name__ == "__main__":
-    #unittest.main()
-    suite = unittest.TestSuite()
-    suite.addTest(Test_CoursePlanOfTeacher('test_getCoursePlans_onlyTeacherId'))
-    runner = unittest.TextTestRunner()
-    runner.run(suite)
+    unittest.main()

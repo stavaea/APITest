@@ -9,7 +9,8 @@ import unittest
 import json
 import time
 import requests
-from PCClientInterface import Configuration,TestProvide,Confirm,Seek
+from Provide import TestProvide,Confirm,Seek
+import Configuration
 from datetime import datetime
 
 class Test_courseLivingPlan(unittest.TestCase):
