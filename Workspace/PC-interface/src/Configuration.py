@@ -1,5 +1,6 @@
 # -*- coding:UTF-8 -*-
 #!/usr/bin/env python3
+
 salt = "gn1002015"
 HostUrl = "http://pingtai.gn100.com"
 
@@ -19,3 +20,7 @@ Plan_Id= 3559
 #学生列表
 course_id = 780 #课程Id
 class_id  = 914 #班级Id
+
+#助教课程
+assitant_course= 11223
+assitant_course_class = 112
