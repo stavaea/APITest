@@ -36,6 +36,7 @@ class TestVipCourseList extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('', $result['result']);
         
     }
 }

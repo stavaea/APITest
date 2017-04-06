@@ -17,7 +17,7 @@ class TestXiaoWoDetail extends PHPUnit_Framework_TestCase
         $this->http = new HttpClass();
     }
     
-    public function testDataIsOK($oid="116")
+    public function testDataIsOK($oid="227")
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
@@ -45,7 +45,7 @@ class TestXiaoWoDetail extends PHPUnit_Framework_TestCase
     
     
     //缺少参数
-    public function testParamsIsNull($oid="116")
+    public function testParamsIsNull($oid="227")
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
