@@ -34,7 +34,26 @@ class TestUserToken extends PHPUnit_Framework_TestCase
         $postData['live_status']="0";
         $postData['ip']="121.69.7.6";
         $data =json_encode($postData,true);
-        $result =  json_decode($this->http->HttpApiPost($url, $data),true);
+        $result=json_decode($this->http->HttpApiPost($url, $data),true);
+        $token =$result['data']['token'];
+        $this->assertEquals('0',$result['result']['code']);
+        $this->assertNotEmpty($result['data']['token']);
+        return $token;
+    }
+    
+    
+    public function testUserTokenGenIsSuccessDev($uid="22414")
+    {
+        global $IPDev;
+        $url="http://".$IPDev."/user/token/gen";
+        $postData['uid']=$uid;
+        $postData['platform']="1";
+        $postData['token']="";
+        $postData['user_status']="1";
+        $postData['live_status']="0";
+        $postData['ip']="192.168.0.43";
+        $data =json_encode($postData,true);
+        $result=json_decode($this->http->HttpApiPost($url, $data),true);
         $token =$result['data']['token'];
         $this->assertEquals('0',$result['result']['code']);
         $this->assertNotEmpty($result['data']['token']);

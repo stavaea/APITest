@@ -36,6 +36,7 @@ class TestSetFav extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('success', $result['message'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('操作成功', $result['errMsg'],'url:'.$this->url.'   Post data:'.json_encode($postdata));

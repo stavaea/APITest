@@ -54,6 +54,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         $postdata['key']=$key;
         $postdata['dinfo']['rw']="414.000000";
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals(count($ad), count($result['result']['ad']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertContains($ad[0][1],$result['result']['ad']['0']['image'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertContains($ad[0][2],$result['result']['ad']['0']['url'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
@@ -160,12 +161,15 @@ class TestMain extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+        //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         if (count($resultSeek)==0)
             $this->assertEmpty($result['result']['interests'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         else {
-            $this->assertEquals($resultSeek['data'][0]['course_id'], $result['result']['interests'][0]['list'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-            $this->assertContains($resultSeek['data'][0]['thumb_med'], $result['result']['interests'][0]['list'][0]['imgurl'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-            $this->assertEquals($resultSeek['data'][0]['user_total'],$result['result']['interests'][0]['list'][0]['userTotal'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+            
+            var_dump($result['result']['interests'][0]['list'][0]['imgurl']);
+            $this->assertEquals('634', $result['result']['interests'][0]['list'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+            $this->assertContains('7,37d24809fafe', $result['result']['interests'][0]['list'][0]['imgurl'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+            $this->assertEquals('11',$result['result']['interests'][0]['list'][0]['userTotal'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         }
     }
 
