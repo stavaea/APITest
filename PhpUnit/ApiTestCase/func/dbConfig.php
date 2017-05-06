@@ -4,4 +4,4 @@ $mysql_user='michael';
 $mysql_user_password='michael';
 $mysql_user='michael';
 global $IP;
-$IP='121.42.232.204';
+$IP='121.42.232.104';
