@@ -1,5 +1,7 @@
 <?php
-$mysql_server_name='115.28.222.160';
-$mysql_user='root';
+$mysql_server_name='121.42.232.104';
+$mysql_user='michael';
+$mysql_user_password='michael';
+$mysql_user='michael';
 global $IP;
-$IP='115.28.222.160';
+$IP='121.42.232.204';
