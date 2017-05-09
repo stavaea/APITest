@@ -5,16 +5,15 @@ Created on 2016年10月13日
 
 @author: lsh
 '''
-from PCClientInterface import TestProvide, Configuration
+from Provide import TestProvide
+import Configuration
 import requests,time
 import json
 import unittest
 import pymysql 
 from pymysql import cursors
 
-
-
-class AddAnswerLog(unittest.TestCase):
+class Test_AddAnswerLog(unittest.TestCase):
     '''测试公布答案'''
     def initsqlConnect(self):
         connect_url = {"host":"115.28.222.160","user":"michael", "passwd":"michael", "db":"db_course", "charset":"utf8", "cursorclass":pymysql.cursors.DictCursor}

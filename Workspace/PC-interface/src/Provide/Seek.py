@@ -8,6 +8,7 @@ Created on 2017年1月11日
 import requests
 import json
 
+'''中间层查询接口'''
 def seekPlan(format,query,ob='',page=1,pageLength=20):
     url = "http://api.gn100.com/seek/plan/list/"
     param = {}
@@ -46,7 +47,3 @@ def seekTeacher(format,query,ob='',page=1,pageLength=20):
     response = sess.post(url, data=json.dumps(param,separators=(',',':'),ensure_ascii=False))
     response.encoding = "utf-8"
     return json.loads(response.text)    
-
-    
-if __name__ == '__main__':
-    pass

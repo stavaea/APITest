@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 #/usr/bin/env python3
-from PCClientInterface import Configuration
+import Configuration
 import json
 import hashlib
 import time
@@ -18,16 +18,14 @@ def generateKey(TimeStamp,params):
     key = md5.hexdigest()    
     return key
 
-def login(s):
-    name = Configuration.mobile
-    password = Configuration.password
+def login(s,mobile,password):
     params = {}
     currenttime = int(time.time()) 
     params['u']= 'p'
-    params['v']= 2
+    params['v']= '1.9.0'
     params['time']= currenttime
     params['params']= {
-                    "name":name,
+                    "name":mobile,
                     "password":password
                 }
     params['key']= generateKey(currenttime,params['params'])

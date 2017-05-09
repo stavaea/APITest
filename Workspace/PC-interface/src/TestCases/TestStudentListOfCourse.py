@@ -6,14 +6,15 @@ Created on 2016年11月2日
 @author: lsh
 '''
 import unittest
-from PCClientInterface import TestProvide,Configuration,Confirm
+from Provide import TestProvide,Confirm
+import Configuration
 import json
 import time
 import requests
 
 
 class Test_TeacherOfStudents(unittest.TestCase):
-    '''课程详情--学生列表接口'''
+    '''课程卡片详情--学生列表'''
     def setUp(self):
         self.s = requests.session()
         self.s = TestProvide.login(self.s)
