@@ -17,14 +17,14 @@ class TestStudentCourse extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //小沃1.5个人中心
-        $this->url = "http://test.gn100.com/interface/org/studentCourse";
+        $this->url = "http://dev.gn100.com/interface/org/studentCourse";
         $this->http = new HttpClass();
         $this->GetToken =new TestUserToken();
     
     }
     
     
-    public function testDataIsOK($oid='227')
+    public function testDataIsOK($oid='842')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
@@ -32,8 +32,8 @@ class TestStudentCourse extends PHPUnit_Framework_TestCase
         $postdata['oid']=$oid;
         $postdata['params']['page']= "1";
         $postdata['params']['length']= "20";
-        $postdata['params']['userId']= "23339";
-        $token=$this->GetToken->testUserTokenGenIsSuccess($uid="23339");
+        $postdata['params']['userId']= "3596";
+        $token=$this->GetToken->testUserTokenGenIsSuccessDev($uid="3596");
         $postdata['token']=$token;
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
@@ -45,6 +45,7 @@ class TestStudentCourse extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('longTime', $result['result']['data'][0]);//学习时长
         $this->assertArrayHasKey('courseType', $result['result']['data'][0]);
         $this->assertArrayHasKey('days', $result['result']['data'][0]);//会员剩余天数
+        $this->assertArrayHasKey('noteNum', $result['result']['data'][0]);//新增笔记数
     }
     
     

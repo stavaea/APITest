@@ -34,6 +34,7 @@ class TestLiveTable extends PHPUnit_Framework_TestCase
            $this->assertArrayHasKey('courseName', $result['result'][1]['data'][0]);
            $this->assertArrayHasKey('sectionName', $result['result'][1]['data'][0]);
            $this->assertArrayHasKey('stime', $result['result'][1]['data'][0]);
+           $this->assertArrayHasKey('price', $result['result'][1]['data'][0]);//新增课程价格
        }
            
     }
