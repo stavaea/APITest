@@ -1,35 +1,24 @@
 <?php
-require_once 'PHPUnit/Framework/TestCase.php';
-require_once '../func/Http.class.php';
-require_once '../func/interface_func.php';
 
 class TestHomeV3 extends PHPUnit_Framework_TestCase
 {
-    private $url;
-    private $http;
-    static $u="i";
-    static $v="2";
-    
     protected function setUp()
-    {
-        //首页
+       {
         $this->url = "http://test.gn100.com/interface/main/homev3";
-        $this->http = new HttpClass();
-    
-    }
+        $this->postData = [
+            'u'=>'i',
+            'v'=>'2',
+            'time'=> strtotime(date('Y-m-d H:i:s'))
+           ];
+       }
     
     public function testDataIsOK()
     {
-        $postdata['time']=strtotime(date('Y-m-d H:i:s'));
-        $postdata['u']=self::$u;
-        $postdata['v']=self::$v;
-        $postdata['params']['uid']= "3596";
-        $postdata['params']['condition']= "1,7,29";
-        $key=interface_func::GetAppKey($postdata);
-        $postdata['key']=$key;
-        $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
-        //var_dump($result);
+        $this->postData['params'] = [
+            'uid'=>'1',
+            'condition'=>'1,7,29'
+        ];
+        $result = interfaceFunc::getPostData($this->url, $this->postData);
         $this->assertArrayHasKey('banner', $result['result']);
         $this->assertEquals('3', count($result['result']['subject']));
         $this->assertEquals('直播课', $result['result']['types'][0]['name']);
