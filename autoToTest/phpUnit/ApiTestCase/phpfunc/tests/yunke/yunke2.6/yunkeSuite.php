@@ -1,7 +1,7 @@
 <?php
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/Autoload.php';
-require_once 'TestAddAddress.php';
+//require_once 'TestAddAddress.php';
 require_once 'TestAddPlanFlower.php';
 require_once 'TestAddPoint.php';
 require_once 'TestDiscountCode.php';
@@ -31,7 +31,7 @@ class yunkeSuite extends PHPUnit_Framework_TestSuite
     public function __construct()
     {
         $this->setName('yunkeSuite');
-        $this->addTestSuite('TestAddAddress');
+       // $this->addTestSuite('TestAddAddress');
         $this->addTestSuite('TestAddPlanFlower');
         $this->addTestSuite('TestAddPoint');
         $this->addTestSuite('TestDiscountCode');
