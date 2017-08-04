@@ -18,6 +18,6 @@ class TestAddPoint extends PHPUnit_Framework_TestCase
             'uId'=>'1',
             'type'=>'1'
         ];
-        $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
+        $result = interfaceFunc::getPostData($this->url, $this->postData);
     }
 }
