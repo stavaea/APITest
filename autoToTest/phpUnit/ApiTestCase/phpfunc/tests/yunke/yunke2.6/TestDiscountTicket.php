@@ -10,22 +10,21 @@ class TestDiscountTicket extends PHPUnit_Framework_TestCase
             'u'=>'i',
             'v'=>'2',
             'userId'=>'1',
-            'oid'=>'28',
             'time'=> strtotime(date('Y-m-d H:i:s'))
            ];
        }
     
     //参数正确，返回结果
-    public function testDataIsOK()
-    {
+	public function testDataIsOK()
+		{
         $this->postData['params'] = [
-            'userId'=>'1000107',
-            'objectId'=>'87'
+            'userId'=>'1',
+            'objectId'=>'89'
         ];
         $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
-        var_dump($result);
-        $this->assertLessThanOrEqual('10', $result['result']['codeList'][0]['priceOld']);
-    }
+        $this->assertNotEmpty($result['data']);
+       
+		}
     
     
     //必传参数为空，返回结果
