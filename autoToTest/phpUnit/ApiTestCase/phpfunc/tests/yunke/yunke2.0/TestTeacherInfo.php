@@ -137,7 +137,7 @@ protected function setUp()
     public function testTeacherNoCourse()
     {
         $this->postData['params'] = [
-            'teacherId'=>'12',
+            'teacherId'=>'39',
             'page'=>'1',
             'length'=>'20'
         ];
