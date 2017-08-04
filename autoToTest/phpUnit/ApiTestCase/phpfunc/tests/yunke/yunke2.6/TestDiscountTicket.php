@@ -48,6 +48,6 @@ class TestDiscountTicket extends PHPUnit_Framework_TestCase
         ];
         $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
         //print_r($result);
-        $this->assertEquals('3000',$result['code']);//无可用的优惠券
+        $this->assertEquals('30000',$result['code']);//无可用的优惠券
     }
 }

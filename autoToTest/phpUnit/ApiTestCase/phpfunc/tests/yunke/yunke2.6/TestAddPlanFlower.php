@@ -34,7 +34,7 @@ class TestAddPlanFlower extends PHPUnit_Framework_TestCase
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
         print_r($result);
-        $this->assertEquals('2052', $result['code']);//未报名此课程
+        $this->assertEquals('2075', $result['code']);//未报名此课程
     }
     
     public function testParamsIsNull()

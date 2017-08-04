@@ -9,7 +9,7 @@ class TestGetCourseList extends PHPUnit_Framework_TestCase
         $this->postData = [
             'u'=>'i',
             'v'=>'2',
-            'userId'=>'3596',
+            'userId'=>'1',
             'time'=> strtotime(date('Y-m-d H:i:s'))
         ];
     }
@@ -35,22 +35,6 @@ class TestGetCourseList extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('orgSubname', $result['result']['data'][0]);
     }
     
-    //参数正确，指定课程
-    public function testSomeCourse()
-    {
-        $this->postData['params'] = [
-            'orgId'=>'2',
-            'fc'=>'',
-            'sc'=>'',
-            'tc'=>'',
-            'cid'=>'5087',
-            'page'=>'1'
-        ];
-        $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
-        //print_r($result);
-        $this->assertEquals('5087', $result['result']['data'][0]['courseId']);
-        $this->assertEquals('1', $result['result']['total']);
-    }
      
     
     //参数正确，全部课程
@@ -65,12 +49,11 @@ class TestGetCourseList extends PHPUnit_Framework_TestCase
             'page'=>'1'
         ];
         $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
-        //print_r($result);
         $this->assertNotEmpty($result['result']['data']);
     }
     
     //分类不存在，返回结果
-   /*  public function  testClassNotExist()
+     public function  testClassNotExist()
     {
         $this->postData['params'] = [
             'orgId'=>'469',
@@ -98,5 +81,5 @@ class TestGetCourseList extends PHPUnit_Framework_TestCase
         ];
         $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
         $this->assertEquals('1000', $result['code']);
-    } */
+    } 
 }

@@ -20,7 +20,7 @@ class TestGetFlowers extends PHPUnit_Framework_TestCase
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
         print_r($result);
-        $this->assertEquals('0', $result['code']);
+        $this->assertEquals('2076', $result['code']);//重复领取
     }
     
     public function testParmasIsNull()

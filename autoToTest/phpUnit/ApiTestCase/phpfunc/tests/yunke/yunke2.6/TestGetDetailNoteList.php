@@ -8,7 +8,7 @@ class TestGetDetailNoteList extends PHPUnit_Framework_TestCase
         $this->postData = [
             'u'=>'i',
             'v'=>'2',
-            'userId'=>'3596',
+            'userId'=>'1',
             'time'=> strtotime(date('Y-m-d H:i:s'))
            ];
        }
@@ -18,8 +18,8 @@ class TestGetDetailNoteList extends PHPUnit_Framework_TestCase
         $this->postData['params'] = [
             'fkUser'=>'1',
             'page'=>'1',
-            'classId'=>'40',
-            'planId'=>''//634   635
+            'classId'=>'43',
+            'planId'=>'740'//634   635
         ];
         $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
         $this->assertArrayHasKey('content', $result['result']['items'][0]);

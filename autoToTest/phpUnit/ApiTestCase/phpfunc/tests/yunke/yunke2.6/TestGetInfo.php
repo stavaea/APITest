@@ -21,12 +21,12 @@ class TestGetInfo extends PHPUnit_Framework_TestCase
             'uid'=>'1'
         ];
         $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
-        
-        $this->assertEquals('杨明娟', $result['result']['nickName']);
+        //var_dump($result);
+        $this->assertEquals('杨明娟老师', $result['result']['nickName']);
         $this->assertEquals('http://testf.gn100.com/5,cf0e19ade357', $result['result']['image']);
         $this->assertEquals('15510720812', $result['result']['mobile']);
-        $this->assertEquals('杨明娟', $result['result']['realName']);
-        $this->assertEquals('男', $result['result']['sex']);
+        $this->assertEquals('杨明娟老师', $result['result']['realName']);
+        $this->assertEquals('女', $result['result']['sex']);
         $this->assertEquals('北京市,西城区', $result['result']['address']);
         $this->assertEquals('1,37,0', $result['result']['addressId']);
         $this->assertEquals('0', $result['result']['schoolType']);
@@ -38,8 +38,8 @@ class TestGetInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals('32', $result['result']['addressInfo']['addressId']);
         $this->assertEquals('杨明娟', $result['result']['addressInfo']['receiverUser']);
         $this->assertEquals('15510720812', $result['result']['addressInfo']['tel']);
-        $this->assertEquals('北京市', $result['result']['addressInfo']['province']);
-        $this->assertEquals('东城区', $result['result']['addressInfo']['city']);
+        $this->assertEquals('重庆市', $result['result']['addressInfo']['province']);
+        $this->assertEquals('大渡口区', $result['result']['addressInfo']['city']);
         $this->assertEquals('', $result['result']['addressInfo']['country']);
         $this->assertEquals('唱歌喝酒呢', $result['result']['addressInfo']['address']);
         $this->assertEquals('哥哥哥哥', $result['result']['addressInfo']['remark']);//备注

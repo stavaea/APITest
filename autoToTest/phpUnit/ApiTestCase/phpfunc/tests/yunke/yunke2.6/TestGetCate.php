@@ -5,11 +5,11 @@ class TestGetCate extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         //机构课程分类
-        $this->url = "http://dev.gn100.com/interface/discountcode/GetCate";
+        $this->url = "http://test.gn100.com/interface/discountcode/GetCate";
         $this->postData = [
             'u'=>'i',
             'v'=>'2',
-            'userId'=>'3596',
+            'userId'=>'1',
             'time'=> strtotime(date('Y-m-d H:i:s'))
         ];
     }
@@ -19,7 +19,7 @@ class TestGetCate extends PHPUnit_Framework_TestCase
     public function testDataIsOK()
     {
         $this->postData['params'] = [
-            'orgId'=>'469'
+            'orgId'=>'1'
         ];
         $result = interfaceFunc::getPostTokenData($this->url, $this->postData);
         //print_r($result);

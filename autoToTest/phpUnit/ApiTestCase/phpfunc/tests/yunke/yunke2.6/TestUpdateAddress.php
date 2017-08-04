@@ -24,7 +24,7 @@ class TestUpdateAddress extends PHPUnit_Framework_TestCase
             'addressStr'=>'我改了一下地址',
             'address'=>'我改了一下地址',
             'remark'=>'我改了一下地址哦',
-            'addressId'=>'35'
+            'addressId'=>'50'
         ];
         $result = interfaceFunc::getPostTokenData($url, $this->postData);
         
