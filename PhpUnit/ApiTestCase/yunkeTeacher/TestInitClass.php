@@ -31,7 +31,7 @@ class TestInitClass extends PHPUnit_Framework_TestCase
         $postdata['params']['planId']= "";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =$this->Token->testUserTokenGenIsSuccess('23339');
+        $token =$this->Token->testUserTokenGenIsSuccess('1');
         $postdata['token']=$token;
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
@@ -48,7 +48,7 @@ class TestInitClass extends PHPUnit_Framework_TestCase
         $postdata['params']['planId']= '4606';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =$this->Token->testUserTokenGenIsSuccess('23339');
+        $token =$this->Token->testUserTokenGenIsSuccess('1');
         $postdata['token']=$token;
         var_dump($token);
        // var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));

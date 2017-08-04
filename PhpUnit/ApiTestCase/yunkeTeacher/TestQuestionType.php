@@ -28,7 +28,7 @@ class TestQuestionType extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['userId']= '189';
+        $postdata['params']['userId']= '1';
         $postdata['params']['type']= '1';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
@@ -45,7 +45,7 @@ class TestQuestionType extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['userId']= '189';
+        $postdata['params']['userId']= '1';
         $postdata['params']['type']= '2';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
@@ -61,7 +61,7 @@ class TestQuestionType extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['userId']= '189';
+        $postdata['params']['userId']= '1';
         $postdata['params']['type']= '3';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;

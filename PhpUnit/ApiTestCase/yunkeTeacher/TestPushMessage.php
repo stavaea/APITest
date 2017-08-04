@@ -26,13 +26,13 @@ class TestPushMessage extends PHPUnit_Framework_TestCase
     {
         
         $db="db_message";
-        $sql = "SELECT message_num FROM t_message_user_text_gather WHERE fk_user_to='23339' AND message_type='10022';";
+        $sql = "SELECT message_num FROM t_message_user_text_gather WHERE fk_user_to='4' AND message_type='10022';";
         $ad=interface_func::ConnectDB($db, $sql);
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['pkTask']= '162';
-        $postdata['params']['studentId']= '23339';
+        $postdata['params']['pkTask']= '6';
+        $postdata['params']['studentId']= '4';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
@@ -50,7 +50,7 @@ class TestPushMessage extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['pkTask']= '';
-        $postdata['params']['studentId']= '23339';
+        $postdata['params']['studentId']= '4';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
@@ -64,7 +64,7 @@ class TestPushMessage extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['pkTask']= '55555555555';
-        $postdata['params']['studentId']= '23339';
+        $postdata['params']['studentId']= '4';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);

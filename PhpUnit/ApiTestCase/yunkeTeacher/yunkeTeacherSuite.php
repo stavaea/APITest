@@ -9,8 +9,8 @@ require_once 'TestTeacherPublishTask.php';
 require_once 'TestDeleteImage.php';
 require_once 'TestDelTag.php';
 require_once 'TestTeacherTaskDetail.php';
-require_once 'TestTaskReplyDetail.php';
 require_once 'TestPushMessage.php';
+require_once 'TestQuestionType.php';
 
 /**
  * Static test suite.
@@ -32,8 +32,8 @@ class yunkeTeacherSuite extends PHPUnit_Framework_TestSuite
         $this->addTestSuite('TestDeleteImage');//老师在修改作业页面删除图片
         $this->addTestSuite('TestDelTag');//老师在修改作业页面删除标签
         $this->addTestSuite('TestTeacherTaskDetail');//老师作业详情页
-        $this->addTestSuite('TestTaskReplyDetail');//老师批改作业展示 已批改作业展示
         $this->addTestSuite('TestPushMessage');//催交作业
+        $this->addTestSuite('TestQuestionType');
     }
 
     /**

@@ -17,8 +17,8 @@ class TestUpdateTask extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['pkTask']= "147";
-        $postdata['params']['uId']= "23339";
+        $postdata['params']['pkTask']= "18";
+        $postdata['params']['uId']= "1";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
         $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
         $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
@@ -37,7 +37,7 @@ class TestUpdateTask extends PHPUnit_Framework_TestCase
         );
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23339');
+        $token =TestUserToken::testUserStaticTokenGenIsSuccess('1');
         $postdata['token']=$token;
         $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
     }

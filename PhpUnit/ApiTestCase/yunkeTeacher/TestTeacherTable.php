@@ -28,12 +28,12 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['startTime']= "2016-11-28 00:00:00";
-        $postdata['params']['endTime']= "2017-01-08 23:59:59";
-        $postdata['params']['userId']='23339';
+        $postdata['params']['startTime']= "2017-05-01 00:00:00";
+        $postdata['params']['endTime']= "2017-06-11 23:59:59";
+        $postdata['params']['userId']='1';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+       
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         
         $this->assertEquals('0',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
@@ -53,7 +53,7 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
         $postdata['v']=self::$v;
         $postdata['params']['startTime']= "2016-12-26 00:00:00";
         $postdata['params']['endTime']= "2017-01-01 23:59:59";
-        $postdata['params']['userId']='23339';
+        $postdata['params']['userId']='1';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
@@ -81,16 +81,16 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2016-12-29 00:00:00";
-         $postdata['params']['endTime']= "2016-12-29 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-05-25 00:00:00";
+         $postdata['params']['endTime']= "2017-05-25 23:59:59";
+         $postdata['params']['userId']='1';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-         $this->assertEquals('2016-12-29', $result['result'][0]['time'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-         $this->assertEquals('4441', $result['result'][0]['data'][0]['planId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-         $this->assertEquals('云课2.0测试课程', $result['result'][0]['data'][0]['courseName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('2017-5-25', $result['result'][0]['time'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('740', $result['result'][0]['data'][0]['planId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('ymjtest', $result['result'][0]['data'][0]['courseName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
          
      }
      //当天直播课超过30节课，返回数据开课时间按最近的开始
@@ -99,23 +99,23 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2017-01-03 00:00:00";
-         $postdata['params']['endTime']= "2017-01-03 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-06-08 00:00:00";
+         $postdata['params']['endTime']= "2017-06-08 23:59:59";
+         $postdata['params']['userId']='1';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-         $this->assertGreaterThan('30', count($result['result'][0]['data']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertLessThanOrEqual('30', count($result['result'][0]['data']));
          
          for($j=0;$j<count($result['result'][0]['data'])-1;$j++)
          {
              
-             $this->assertGreaterThanOrEqual(strtotime($result['result'][0]['data'][$j]['stime']),strtotime($result['result'][0]['data'][$j+1]['stime']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+             $this->assertGreaterThanOrEqual(strtotime($result['result'][0]['data'][$j]['stime']),strtotime($result['result'][0]['data'][$j+1]['stime']));
              
          }   
          
-         $this->assertEquals('第1课时', $result['result'][0]['data'][0]['sectionName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('第15课时', $result['result'][0]['data'][0]['sectionName']);
      }
      
      //必传参数为空，返回数据
@@ -141,8 +141,8 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2016-12-29 00:00:00";
-         $postdata['params']['endTime']= "2016-12-31 23:59:59";
+         $postdata['params']['startTime']= "2017-08-03 00:00:00";
+         $postdata['params']['endTime']= "2018-08-10 23:59:59";
          $postdata['params']['userId']='23339';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
@@ -174,14 +174,14 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2016-10-17 00:00:00";
-         $postdata['params']['endTime']= "2016-10-17 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-08-03 00:00:00";
+         $postdata['params']['endTime']= "2017-08-03 23:59:59";
+         $postdata['params']['userId']='1';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-         $this->assertEquals('北京市东城区123', $result['result'][0]['data'][0]['address'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('北京市东城区123', $result['result'][0]['data'][1]['address']);
      }
      
      //线下课，status为0，不能进入课堂
@@ -190,9 +190,9 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2016-10-17 00:00:00";
-         $postdata['params']['endTime']= "2016-10-17 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-08-05 00:00:00";
+         $postdata['params']['endTime']= "2017-08-05 23:59:59";
+         $postdata['params']['userId']='1';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));

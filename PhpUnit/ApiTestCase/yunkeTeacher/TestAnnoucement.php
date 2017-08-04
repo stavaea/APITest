@@ -24,7 +24,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
     
     //发布公告
      
-    public function testAddDataIsOK($fk_plan='3724')
+    public function testAddDataIsOK($fk_plan='740')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
@@ -44,7 +44,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
     
     //status不存在，返回值
     
-    public function testStatusIsNotExist($fk_plan='3724')
+    public function testStatusIsNotExist($fk_plan='740')
     {
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
@@ -60,7 +60,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
     }
     
         //参数content为空，返回值
-        public function testContentIsNull($fk_plan='3724')
+        public function testContentIsNull($fk_plan='740')
        {
            $postdata['time']=strtotime(date('Y-m-d H:i:s'));
            $postdata['u']=self::$u;
@@ -80,7 +80,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
        
        
        //参数content大于100个汉字，返回值
-       public function testContentChineseIsBig($fk_plan='3724')
+       public function testContentChineseIsBig($fk_plan='740')
        {
            $postdata['time']=strtotime(date('Y-m-d H:i:s'));
            $postdata['u']=self::$u;
@@ -99,7 +99,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
        
        
        //参数content大于200个字符，返回值
-       public function testContentEnglishIsBig($fk_plan='3724')
+       public function testContentEnglishIsBig($fk_plan='740')
        {
            $postdata['time']=strtotime(date('Y-m-d H:i:s'));
            $postdata['u']=self::$u;
@@ -118,7 +118,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
        
        
        //更新公告
-       public function testUpdateDataIsOK($fk_plan='3724')
+       public function testUpdateDataIsOK($fk_plan='740')
        {
            $postdata['time']=strtotime(date('Y-m-d H:i:s'));
            $postdata['u']=self::$u;
@@ -138,7 +138,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
        }
        
        //删除公告
-       public function testDelDataIsOK($fk_plan='3724')
+       public function testDelDataIsOK($fk_plan='740')
        {
            $postdata['time']=strtotime(date('Y-m-d H:i:s'));
            $postdata['u']=self::$u;
