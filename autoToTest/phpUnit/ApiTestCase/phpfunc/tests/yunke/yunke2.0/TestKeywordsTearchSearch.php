@@ -121,7 +121,7 @@ protected function setUp()
                 'sort'=>'2000'
             ];
             $result = interfaceFunc::getPostData($this->url, $this->postData);
-            $this->assertGreaterThanOrEqual($result['result']['data']['teacher'][1]['userTotal'], $result['result']['teacher']['data'][0]['userTotal']);
+            $this->assertGreaterThanOrEqual($result['result']['data']['teacher'][1]['userTotal'], $result['result']['data']['teacher'][0]['userTotal']);
         }
  
 }
