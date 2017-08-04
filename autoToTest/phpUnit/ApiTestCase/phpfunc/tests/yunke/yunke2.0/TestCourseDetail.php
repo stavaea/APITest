@@ -132,7 +132,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
         $this->assertEquals('2', count($result['result']['class']),'url:'.$this->url.'   Post data:'.json_encode($this->postData));
-        $this->assertEquals('0', $result['result']['class']['0']['section'][1]['trySee'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('1', $result['result']['class']['0']['section'][1]['trySee'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
     }
     
 
