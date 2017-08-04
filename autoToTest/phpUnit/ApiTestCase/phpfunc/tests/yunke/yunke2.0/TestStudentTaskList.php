@@ -47,6 +47,7 @@ class TestStudentTaskList extends PHPUnit_Framework_TestCase
             'status'=>'0'//未提交
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
+		if($result['result']['page']['total']>1)
         {
            $this->assertGreaterThanOrEqual($result['result']['data'][1]['day'], $result['result']['data'][0]['day']);
         }
