@@ -28,7 +28,7 @@ protected function setUp()
         $this->assertEquals('杨明娟老师', $result['result']['info']['name']);
         $this->assertEquals('4', $result['result']['info']['years']);
         $this->assertEquals('清华大学', $result['result']['info']['college']); 
-        $this->assertEquals("语文,化学,历史", $result['result']['info']['subject']);
+        $this->assertEquals("化学,历史", $result['result']['info']['subject']);
         $this->assertEquals('最美教师', $result['result']['info']['desc']);
         $this->assertEquals('', $result['result']['info']['taughtGrade']);
         $this->assertEquals('4.6', $result['result']['info']['score']);
