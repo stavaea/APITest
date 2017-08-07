@@ -57,7 +57,7 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        //var_dump($result);
+        var_dump($result);
         $this->assertEquals('0', $result['code']);
         $fkTask=TestTeacherTaskList::testFkTask();
         TestTeacherUpdateTaskShow::testUpdateListIsOK($fkTask);
