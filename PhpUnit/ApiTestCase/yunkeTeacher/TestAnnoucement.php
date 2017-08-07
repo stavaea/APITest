@@ -34,7 +34,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
         $postdata['params']['content']='测试一下公告哦';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+		//var_dump($this->http->HttpPost($this->url, json_encode($postdata)))
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
     
         $this->assertEquals('0',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
@@ -54,7 +54,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
         $postdata['params']['content']='不存在的状态值';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+		//var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEmpty($result,'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
@@ -70,7 +70,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
            $postdata['params']['content']='';
            $key=interface_func::GetAppKey($postdata);
            $postdata['key']=$key;
-           var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+		   //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
            $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
            
            $this->assertEquals('1001',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//content为空
@@ -90,7 +90,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
            $postdata['params']['content']='一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五一二三四五啊';
            $key=interface_func::GetAppKey($postdata);
            $postdata['key']=$key;
-           var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+		   //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
            $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
             
            $this->assertEquals('2051',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//content大于100个汉字
@@ -109,7 +109,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
            $postdata['params']['content']='abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdew';
            $key=interface_func::GetAppKey($postdata);
            $postdata['key']=$key;
-           var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+           //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
            $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
        
            $this->assertEquals('2051',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//content大于200个字符
@@ -128,7 +128,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
            $postdata['params']['content']='我更改一下公告哦';
            $key=interface_func::GetAppKey($postdata);
            $postdata['key']=$key;
-           var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+           //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
            $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
        
            $this->assertEquals('0',$result['code']);

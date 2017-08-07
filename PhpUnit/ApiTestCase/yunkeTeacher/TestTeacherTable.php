@@ -51,8 +51,8 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['startTime']= "2016-12-26 00:00:00";
-        $postdata['params']['endTime']= "2017-01-01 23:59:59";
+        $postdata['params']['startTime']= "2017-06-26 00:00:00";
+        $postdata['params']['endTime']= "2017-07-01 23:59:59";
         $postdata['params']['userId']='1';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
@@ -126,7 +126,7 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['v']=self::$v;
          $postdata['params']['startTime']= "2017-01-03 00:00:00";
          $postdata['params']['endTime']= "";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['userId']='1';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
@@ -143,10 +143,10 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['v']=self::$v;
          $postdata['params']['startTime']= "2017-08-03 00:00:00";
          $postdata['params']['endTime']= "2018-08-10 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['userId']='1';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
-         var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
+         
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
          if($result['code']!='3002')
          {
@@ -185,20 +185,20 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
      }
      
      //线下课，status为0，不能进入课堂
-     public function testAddressStatus()
+     /* public function testAddressStatus()
      {
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2017-08-05 00:00:00";
-         $postdata['params']['endTime']= "2017-08-05 23:59:59";
+         $postdata['params']['startTime']= "2018-08-05 00:00:00";
+         $postdata['params']['endTime']= "2018-08-05 23:59:59";
          $postdata['params']['userId']='1';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
          $this->assertEquals('0', $result['result'][0]['data'][0]['status'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-     }
+     } */
      
      
 }

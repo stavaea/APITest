@@ -35,7 +35,7 @@ class TestQuestionType extends PHPUnit_Framework_TestCase
 //         $token =$this->Token->testUserTokenGenIsSuccess('23339');
 //         $postdata['token']=$token;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($result);
+		//var_dump($result);
         $this->assertEquals('8',count($result['result']['data']));
     }
     
@@ -68,7 +68,7 @@ class TestQuestionType extends PHPUnit_Framework_TestCase
         //         $token =$this->Token->testUserTokenGenIsSuccess('23339');
         //         $postdata['token']=$token;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump($result);
+		//var_dump($result);
         $this->assertEquals('1',count($result['result']['data']));
     }
 }

@@ -412,9 +412,9 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         TestTeacherTaskList::testFkTask2();
     }
     
-    //作业列表
+    /* //作业列表
     public function testTaskList()
     {
         TestTeacherTaskList::testFkTask3();
-    }
+    } */
 }
