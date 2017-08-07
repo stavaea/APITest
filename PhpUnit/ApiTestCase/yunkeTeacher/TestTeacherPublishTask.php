@@ -39,7 +39,7 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['params']['fkClass']= "43";
         $postdata['params']['uId']= "1";
         $postdata['params']['desc']= "app老师发布作业啊！！！！！";
-        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
+        $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+5 minute"));
         $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
             array(
