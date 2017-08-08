@@ -25,7 +25,7 @@ class TestDelTag extends PHPUnit_Framework_TestCase
     public function testDataIsOK()
     {
         $tag=TestTeacherUpdateTaskShow::testReturnTag();
-        //var_dump($tag);
+        var_dump($tag);
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
