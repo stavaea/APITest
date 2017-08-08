@@ -74,7 +74,7 @@ class TestTeacherUpdateTaskShow extends PHPUnit_Framework_TestCase
         $postdata['token']=$token;
         //var_dump(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)));
         $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
-		var_dump('$result');
+		var_dump($result);
         return $result['result']['tag'];
     }
 }
