@@ -47,7 +47,7 @@ class TestTeacherUpdateTaskShow extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['uId']='1';
-        $postdata['params']['taskId']='18';
+        $postdata['params']['taskId']='41';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $token =TestUserToken::testUserStaticTokenGenIsSuccess('1');
@@ -67,7 +67,7 @@ class TestTeacherUpdateTaskShow extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['uId']='1';
-        $postdata['params']['taskId']='18';
+        $postdata['params']['taskId']='41';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $token =TestUserToken::testUserStaticTokenGenIsSuccess('1');
