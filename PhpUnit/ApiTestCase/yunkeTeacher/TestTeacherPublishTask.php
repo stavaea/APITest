@@ -56,6 +56,7 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         );
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
+		var_dump($postdata);
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         var_dump($result);
         $this->assertEquals('0', $result['code']);
