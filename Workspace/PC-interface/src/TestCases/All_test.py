@@ -6,7 +6,7 @@ Created on 2016年11月10日
 @author: lsh
 '''
 import os
-from TestCases import TestClassAnnouncement,TestGetAnnounce,TestCourseLivingPlan,TestPlanListOfCourse,TestStudentListOfCourse,TestTeacherCourseList,TestGetQuestion,TestAddAnswerLog,TestStartOrRestartClass,TestTeacherCourseOfUploadVideo,TestTeacherPlanOfUploadVideo
+import TestClassAnnouncement,TestGetAnnounce,TestCourseLivingPlan,TestPlanListOfCourse,TestStudentListOfCourse,TestTeacherCourseList,TestGetQuestion,TestAddAnswerLog,TestStartOrRestartClass,TestTeacherCourseOfUploadVideo,TestTeacherPlanOfUploadVideo
 import unittest
 import HTMLTestRunner
 import time
