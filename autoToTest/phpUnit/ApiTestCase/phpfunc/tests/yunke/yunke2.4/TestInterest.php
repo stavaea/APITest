@@ -20,12 +20,12 @@ class TestInterest extends PHPUnit_Framework_TestCase
         $result = interfaceFunc::getPostData($this->url, $this->postData);
 		var_dump($result);
         $this->assertEquals('学前', $result['result'][0]['data'][0]['name']);
-        $this->assertEquals('6', count($result['result'][0]['data'][0]['id']));
+        $this->assertEquals('6', $result['result'][0]['data'][0]['id']);
         $this->assertEquals('小学', $result['result'][0]['data'][1]['name']);
-        $this->assertEquals('7', count($result['result'][0]['data'][1]['id']));
+        $this->assertEquals('7', $result['result'][0]['data'][1]['id']);
         $this->assertEquals('初中', $result['result'][0]['data'][2]['name']);
-        $this->assertEquals('8', count($result['result'][0]['data'][2]['id']));
+        $this->assertEquals('8', $result['result'][0]['data'][2]['id']);
         $this->assertEquals('高中', $result['result'][0]['data'][3]['name']);
-        $this->assertEquals('9', count($result['result'][0]['data'][3]['id']));
+        $this->assertEquals('9', $result['result'][0]['data'][3]['id']);
     }
 }
