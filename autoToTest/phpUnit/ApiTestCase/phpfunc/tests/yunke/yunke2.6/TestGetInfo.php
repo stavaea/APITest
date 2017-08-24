@@ -27,7 +27,7 @@ class TestGetInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals('15510720812', $result['result']['mobile']);
         $this->assertEquals('杨明娟老师', $result['result']['realName']);
         $this->assertEquals('女', $result['result']['sex']);
-        $this->assertEquals('北京市,西城区', $result['result']['address']);
+        $this->assertEquals('北京市,东城区', $result['result']['address']);
         $this->assertEquals('1,37,0', $result['result']['addressId']);
         $this->assertEquals('0', $result['result']['schoolType']);
         $this->assertEquals('', $result['result']['school']);

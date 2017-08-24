@@ -41,7 +41,7 @@ class TestTeacherComment extends PHPUnit_Framework_TestCase
             'length'=>'20'
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
-        
+        print_r($result);
         $this->assertArrayHasKey('replay', $result['result']['list'][1]);
         $this->assertArrayHasKey('manage_name', $result['result']['list'][1]['replay']);//回复人名称
         $this->assertArrayHasKey('contents', $result['result']['list'][1]['replay']);//回复内容
