@@ -18,6 +18,7 @@ class TestInterest extends PHPUnit_Framework_TestCase
         $this->postData['params'] = [  
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
+		print($result);
         $this->assertEquals('学前', $result['result'][0]['data'][0]['name']);
         $this->assertEquals('6', count($result['result'][0]['data'][0]['id']));
         $this->assertEquals('小学', $result['result'][0]['data'][1]['name']);
