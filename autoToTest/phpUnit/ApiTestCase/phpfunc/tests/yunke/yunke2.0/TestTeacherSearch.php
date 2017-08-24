@@ -47,8 +47,8 @@ protected function setUp()
             $this->assertEquals('2', $result['result']['data']['teacher'][0]['teacherId']);
             $this->assertEquals('高能100', $result['result']['data']['teacher'][0]['orgName']);
             $this->assertEquals('马静', $result['result']['data']['teacher'][0]['name']);
-            $this->assertEquals('3.8', $result['result']['data']['teacher'][0]['score']);
-            $this->assertEquals('5', $result['result']['data']['teacher'][0]['comment']);
+            $this->assertEquals('4.1', $result['result']['data']['teacher'][0]['score']);
+            $this->assertEquals('9', $result['result']['data']['teacher'][0]['comment']);
             $this->assertEquals('20', $result['result']['data']['teacher'][0]['courseCount']);  
         }
         

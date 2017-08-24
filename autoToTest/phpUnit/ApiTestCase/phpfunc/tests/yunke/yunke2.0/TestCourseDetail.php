@@ -194,7 +194,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
         $this->assertEquals('0', $result['result']['class'][0]['checkSign'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
-        $this->assertEquals('1', $result['result']['class'][0]['isSign'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('1', $result['result']['class'][1]['isSign'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
     }
     
     //未报名课程已满 

@@ -29,14 +29,14 @@ protected function setUp()
         $this->assertEquals('1', $result['result']['totalPage']);
         $this->assertEquals('1', $result['result']['page']);
         $this->assertEquals('0', $result['result']['data'][3]['userId']);
-        $this->assertEquals("张哈哈", $result['result']['data'][3]['userName']);
+        $this->assertEquals("冯佳欣", $result['result']['data'][3]['userName']);
         $this->assertArrayHasKey("userImage", $result['result']['data'][3]);
-        $this->assertEquals("咯咯咯哦咯咯", $result['result']['data'][3]['content']);
-        $this->assertEquals('3', $result['result']['data'][3]['score']);
-        $this->assertEquals("2017-05-31 16:16:13", $result['result']['data'][3]['time']);
-        $this->assertEquals("5月24日直播课整数", $result['result']['data'][3]['course']);
+        $this->assertEquals("学习完啦 发而发", $result['result']['data'][3]['content']);
+        $this->assertEquals('5', $result['result']['data'][3]['score']);
+        $this->assertEquals("2017-08-05 17:37:49", $result['result']['data'][3]['time']);
+        $this->assertEquals("测试环境-录播课", $result['result']['data'][3]['course']);
         $this->assertEquals("1班", $result['result']['data'][3]['class']);
-        $this->assertEquals("第2课时", $result['result']['data'][3]['section']);
+        $this->assertEquals("第1课时", $result['result']['data'][3]['section']);
     }
     
     //参数正确，评论为空

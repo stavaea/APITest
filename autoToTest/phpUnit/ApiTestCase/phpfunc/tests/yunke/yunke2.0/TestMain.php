@@ -92,7 +92,7 @@ class TestMain extends PHPUnit_Framework_TestCase
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
         $this->assertEquals('1',$result['result']['recommends']['0']['list']['0']['type'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
-        $this->assertEquals('34',$result['result']['recommends']['0']['list']['0']['total'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('874',$result['result']['recommends']['0']['list']['0']['total'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
     }
 
     

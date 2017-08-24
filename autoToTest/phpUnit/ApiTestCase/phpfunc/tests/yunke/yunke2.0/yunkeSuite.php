@@ -48,7 +48,7 @@ class yunkeSuite extends PHPUnit_Framework_TestSuite
         $this->addTestSuite('TestTeacherPoint');
         $this->addTestSuite('TestTeacherSearch');
         $this->addTestSuite('TestKeywordsTearchSearch');
-        $this->addTestSuite('TestUserSign');
+      //  $this->addTestSuite('TestUserSign');
         $this->addTestSuite('TestUserInfo');
     }
 
