@@ -61,7 +61,7 @@ class interface_func
          global $mysql_server_name;
          global $mysql_user;
          global $mysql_user_password;
-         $conn=mysqli_connect($mysql_server_name,$mysql_user,$mysql_user_password,$mysql_db,'3306') or die ("Failed to connect mysql");
+         $conn=mysqli_connect($mysql_server_name,$mysql_user,$mysql_user_password,$mysql_db,'3307') or die ("Failed to connect mysql");
          $conn->query("set names utf8");
          $resultQuery=mysqli_query($conn,$sql);
          if (is_bool($resultQuery)){
