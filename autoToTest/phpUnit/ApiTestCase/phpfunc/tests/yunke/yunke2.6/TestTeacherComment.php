@@ -44,8 +44,8 @@ class TestTeacherComment extends PHPUnit_Framework_TestCase
         print_r($result);
         $this->assertArrayHasKey('replay', $result['result']['list'][1]);
         $this->assertArrayHasKey('manage_name', $result['result']['list'][5]['replay']);//回复人名称
-        $this->assertArrayHasKey('contents', $result['result']['list'][1]['replay']);//回复内容
-        $this->assertArrayHasKey('replay_time', $result['result']['list'][1]['replay']);//回复时间
-        $this->assertArrayHasKey('status', $result['result']['list'][1]['replay']);//暂时没用
+        $this->assertArrayHasKey('contents', $result['result']['list'][5]['replay']);//回复内容
+        $this->assertArrayHasKey('replay_time', $result['result']['list'][5]['replay']);//回复时间
+        $this->assertArrayHasKey('status', $result['result']['list'][5]['replay']);//暂时没用
     }
 }
