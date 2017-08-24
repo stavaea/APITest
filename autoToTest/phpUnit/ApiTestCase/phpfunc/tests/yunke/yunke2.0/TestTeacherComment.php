@@ -31,7 +31,7 @@ protected function setUp()
         $this->assertEquals('0', $result['result']['data'][3]['userId']);
         $this->assertEquals("冯佳欣", $result['result']['data'][3]['userName']);
         $this->assertArrayHasKey("userImage", $result['result']['data'][3]);
-        $this->assertArrayHasKey("学习完啦", $result['result']['data'][3]['content']);
+        $this->assertContains("学习完", $result['result']['data'][3]['content']);
         $this->assertEquals('5', $result['result']['data'][3]['score']);
         $this->assertEquals("2017-08-05 17:37:49", $result['result']['data'][3]['time']);
         $this->assertEquals("测试环境-录播课", $result['result']['data'][3]['course']);
