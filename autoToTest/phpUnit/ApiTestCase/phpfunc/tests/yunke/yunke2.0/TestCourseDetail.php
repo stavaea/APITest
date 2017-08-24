@@ -181,6 +181,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
             'courseId'=>$courseid
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
+		var_dump($result);
         $this->assertEquals('1', $result['result']['class'][0]['isSign'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
     }
     
