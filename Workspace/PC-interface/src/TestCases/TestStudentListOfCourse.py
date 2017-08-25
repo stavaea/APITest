@@ -90,7 +90,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
         if returnObj['code']==0:
             self.assertEqual('2',returnObj['result']['page'])
             Result = False
-            Students = returnObj['result']['data']
+            Students = returnObj['result']['data']['0']
             for studentObj in Students:
                 if OneUser['mobile']==studentObj['mobile'] and OneUser['userName']==studentObj['userName']  and OneUser['userId']==studentObj['userId']:
                     Result = True
