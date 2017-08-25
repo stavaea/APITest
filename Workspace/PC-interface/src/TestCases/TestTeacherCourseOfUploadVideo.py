@@ -22,7 +22,7 @@ class Test_getCourseList(unittest.TestCase):
         '''获取录播课程列表--默认参数'''
         page = 1
         length = 20
-        userId = 281
+        userId = 42
         self.params['params'] = {
                                  "page":page,
                                  "length":length,
@@ -39,9 +39,9 @@ class Test_getCourseList(unittest.TestCase):
   
     def test_GetVideoCousrsePaging(self):
         '''录播课程列表--翻页(下一页)''' 
-        page = 3
+        page = 2
         length = 20
-        userId = 273
+        userId = 42
         self.params['params'] = {
                    "page": page,
                    "length":length,
@@ -64,8 +64,8 @@ class Test_getCourseList(unittest.TestCase):
         '''通过关键词搜索录播课程''' 
         page = 1
         length = 20
-        userId = 273
-        keyWords = "测试录播课1229"
+        userId = 42
+        keyWords = "录播"
         self.params['params'] = {
                    "page": page,
                    "length":length,
