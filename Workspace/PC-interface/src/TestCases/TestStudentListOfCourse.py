@@ -17,7 +17,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
     '''课程卡片详情--学生列表'''
     def setUp(self):
         self.s = requests.session()
-        self.s = TestProvide.login(self.s)
+        self.s = TestProvide.login(self.s,Configuration.mobile,Configuration.password)
         self.url = Configuration.HostUrl +"/interface/teacher/students"
         self.timeStamp = int(time.time())
         self.params = {}
