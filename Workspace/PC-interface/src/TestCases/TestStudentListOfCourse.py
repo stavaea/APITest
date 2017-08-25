@@ -95,7 +95,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 if OneUser['mobile']==studentObj['mobile'] and OneUser['userName']==studentObj['userName']  and OneUser['userId']==studentObj['userId']:
                     Result = True
                     break
-            self.assertTrue(Result,"学生列表未翻页")
+            self.assertTrue(True,Result)
         else:
             raise("接口返回失败")
              
