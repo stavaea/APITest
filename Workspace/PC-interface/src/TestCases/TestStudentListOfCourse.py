@@ -81,7 +81,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
         OneUser=  {
                 "userId": "1001592",
                 "userName": "lecturerId  ",
-                "sex": ""男,
+                "sex": "男",
                 "mobile": "18810001592",
                 "address": "移动 山东",
                 "startTime": "2016年09月02日 15:53"
