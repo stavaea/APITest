@@ -36,7 +36,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
                 "length":20,
                 "classId": Configuration.class_id,
                 "courseId": Configuration.course_id,
-                "teacherId":273,
+                "teacherId":45,
               }
         self.params['key']= TestProvide.generateKey(self.timeStamp,self.params['params'])
         print("Url:{}\r\n Parameters:{}".format(self.url,json.dumps(self.params,separators=(',',':'),ensure_ascii=False)))
@@ -69,7 +69,7 @@ class Test_TeacherOfStudents(unittest.TestCase):
         self.params['params'] = {
                 "page":2,
                 "length":20,
-                "classId": Configuration.class_id,
+                "classId": 187,
                 "courseId":Configuration.course_id,
                 "lecturerId":self.teacherId,
               }
@@ -79,10 +79,10 @@ class Test_TeacherOfStudents(unittest.TestCase):
         response.encoding= "utf-8"
         returnObj = json.loads(response.text)
         OneUser=  {
-                "userId": "22610",
-                "userName": "刘明中  ",
-                "sex": "",
-                "mobile": "13645420091",
+                "userId": "1001592",
+                "userName": "lecturerId  ",
+                "sex": ""男,
+                "mobile": "18810001592",
                 "address": "移动 山东",
                 "startTime": "2016年09月02日 15:53"
             }
