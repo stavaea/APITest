@@ -51,7 +51,7 @@ class TestLiveListInfo extends PHPUnit_Framework_TestCase
         $result = interfaceFunc::getPostData($this->url, $this->postData);
         $this->assertEquals('0', $result['code'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('0', $result['result']['data'][0]['isSign'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
-        $this->assertEquals('43', $result['result']['data'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('27', $result['result']['data'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('752', $result['result']['data'][0]['planId'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('1班', $result['result']['data'][0]['className'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('43', $result['result']['data'][0]['classId'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
