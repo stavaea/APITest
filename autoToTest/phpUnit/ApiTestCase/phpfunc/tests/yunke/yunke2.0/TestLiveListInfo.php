@@ -54,12 +54,12 @@ class TestLiveListInfo extends PHPUnit_Framework_TestCase
         $this->assertEquals('27', $result['result']['data'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('521', $result['result']['data'][0]['planId'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('1班', $result['result']['data'][0]['className'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
-        $this->assertEquals('43', $result['result']['data'][0]['classId'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('27', $result['result']['data'][0]['classId'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('0', $result['result']['data'][0]['trys'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
-        $this->assertEquals('ymjtest', $result['result']['data'][0]['courseName'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
-        $this->assertEquals('第13课时', $result['result']['data'][0]['sectionName'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('5月24日直播课整数', $result['result']['data'][0]['courseName'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('第14课时', $result['result']['data'][0]['sectionName'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('1', $result['result']['data'][0]['status'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
-        $this->assertEquals('08:00', $result['result']['data'][0]['stime'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('10:17', $result['result']['data'][0]['stime'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
     }
     
     
