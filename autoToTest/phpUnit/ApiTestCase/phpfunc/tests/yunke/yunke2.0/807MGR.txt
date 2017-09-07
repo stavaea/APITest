@@ -1,4 +1,0 @@
-jira	summary	status	经办人
-WEB-11083	mgr数据周报增加字段：周付费在读人数	已解决	no	张晓亭
-WEB-11108	导出Excel sheet不重新设置 采取默认	已解决	no	张俊宝
-WEB-11077	导出excel标题过长问题	关闭	no	张俊宝
