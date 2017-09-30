@@ -62,7 +62,7 @@ protected function setUp()
                 'type'=>'0'
             ];
             $result = interfaceFunc::getPostData($this->url, $this->postData);
-            $this->assertContains('1', array_column($result['result']['data']['teacher'],'teacherId')); 
+            $this->assertContains('0', array_column($result['result']['data']['teacher'],'teacherId')); 
         }
         
         //keywords为英文的时候，返回值
