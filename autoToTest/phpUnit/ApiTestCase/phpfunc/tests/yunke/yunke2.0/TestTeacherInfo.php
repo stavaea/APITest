@@ -23,13 +23,13 @@ protected function setUp()
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
         $this->assertEquals(0, $result['code']);
-        $this->assertEquals('1', $result['result']['info']['teacherId']);
-        $this->assertEquals('http://testf.gn100.com/5,cf0e19ade357', $result['result']['info']['thumbMed']);
-        $this->assertEquals('杨明娟老师', $result['result']['info']['name']);
-        $this->assertEquals('4', $result['result']['info']['years']);
-        $this->assertEquals('清华大学', $result['result']['info']['college']); 
-        $this->assertEquals("化学,历史", $result['result']['info']['subject']);
-        $this->assertEquals('最美教师', $result['result']['info']['desc']);
+        $this->assertEquals('2', $result['result']['info']['teacherId']);
+        $this->assertEquals('http://testf.gn100.com/7,0420a702b147f3', $result['result']['info']['thumbMed']);
+        $this->assertEquals('静~', $result['result']['info']['name']);
+        $this->assertEquals('3', $result['result']['info']['years']);
+        $this->assertEquals('北京大学', $result['result']['info']['college']); 
+        $this->assertEquals("计算机,阅读,数学", $result['result']['info']['subject']);
+        $this->assertEquals('让学生和家长更好1', $result['result']['info']['desc']);
         $this->assertEquals('', $result['result']['info']['taughtGrade']);
         $this->assertEquals('4.6', $result['result']['info']['score']);
         $this->assertEquals('0', $result['result']['info']['isFav']);
@@ -95,7 +95,7 @@ protected function setUp()
     public function testTeacherCourse()
     {
         $this->postData['params'] = [
-            'teacherId'=>'1',
+            'teacherId'=>'2',
             'page'=>'1',
             'length'=>'20'
         ];
