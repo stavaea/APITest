@@ -112,7 +112,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
            var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
            $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
        
-           $this->assertEquals('2051',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//content大于200个字符
+           $this->assertEquals('2017',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));//content大于200个字符
            
        }
        

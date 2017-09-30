@@ -17,23 +17,23 @@ protected function setUp()
     public function testTeacherInfoIsOk()
     {   
         $this->postData['params'] = [
-            'teacherId'=>'1',
+            'teacherId'=>'2',
             'page'=>'1',
             'length'=>'20'
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
-        $this->assertEquals(0, $result['code']);
-        $this->assertEquals('1', $result['result']['info']['teacherId']);
-        $this->assertEquals('http://testf.gn100.com/5,cf0e19ade357', $result['result']['info']['thumbMed']);
-        $this->assertEquals('杨明娟老师', $result['result']['info']['name']);
-        $this->assertEquals('4', $result['result']['info']['years']);
-        $this->assertEquals('清华大学', $result['result']['info']['college']); 
-        $this->assertEquals("化学,历史", $result['result']['info']['subject']);
-        $this->assertEquals('最美教师', $result['result']['info']['desc']);
+        $this->assertEquals('0', $result['code']);
+        $this->assertEquals('2', $result['result']['info']['teacherId']);
+        $this->assertEquals('http://testf.gn100.com/1,0420a6a32d6f51', $result['result']['info']['thumbMed']);
+        $this->assertEquals('马静', $result['result']['info']['name']);
+        $this->assertEquals('3', $result['result']['info']['years']);
+        $this->assertEquals('北京大学', $result['result']['info']['college']); 
+        $this->assertEquals("数学,计算机,阅读", $result['result']['info']['subject']);
+        $this->assertEquals('让学生和家长更好1', $result['result']['info']['desc']);
         $this->assertEquals('', $result['result']['info']['taughtGrade']);
-        $this->assertEquals('4.6', $result['result']['info']['score']);
+        $this->assertEquals('4.1', $result['result']['info']['score']);
         $this->assertEquals('0', $result['result']['info']['isFav']);
-        $this->assertEquals('', $result['result']['info']['address']);
+        $this->assertEquals('河南许昌', $result['result']['info']['address']);
     }
 
    // 传参正确，返回老师统计数据正确
@@ -70,7 +70,7 @@ protected function setUp()
     public function testTeacherPlan()
     {
         $this->postData['params'] = [
-            'teacherId'=>'1',
+            'teacherId'=>'2',
             'page'=>'1',
             'length'=>'20'
         ];
@@ -95,7 +95,7 @@ protected function setUp()
     public function testTeacherCourse()
     {
         $this->postData['params'] = [
-            'teacherId'=>'1',
+            'teacherId'=>'2',
             'page'=>'1',
             'length'=>'20'
         ];

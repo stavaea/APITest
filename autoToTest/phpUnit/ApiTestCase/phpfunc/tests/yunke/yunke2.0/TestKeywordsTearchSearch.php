@@ -46,7 +46,7 @@ protected function setUp()
             ];
             $result = interfaceFunc::getPostData($this->url, $this->postData);
             //length为空，默认长度为20
-            $this->assertEquals('9', $result['result']['teacherCount']);
+            $this->assertEquals('7', $result['result']['teacherCount']);
         }
         
         
