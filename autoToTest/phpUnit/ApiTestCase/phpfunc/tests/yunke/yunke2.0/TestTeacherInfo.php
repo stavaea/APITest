@@ -45,11 +45,11 @@ protected function setUp()
             'length'=>'20'
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
-        $sql='select * from t_teacher_stat where fk_user=1';
+        $sql='select * from t_teacher_stat where fk_user=2';
         $dbStat=dbConnect::ConnectDB('db_stat', $sql);
 		var_dump($dbStat);
-        $this->assertEquals($dbStat[2][0], $result['result']['info']['courseCount']);
-        $this->assertEquals($dbStat[1][5], $result['result']['info']['userTotal']);
+        $this->assertEquals($dbStat[0][1], $result['result']['info']['courseCount']);
+        $this->assertEquals($dbStat[0][2], $result['result']['info']['userTotal']);
         $this->assertEquals(round($dbStat[0][4]/3600), round($result['result']['info']['courseTotalTime']));
     }
     
