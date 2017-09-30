@@ -56,7 +56,7 @@ protected function setUp()
             $this->postData['params'] = [
                 'page'=>'1',
                 'length'=>'20',
-                'keywords'=>'杨明娟老师',
+                'keywords'=>'马静',
                 'condition'=>'0,0,0',
                 'sort'=>'0',
                 'type'=>'0'
