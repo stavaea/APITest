@@ -299,7 +299,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
             'courseId'=>$courseid
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
-        $this->assertEquals('0', $result['result']['isFree'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
+        $this->assertEquals('1', $result['result']['isFree'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
         $this->assertEquals('1', $result['result']['feeType'],'url:'.$this->url.'   Post data:'.json_encode($this->postData));
     }
     
