@@ -56,13 +56,13 @@ protected function setUp()
             $this->postData['params'] = [
                 'page'=>'1',
                 'length'=>'20',
-                'keywords'=>'杨明娟老师',
+                'keywords'=>'静~',
                 'condition'=>'0,0,0',
                 'sort'=>'0',
                 'type'=>'0'
             ];
             $result = interfaceFunc::getPostData($this->url, $this->postData);
-            $this->assertContains('0', array_column($result['result']['data']['teacher'],'teacherId')); 
+            $this->assertContains('2', array_column($result['result']['data']['teacher'],'teacherId')); 
         }
         
         //keywords为英文的时候，返回值
