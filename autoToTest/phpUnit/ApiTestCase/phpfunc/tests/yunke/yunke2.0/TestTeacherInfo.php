@@ -40,7 +40,7 @@ protected function setUp()
     public function testTeacherStat()
     {
         $this->postData['params'] = [
-            'teacherId'=>'1',
+            'teacherId'=>'2',
             'page'=>'1',
             'length'=>'20'
         ];
