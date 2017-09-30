@@ -17,23 +17,23 @@ protected function setUp()
     public function testTeacherInfoIsOk()
     {   
         $this->postData['params'] = [
-            'teacherId'=>'1',
+            'teacherId'=>'2',
             'page'=>'1',
             'length'=>'20'
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
-        $this->assertEquals('111111', $result['code']);
+        $this->assertEquals('0', $result['code']);
         $this->assertEquals('2', $result['result']['info']['teacherId']);
-        $this->assertEquals('http://testf.gn100.com/7,0420a702b147f3', $result['result']['info']['thumbMed']);
-        $this->assertEquals('静~', $result['result']['info']['name']);
+        $this->assertEquals('http://testf.gn100.com/1,0420a6a32d6f51', $result['result']['info']['thumbMed']);
+        $this->assertEquals('马静', $result['result']['info']['name']);
         $this->assertEquals('3', $result['result']['info']['years']);
         $this->assertEquals('北京大学', $result['result']['info']['college']); 
-        $this->assertEquals("计算机,阅读,数学", $result['result']['info']['subject']);
+        $this->assertEquals("数学,计算机,阅读", $result['result']['info']['subject']);
         $this->assertEquals('让学生和家长更好1', $result['result']['info']['desc']);
         $this->assertEquals('', $result['result']['info']['taughtGrade']);
-        $this->assertEquals('4.6', $result['result']['info']['score']);
+        $this->assertEquals('4.1', $result['result']['info']['score']);
         $this->assertEquals('0', $result['result']['info']['isFav']);
-        $this->assertEquals('', $result['result']['info']['address']);
+        $this->assertEquals('河南许昌', $result['result']['info']['address']);
     }
 
    // 传参正确，返回老师统计数据正确
