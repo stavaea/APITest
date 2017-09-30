@@ -22,7 +22,7 @@ protected function setUp()
             'length'=>'20'
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
-        $this->assertEquals(0, $result['code']);
+        $this->assertEquals('111111', $result['code']);
         $this->assertEquals('2', $result['result']['info']['teacherId']);
         $this->assertEquals('http://testf.gn100.com/7,0420a702b147f3', $result['result']['info']['thumbMed']);
         $this->assertEquals('静~', $result['result']['info']['name']);
