@@ -292,7 +292,7 @@ class TestCourseDetail extends PHPUnit_Framework_TestCase
     }
     
     //会员未报名,FeeType=1,isFree应该为0
-    public function testNoRegMember($courseid='172',$uid='2')
+    public function testNoRegMember($courseid='146',$uid='2')
     {
         $this->postData['params'] = [
             'uid'=>$uid,
