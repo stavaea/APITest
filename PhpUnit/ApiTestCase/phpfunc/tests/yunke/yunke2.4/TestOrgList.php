@@ -43,7 +43,7 @@ class TestOrgList extends PHPUnit_Framework_TestCase
             'sort'=>'2000'
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
-		lgth = count($result['result']['data']);
+		$lgth = count($result['result']['data']);
         $this->assertGreaterThanOrEqual($result['result']['data']['lgth-1']['courseNum'], $result['result']['data']['0']['courseNum']);
     }
     
@@ -57,7 +57,7 @@ class TestOrgList extends PHPUnit_Framework_TestCase
             'sort'=>'3000'
         ];
         $result = interfaceFunc::getPostData($this->url, $this->postData);
-		lgth = count($result['result']['data']);
+		$lgth = count($result['result']['data']);
         $this->assertGreaterThanOrEqual($result['result']['data']['lgth-1']['teacherNum'], $result['result']['data']['0']['teacherNum']);
     }
 }
