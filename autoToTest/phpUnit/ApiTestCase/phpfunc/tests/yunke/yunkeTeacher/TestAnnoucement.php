@@ -166,7 +166,7 @@ class TestAnnoucement extends PHPUnit_Framework_TestCase
                'content'=>'abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdew'
            ];
            $result = interfaceFunc::getPostData($url, $this->postData);
-           $this->assertEquals('2017',$result['code']);//content大于200个字符
+           $this->assertEquals('2051',$result['code']);//content大于200个字符
            
        }
        
