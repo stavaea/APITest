@@ -36,7 +36,7 @@ class TestPushMessage extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('0', $result['code']);
+        $this->assertEquals('1051', $result['code']);
         
         $ad2=interface_func::ConnectDB($db, $sql);
         $this->assertGreaterThan($ad[0][0], $ad2[0][0]);
