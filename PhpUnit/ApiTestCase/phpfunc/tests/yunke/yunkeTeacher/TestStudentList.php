@@ -25,18 +25,17 @@ class TestStudentList extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['courseId']= "228";
-        $postdata['params']['classId']= '287';//2班：1385
+        $postdata['params']['courseId']= "10";
+        $postdata['params']['classId']= '10';//2班：1385
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
 		
 		
-		
 		print_r($result);exit;
-        $this->assertEquals('13', count($result['result']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('李胜红', $result['result'][0]['name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('1', count($result['result']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('滑尧伟', $result['result'][0]['name'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         
     }
     //缺少必传参数
