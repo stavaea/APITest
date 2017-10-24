@@ -58,7 +58,7 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
         $this->assertEquals('张哈哈从沃引入翼', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('1101', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('177', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //搜索关键字，英文(不支持模糊查询)
