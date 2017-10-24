@@ -49,7 +49,7 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['uId']= "8";
-        $postdata['params']['keywords']= "新建个直播课";
+        $postdata['params']['keywords']= "多班报名";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $token =$this->Token->testUserTokenGenIsSuccess('8');
@@ -57,8 +57,8 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('新建个直播课', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('69', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('多班报名', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('223', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     //搜索关键字，英文(不支持模糊查询)
