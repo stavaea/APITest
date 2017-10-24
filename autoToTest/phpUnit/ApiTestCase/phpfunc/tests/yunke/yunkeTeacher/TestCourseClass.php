@@ -27,11 +27,11 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uId']= "23339";
+        $postdata['params']['uId']= "8";
         //$postdata['params']['keywords']= "";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =$this->Token->testUserTokenGenIsSuccess('23339');
+        $token =$this->Token->testUserTokenGenIsSuccess('8');
         $postdata['token']=$token;
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
@@ -48,16 +48,16 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uId']= "23339";
-        $postdata['params']['keywords']= "云课2.0测试课程";
+        $postdata['params']['uId']= "8";
+        $postdata['params']['keywords']= "张哈哈从沃引入翼";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =$this->Token->testUserTokenGenIsSuccess('23339');
+        $token =$this->Token->testUserTokenGenIsSuccess('8');
         $postdata['token']=$token;
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('云课2.0测试课程', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('张哈哈从沃引入翼', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('1101', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
@@ -67,17 +67,17 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['uId']= "23339";
-        $postdata['params']['keywords']= "zhibo";
+        $postdata['params']['uId']= "8";
+        $postdata['params']['keywords']= "test";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =$this->Token->testUserTokenGenIsSuccess('23339');
+        $token =$this->Token->testUserTokenGenIsSuccess('8');
         $postdata['token']=$token;
         //var_dump('url:'.$this->url.'   Post data:'.json_encode($postdata));
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('zhibo', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-        $this->assertEquals('872', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('test', $result['result'][0]['title'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('215', $result['result'][0]['courseId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
     }
     
     
@@ -91,7 +91,7 @@ class TestCourseClass extends PHPUnit_Framework_TestCase
         $postdata['params']['keywords']= "ALLALALALA";
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =$this->Token->testUserTokenGenIsSuccess('23339');
+        $token =$this->Token->testUserTokenGenIsSuccess('8');
         $postdata['token']=$token;
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
