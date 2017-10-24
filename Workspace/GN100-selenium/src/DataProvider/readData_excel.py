@@ -38,7 +38,7 @@ def read_excel_byIndex(file="file.xls",colname_index=0,by_index=0):
             
     return list
 
-def read_excel_byName(file="file.xls",colname_index=0,by_name=0):
+def read_excel_byName(file="Test-data.xls",colname_index=0,by_name=0):
     data = open_excel(file)
     table = data.sheet_by_name(by_name)
     nrows = table.nrows
