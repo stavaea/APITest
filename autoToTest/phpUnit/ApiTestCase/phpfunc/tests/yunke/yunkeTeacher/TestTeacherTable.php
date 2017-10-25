@@ -28,14 +28,15 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['startTime']= "2016-11-28 00:00:00";
-        $postdata['params']['endTime']= "2017-01-08 23:59:59";
-        $postdata['params']['userId']='23339';
+        $postdata['params']['startTime']= "2017-9-27 00:00:00";
+        $postdata['params']['endTime']= "2017-9-30 23:59:59";
+        $postdata['params']['userId']='2';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        
+		
+		
         $this->assertEquals('0',$result['code'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //$this->assertEquals('4', count($result['result']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         $this->assertArrayHasKey('planId', $result['result'][0]['data'][0],'url:'.$this->url.'   Post data:'.json_encode($postdata));
@@ -51,15 +52,16 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['startTime']= "2016-12-26 00:00:00";
-        $postdata['params']['endTime']= "2017-01-01 23:59:59";
-        $postdata['params']['userId']='23339';
+        $postdata['params']['startTime']= "2017-10-16 00:00:00";
+        $postdata['params']['endTime']= "2017-10-22 23:59:59";
+        $postdata['params']['userId']='2';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+		
         for($i=0;$i<count($result['result']);$i++)
         {
-            $days=(strtotime($result['result'][$i]['time'])-strtotime('2016-12-26'))/(3600*24);
+            $days=(strtotime($result['result'][$i]['time'])-strtotime('2017-10-16'))/(3600*24);
             if(abs($days)<=6)
             {
                $aa='是这个周的';
@@ -81,16 +83,17 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2016-12-29 00:00:00";
-         $postdata['params']['endTime']= "2016-12-29 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-10-25 00:00:00";
+         $postdata['params']['endTime']= "2017-10-25 23:59:59";
+         $postdata['params']['userId']='2';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-         $this->assertEquals('2016-12-29', $result['result'][0]['time'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-         $this->assertEquals('4441', $result['result'][0]['data'][0]['planId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
-         $this->assertEquals('云课2.0测试课程', $result['result'][0]['data'][0]['courseName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+		
+         $this->assertEquals('2017-10-25', $result['result'][0]['time'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('4402', $result['result'][0]['data'][0]['planId'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('课程服务测试', $result['result'][0]['data'][0]['courseName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
          
      }
      //当天直播课超过30节课，返回数据开课时间按最近的开始
@@ -99,14 +102,16 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2017-01-03 00:00:00";
-         $postdata['params']['endTime']= "2017-01-03 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-08-03 00:00:00";
+         $postdata['params']['endTime']= "2017-08-03 23:59:59";
+         $postdata['params']['userId']='2';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-         $this->assertGreaterThan('30', count($result['result'][0]['data']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
+		 
+		 
+         $this->assertGreaterThan('2', count($result['result'][0]['data']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
          
          for($j=0;$j<count($result['result'][0]['data'])-1;$j++)
          {
@@ -115,7 +120,7 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
              
          }   
          
-         $this->assertEquals('第1课时', $result['result'][0]['data'][0]['sectionName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+         $this->assertEquals('第72课时', $result['result'][0]['data'][0]['sectionName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
      }
      
      //必传参数为空，返回数据
@@ -141,13 +146,15 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2016-12-29 00:00:00";
-         $postdata['params']['endTime']= "2016-12-31 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-10-23 00:00:00";
+         $postdata['params']['endTime']= "2017-10-25 23:59:59";
+         $postdata['params']['userId']='2';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+
+		 
          if($result['code']!='3002')
          {
              for($k=0;$k<count($result['result']);$k++)
@@ -174,14 +181,16 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2016-10-17 00:00:00";
-         $postdata['params']['endTime']= "2016-10-17 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-7-16 00:00:00";
+         $postdata['params']['endTime']= "2017-7-16 23:59:59";
+         $postdata['params']['userId']='2';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-         $this->assertEquals('北京市东城区123', $result['result'][0]['data'][0]['address'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+		 
+		 
+         $this->assertEquals('北京市海淀区银谷大厦615', $result['result'][0]['data'][0]['address'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
      }
      
      //线下课，status为0，不能进入课堂
@@ -190,14 +199,17 @@ class TestTeacherTable extends PHPUnit_Framework_TestCase
          $postdata['time']=strtotime(date('Y-m-d H:i:s'));
          $postdata['u']=self::$u;
          $postdata['v']=self::$v;
-         $postdata['params']['startTime']= "2016-10-17 00:00:00";
-         $postdata['params']['endTime']= "2016-10-17 23:59:59";
-         $postdata['params']['userId']='23339';
+         $postdata['params']['startTime']= "2017-7-16 00:00:00";
+         $postdata['params']['endTime']= "2017-7-16 23:59:59";
+         $postdata['params']['userId']='2';
          $key=interface_func::GetAppKey($postdata);
          $postdata['key']=$key;
          //var_dump($this->http->HttpPost($this->url, json_encode($postdata)));
          $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-         $this->assertEquals('0', $result['result'][0]['data'][0]['status'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+
+		 
+		 
+         $this->assertEquals('1', $result['result'][0]['data'][1]['status'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
      }
      
      
