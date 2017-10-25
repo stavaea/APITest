@@ -2,8 +2,8 @@
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once '../func/Http.class.php';
 require_once '../func/interface_func.php';
-require_once '../yunkeTeacher/TestTeacherUpdateTaskShow.php';
-require_once '../yunkeTeacher/TestUpdateTask.php';
+//require_once '../yunkeTeacher/TestTeacherUpdateTaskShow.php';
+//require_once '../yunkeTeacher/TestUpdateTask.php';
 
 class TestDeleteImage extends PHPUnit_Framework_TestCase
 {

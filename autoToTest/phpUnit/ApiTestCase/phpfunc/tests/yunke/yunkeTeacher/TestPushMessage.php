@@ -31,12 +31,15 @@ class TestPushMessage extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['pkTask']= '162';
-        $postdata['params']['studentId']= '23339';
+        $postdata['params']['pkTask']= '1';
+        $postdata['params']['studentId']= '2';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        $this->assertEquals('1051', $result['code']);
+		//print_r($result);exit;
+		
+		
+        $this->assertEquals('0', $result['code']);
         
         $ad2=interface_func::ConnectDB($db, $sql);
         $this->assertGreaterThan($ad[0][0], $ad2[0][0]);
