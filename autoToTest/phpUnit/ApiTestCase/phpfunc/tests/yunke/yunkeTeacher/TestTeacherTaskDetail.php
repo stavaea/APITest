@@ -81,7 +81,6 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-		
         $this->assertEquals('0', $result['code']);
         $this->assertEquals('13', $result['result']['attach'][0]['name']);
         $this->assertEquals('jpg', $result['result']['attach'][0]['type']);
