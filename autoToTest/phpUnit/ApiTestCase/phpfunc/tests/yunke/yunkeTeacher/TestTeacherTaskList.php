@@ -2,7 +2,7 @@
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once '../func/Http.class.php';
 require_once '../func/interface_func.php';
-require_once '../BussinessUseCase/TestUserToken.php';
+//require_once '../BussinessUseCase/TestUserToken.php';
 
 class TestTeacherTaskList extends PHPUnit_Framework_TestCase
 {
@@ -20,11 +20,11 @@ class TestTeacherTaskList extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['page']='1';
-        $postdata['params']['uId']='23339';
+        $postdata['params']['uId']='2';
         $postdata['params']['status']='0';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23339');
+		$token = interfaceFunc::testUserTokenGenIsSuccess(2);
         $postdata['token']=$token;
         $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
         $pkTask=$result['result']['data'][0]['days'][0]['pkTask'];
@@ -38,14 +38,15 @@ class TestTeacherTaskList extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['page']='1';
-        $postdata['params']['uId']='23339';
+        $postdata['params']['uId']='2';
         $postdata['params']['status']='1';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23339');
+		$token = interfaceFunc::testUserTokenGenIsSuccess(2);
         $postdata['token']=$token;
         //var_dump('url:'.self::$url.'   Post data:'.json_encode($postdata));
         $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
+		//print_r($result);die;
         //$pkTask=$result['result']['data'][0]['days'][0]['pkTask'];
         //return $pkTask;
         return $result;
@@ -57,11 +58,11 @@ class TestTeacherTaskList extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         $postdata['params']['page']='2';
-        $postdata['params']['uId']='23359';
+        $postdata['params']['uId']='2';
         $postdata['params']['status']='3';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
-        $token =TestUserToken::testUserStaticTokenGenIsSuccess('23359');
+		$token = interfaceFunc::testUserTokenGenIsSuccess(2);
         $postdata['token']=$token;
         $result=json_decode(HttpClass::HttpStaticPost(self::$url, json_encode($postdata)),true);
         $pkTask=$result['result']['data'][0]['days'][0]['pkTask'];
