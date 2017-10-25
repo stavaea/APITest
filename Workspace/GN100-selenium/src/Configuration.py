@@ -8,5 +8,5 @@ BaseUrl = "http://test.gn100.com"
 DriverName = "chrome"
 
 #账号和密码
-username = "18500643574"
-password = "111111"
+username = "18810000001"
+password = "000000"
