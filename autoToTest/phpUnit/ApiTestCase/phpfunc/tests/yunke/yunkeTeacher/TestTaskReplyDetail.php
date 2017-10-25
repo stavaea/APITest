@@ -26,24 +26,26 @@ class TestTaskReplyDetail extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['taskId']= '154';
-        $postdata['params']['pkTaskStudent']= '4112';
+        $postdata['params']['taskId']= '1';
+        $postdata['params']['pkTaskStudent']= '3';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-        var_dump('url:'.$this->$url.'   Post data:'.json_encode($postdata));
+        //print_r($result);exit;	
+		
+        //var_dump('url:'.$this->$url.'   Post data:'.json_encode($postdata));
         $this->assertEquals('0', $result['code']);
         //var_dump($result['result']['commit']['thumb'][0]['srcMall']);
-        $this->assertEquals('杨明娟', $result['result']['info']['rename']);
-        $this->assertEquals('http://testf.gn100.com/5,028ed7a2ba14', $result['result']['info']['thumbMed']);
+        $this->assertEquals('杨明娟老师', $result['result']['info']['rename']);
+        $this->assertEquals('http://testf.gn100.com/4,cf0f06f8041d', $result['result']['info']['thumbMed']);
         
         //接口返回的格式化时间取了分和秒，dev已改，周一验证test
         //$this->assertEquals('02-08 星期三 16:54', $result['result']['commit']['data']['commitTime']);
-        $this->assertEquals('我是杨明娟，这是我的作业哦', $result['result']['commit']['data']['desc']);
-        $this->assertEquals('7', $result['result']['commit']['attach'][0]['name']);
-        $this->assertEquals('jpg', $result['result']['commit']['attach'][0]['type']);
-        $this->assertEquals('http://testf.gn100.com/4,a4f234506bf1', $result['result']['commit']['attach'][0]['srcAttach']);
-        $this->assertEquals('http://testf.gn100.com/4,a4f0428ab2ed', $result['result']['commit']['thumb'][0]['srcMall']);
+        $this->assertEquals('我提交作业了', $result['result']['commit']['data']['desc']);
+        $this->assertEquals('24_', $result['result']['commit']['attach'][0]['name']);
+        $this->assertEquals('txt', $result['result']['commit']['attach'][0]['type']);
+        $this->assertEquals('http://testf.gn100.com/7,d2e04a0888a7', $result['result']['commit']['attach'][0]['srcAttach']);
+        $this->assertEquals('http://testf.gn100.com/1,d2de0ff62780', $result['result']['commit']['thumb'][0]['srcMall']);
         
     }
     
@@ -58,11 +60,13 @@ class TestTaskReplyDetail extends PHPUnit_Framework_TestCase
         $postdata['time']=strtotime(date('Y-m-d H:i:s'));
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
-        $postdata['params']['taskId']= '154';
-        $postdata['params']['pkTaskStudent']= '4112';
+        $postdata['params']['taskId']= '3';
+        $postdata['params']['pkTaskStudent']= '1';
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+
+		
         $this->assertEquals('0', $result['code']);
 //         var_dump($result['result']['publish']['tag'][0]['name']);
 //         var_dump($ad[0][0]);
