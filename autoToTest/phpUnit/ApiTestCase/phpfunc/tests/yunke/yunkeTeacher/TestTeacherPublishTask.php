@@ -57,7 +57,9 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-
+        //print_r($result);exit;
+		
+		
         $this->assertEquals('0', $result['code']);
         //$fkTask=TestTeacherTaskList::testFkTask();
         //TestTeacherUpdateTaskShow::testUpdateListIsOK($fkTask);
@@ -71,12 +73,12 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         //$token =$this->Token->testUserTokenGenIsSuccess('23339');
-		$token =interfaceFunc::testUserTokenGenIsSuccess('23339');
+		$token =interfaceFunc::testUserTokenGenIsSuccess('2');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "783";
-        $postdata['params']['fkClass']= "916";
-        $postdata['params']['uId']= "";
-        $postdata['params']['desc']= "app老师发布作业啊！！！！！";
+        $postdata['params']['fkCourse']= "1";
+        $postdata['params']['fkClass']= "1";
+        $postdata['params']['uId']= "2";
+        $postdata['params']['desc']= "7e8658976980";
         $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
         $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
@@ -105,12 +107,12 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         //$token =$this->Token->testUserTokenGenIsSuccess('23339');
-		$token =interfaceFunc::testUserTokenGenIsSuccess('23339');
+		$token =interfaceFunc::testUserTokenGenIsSuccess('2');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "783";
-        $postdata['params']['fkClass']= "916";
-        $postdata['params']['uId']= "23339";
-        $postdata['params']['desc']= "";
+        $postdata['params']['fkCourse']= "1";
+        $postdata['params']['fkClass']= "1";
+        $postdata['params']['uId']= "2";
+        $postdata['params']['desc']= "7e8658976980";
         $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
         $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
@@ -136,12 +138,12 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         //$token =$this->Token->testUserTokenGenIsSuccess('23339');
-		$token =interfaceFunc::testUserTokenGenIsSuccess('23339');
+		$token =interfaceFunc::testUserTokenGenIsSuccess('2');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "783";
-        $postdata['params']['fkClass']= "916";
-        $postdata['params']['uId']= "23339";
-        $postdata['params']['desc']= "app老师发布作业啊！！！！！";
+        $postdata['params']['fkCourse']= "1";
+        $postdata['params']['fkClass']= "1";
+        $postdata['params']['uId']= "2";
+        $postdata['params']['desc']= "7e8658976980";
         $postdata['params']['startTime']= "2017-02-05 14:18:00";
         $postdata['params']['endTime']= "2017-02-09 14:18:00";
         $postdata['params']['taskImages'] =  array(
@@ -258,7 +260,7 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
-		
+		//print_r($result);exit;
 		
 		
         $this->assertEquals('2067', $result['code']);
@@ -271,12 +273,12 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         //$token =$this->Token->testUserTokenGenIsSuccess('23339');
-		$token =interfaceFunc::testUserTokenGenIsSuccess('23339');
+		$token =interfaceFunc::testUserTokenGenIsSuccess('2');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "783";
-        $postdata['params']['fkClass']= "916";
-        $postdata['params']['uId']= "23339";
-        $postdata['params']['desc']= "app老师发布作业啊！！！！！";
+        $postdata['params']['fkCourse']= "1";
+        $postdata['params']['fkClass']= "1";
+        $postdata['params']['uId']= "2";
+        $postdata['params']['desc']= "7e8658976980";
         $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
         $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
@@ -310,6 +312,8 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+		
+		//print_r($result);exit;
         $this->assertEquals('2061', $result['code']);
     }
     
@@ -321,12 +325,12 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         //$token =$this->Token->testUserTokenGenIsSuccess('23339');
-		$token =interfaceFunc::testUserTokenGenIsSuccess('23339');
+		$token =interfaceFunc::testUserTokenGenIsSuccess('2');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "783";
-        $postdata['params']['fkClass']= "916";
-        $postdata['params']['uId']= "23339";
-        $postdata['params']['desc']= "app老师发布作业啊！！！！！";
+        $postdata['params']['fkCourse']= "1";
+        $postdata['params']['fkClass']= "1";
+        $postdata['params']['uId']= "2";
+        $postdata['params']['desc']= "7e8658976980";
         $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
         $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
@@ -345,6 +349,8 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+		print_r($result);exit;
+		
         $this->assertEquals('2062', $result['code']);
     }
     
@@ -356,12 +362,12 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         //$token =$this->Token->testUserTokenGenIsSuccess('23339');
-		$token =interfaceFunc::testUserTokenGenIsSuccess('23339');
+		$token =interfaceFunc::testUserTokenGenIsSuccess('2');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "783";
-        $postdata['params']['fkClass']= "916";
-        $postdata['params']['uId']= "23339";
-        $postdata['params']['desc']= "app老师发布作业啊！！！！！";
+        $postdata['params']['fkCourse']= "1";
+        $postdata['params']['fkClass']= "1";
+        $postdata['params']['uId']= "2";
+        $postdata['params']['desc']= "7e8658976980";
         $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
         $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
         $postdata['params']['taskImages'] =  array(
@@ -391,11 +397,11 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $postdata['u']=self::$u;
         $postdata['v']=self::$v;
         //$token =$this->Token->testUserTokenGenIsSuccess('23339');
-		$token =interfaceFunc::testUserTokenGenIsSuccess('23339');
+		$token =interfaceFunc::testUserTokenGenIsSuccess('2');
         $postdata['token']=$token;
-        $postdata['params']['fkCourse']= "783";
-        $postdata['params']['fkClass']= "916";
-        $postdata['params']['uId']= "23339";
+        $postdata['params']['fkCourse']= "1";
+        $postdata['params']['fkClass']= "1";
+        $postdata['params']['uId']= "2";
         $postdata['params']['desc']= "我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们a";
         $postdata['params']['startTime']= date('Y-m-d H:i:s',strtotime("+2 minute"));
         $postdata['params']['endTime']= date('Y-m-d H:i:s',strtotime("+3 day"));
@@ -415,6 +421,8 @@ class TestTeacherPublishTask extends PHPUnit_Framework_TestCase
         $key=interface_func::GetAppKey($postdata);
         $postdata['key']=$key;
         $result=json_decode($this->http->HttpPost($this->url, json_encode($postdata)),true);
+		//print_r($result);exit;
+		
         $this->assertEquals('2063', $result['code']);
     }
     
