@@ -45,7 +45,7 @@ class TestTeacherTaskDetail extends PHPUnit_Framework_TestCase
          //截止时间
          $this->assertEquals('2017-07-23 星期日 11:57', $result['result']['taskInfo']['endTime'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //授课老师
-        $this->assertEquals('人人', $result['result']['taskInfo']['teacherName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
+        $this->assertEquals('马静', $result['result']['taskInfo']['teacherName'],'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //作业文字内容
         $this->assertEquals('测试5',self::trimall($result['result']['publish']['desc']),'url:'.$this->url.'   Post data:'.json_encode($postdata));
         //已交作业人数
