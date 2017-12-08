@@ -63,12 +63,19 @@ class Test_createCourse(unittest.TestCase):
         
     def test_NavigateCreateCoursePage(self):
         self.driver.find_element_by_xpath('/html/body/section/div/div/div[1]/ul/li[3]/a').click()
-        time.sleep(3)
+	    #验证是否存在课堂卡片，若存在关闭
+        try:
+            clearBtns = self.driver.find_elements_by_xpath("//div[@class=\"class-reminder\"]/div/span")
+            for clearBtn in clearBtns:
+                self.driver.execute_script("arguments[0].click();",clearBtn)
+        except NoSuchElementException:
+            pass
+        time.sleep(6)
         mainHandle = self.driver.current_window_handle
         global mainWindowHandle
         mainWindowHandle = mainHandle
         self.driver.find_element_by_link_text("新建课程").click()
-        time.sleep(5)
+        time.sleep(3)
         allHandles = self.driver.window_handles
         for handle in allHandles:
             if handle != mainHandle:
@@ -86,17 +93,19 @@ class Test_createCourse(unittest.TestCase):
     def test_SetBasicInformation(self):
         self.driver.find_element_by_link_text("直播课").click()
         WebDriverWait(self.driver,20).until(PageProvide.PageLoadingReady(), "页面未加载失败")
+        time.sleep(2)
         self.driver.find_element_by_id("get-courseInfo-title").send_keys(self.courseName)
         tag = self.driver.find_element_by_xpath("//*[@id='divSelectFirstVal']/div/div/section/div/div/section/div[6]/div[2]/label/div/input")
         tag.send_keys("test")
         tag.send_keys(Keys.SPACE)
         tag.send_keys("test1")
         tag.send_keys(Keys.SPACE)
+        time.sleep(2)
         
         #选择分类和科目
         self.driver.find_element_by_css_selector("#get-firstCate-btn>cite").click()
         #self.driver.execute_script("getCate();")
-        time.sleep(2)
+        time.sleep(20)
         xueqian= self.driver.find_element_by_xpath("//*[@id='get-firstCate-btn']/dl/dd[1]/a")
         xueqian.click()
         self.driver.execute_script("getCateClass(arguments[0],1)",xueqian)
@@ -155,7 +164,7 @@ class Test_createCourse(unittest.TestCase):
         self.assertIsNotNone(subjectText, "科目没有设置")
             
         #设置老师
-        TeacherName = "李胜红"
+        TeacherName = "一毛钱"
         #AddTeacherCent = self.driver.find_element_by_id("teachers-cent")
         self.driver.find_element_by_id("teachers-cent").click()
    
@@ -339,7 +348,7 @@ class Test_createCourse(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.driver.close()
-        cls.driver.quit()
+        #cls.driver.quit()
     
 if __name__ == "__main__":
     #unittest.main()
