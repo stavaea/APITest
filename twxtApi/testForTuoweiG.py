@@ -6,6 +6,9 @@ from socket import *
 import json
 import urllib2
 import HTMLTestRunner
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 import unittest
 
