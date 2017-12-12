@@ -2,6 +2,7 @@ import time
 from socket import *
 import json
 import urllib2
+import HTMLTestRunner
 
 import unittest
 
@@ -133,4 +134,9 @@ if __name__ == "__main__":
     suite.addTest(TestAPI('test_chnl_add_userOrderList'))
     suite.addTest(TestAPI('test_chnl_add_courseList'))
     suite.addTest(TestAPI('test_chnl_add_userMycourse'))
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    #unittest.TextTestRunner(verbosity=2).run(suite)
+	filePath = os.getcwd() + "/TestResult.html"
+    fp = open(filePath,'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title="拓维学堂接口测试",description="拓维学堂接口测试报告")
+    runner.run(suite)
+    fp.close()
